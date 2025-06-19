@@ -1,0 +1,11 @@
+C:\VS_Projects\fraenkischeAddin\fraenkischeAddin\bin\Debug\fraenkischeAddin.dll
+C:\VS_Projects\fraenkischeAddin\fraenkischeAddin\bin\Debug\fraenkischeAddin.pdb
+C:\VS_Projects\fraenkischeAddin\fraenkischeAddin\bin\Debug\fraenkischeAddin.tlb
+C:\VS_Projects\fraenkischeAddin\fraenkischeAddin\obj\Debug\fraenkischeAddin.csproj.AssemblyReference.cache
+C:\VS_Projects\fraenkischeAddin\fraenkischeAddin\obj\Debug\fraenkischeAddin.csproj.CoreCompileInputs.cache
+C:\VS_Projects\fraenkischeAddin\fraenkischeAddin\obj\Debug\fraenkischeAddin.dll
+C:\VS_Projects\fraenkischeAddin\fraenkischeAddin\obj\Debug\fraenkischeAddin.pdb
+C:\VS_Projects\fraenkischeAddin\fraenkischeAddin\obj\Debug\fraenkischeAddin.csproj.GenerateResource.cache
+C:\VS_Projects\fraenkischeAddin\fraenkischeAddin\bin\Debug\AddinLogo.png
+C:\VS_Projects\fraenkischeAddin\fraenkischeAddin\obj\Debug\Fraenkische.SWAddin.TaskpaneHostUI.resources
+C:\VS_Projects\fraenkischeAddin\fraenkischeAddin\obj\Debug\Fraenkische.SWAddin.UI.TaskpaneHostUI.resources
