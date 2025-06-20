@@ -12,3 +12,16 @@ C:\VS_Projects\fraenkischeAddin\fraenkischeAddin\bin\Debug\Resources\Icons_20x20
 C:\VS_Projects\fraenkischeAddin\fraenkischeAddin\bin\Debug\Resources\Icons_32x32.bmp
 C:\VS_Projects\fraenkischeAddin\fraenkischeAddin\bin\Debug\Resources\mainIcons_20x20.bmp
 C:\VS_Projects\fraenkischeAddin\fraenkischeAddin\bin\Debug\Resources\mainIcons_32x32.bmp
+D:\VS_Projects\fraenkischeAddin\bin\Debug\Resources\Icons_20x20.bmp
+D:\VS_Projects\fraenkischeAddin\bin\Debug\Resources\Icons_32x32.bmp
+D:\VS_Projects\fraenkischeAddin\bin\Debug\Resources\mainIcons_20x20.bmp
+D:\VS_Projects\fraenkischeAddin\bin\Debug\Resources\mainIcons_32x32.bmp
+D:\VS_Projects\fraenkischeAddin\bin\Debug\Resources\AddinLogo.png
+D:\VS_Projects\fraenkischeAddin\bin\Debug\fraenkischeAddin.dll
+D:\VS_Projects\fraenkischeAddin\bin\Debug\fraenkischeAddin.pdb
+D:\VS_Projects\fraenkischeAddin\obj\Debug\Fraenkische.SWAddin.csproj.AssemblyReference.cache
+D:\VS_Projects\fraenkischeAddin\obj\Debug\Fraenkische.SWAddin.UI.TaskpaneHostUI.resources
+D:\VS_Projects\fraenkischeAddin\obj\Debug\Fraenkische.SWAddin.csproj.GenerateResource.cache
+D:\VS_Projects\fraenkischeAddin\obj\Debug\Fraenkische.SWAddin.csproj.CoreCompileInputs.cache
+D:\VS_Projects\fraenkischeAddin\obj\Debug\fraenkischeAddin.dll
+D:\VS_Projects\fraenkischeAddin\obj\Debug\fraenkischeAddin.pdb

@@ -39,6 +39,8 @@ namespace Fraenkische.SWAddin
             featureManager.RegisterFeatures();
             commandManager.Finalize();
 
+
+
             LoadUI();
 
             return true;
@@ -67,6 +69,10 @@ namespace Fraenkische.SWAddin
             Marshal.ReleaseComObject(swTaskpaneView);
             swTaskpaneView = null;
 
+        }
+        public int HandleCommandCallback()
+        {
+            return commandManager.HandleCommandCallback();
         }
     }
 }

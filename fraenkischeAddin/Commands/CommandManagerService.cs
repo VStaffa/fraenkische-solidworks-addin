@@ -80,7 +80,7 @@ namespace Fraenkische.SWAddin.Commands
                 tooltip,
                 tooltip,
                 iconI,
-                nameof(HandleCommandCallback), // callback
+                "HandleCommandCallback", // callback
                 nameof(EnableCallback),        // enable callback
                 cmdId,
                 (int)(swCommandItemType_e.swMenuItem | swCommandItemType_e.swToolbarItem));
@@ -96,20 +96,25 @@ namespace Fraenkische.SWAddin.Commands
         {
             try
             {
-                _callbacks[1].Invoke();
+                _callbacks[_currentCmdIndex].Invoke();
             }
             catch (Exception ex)
             {
-                _swApp.SendMsgToUser2(
+                //_swApp.SendMsgToUser2(
+                //    "Chyba při vykonání příkazu: " + ex.Message,
+                //    (int)swMessageBoxIcon_e.swMbStop,
+                //    (int)swMessageBoxBtn_e.swMbOk);
+                MessageBox.Show(
                     "Chyba při vykonání příkazu: " + ex.Message,
-                    (int)swMessageBoxIcon_e.swMbStop,
-                    (int)swMessageBoxBtn_e.swMbOk);
+                    "Chyba",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);  
             }
             return 0;
         }
         public int EnableCallback()
         {
-            return 0; // 1 = povoleno
+            return 1; // 1 = povoleno
         }
         public void Dispose()
         {
