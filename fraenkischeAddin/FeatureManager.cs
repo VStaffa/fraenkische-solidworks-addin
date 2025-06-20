@@ -26,10 +26,6 @@ namespace Fraenkische.SWAddin
                 new TNumberScraper(_swApp),
                 new GenerateInfill(_swApp),
                 new TNumberScraper(_swApp),
-                new GenerateInfill(_swApp),
-                new TNumberScraper(_swApp),
-                new GenerateInfill(_swApp),
-                new TNumberScraper(_swApp),
             // new ExportToStepCommand(_swApp),
             // new RenameDocumentCommand(_swApp),
             // etc.
