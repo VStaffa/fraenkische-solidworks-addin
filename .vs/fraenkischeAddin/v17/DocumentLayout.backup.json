@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\VS_Projects\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|d:\\vs_projects\\fraenkischeaddin\\swaddinclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|solutionrelative:fraenkischeaddin\\swaddinclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|d:\\vs_projects\\fraenkischeaddin\\commands\\commandmanagerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|solutionrelative:fraenkischeaddin\\commands\\commandmanagerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|d:\\vs_projects\\fraenkischeaddin\\featuremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|solutionrelative:fraenkischeaddin\\featuremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -19,12 +27,38 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "swAddinClass.cs",
+              "DocumentMoniker": "D:\\VS_Projects\\fraenkischeAddin\\swAddinClass.cs",
+              "RelativeDocumentMoniker": "fraenkischeAddin\\swAddinClass.cs",
+              "ToolTip": "D:\\VS_Projects\\fraenkischeAddin\\swAddinClass.cs",
+              "RelativeToolTip": "fraenkischeAddin\\swAddinClass.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAmwE4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T06:31:49.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CommandManagerService.cs",
+              "DocumentMoniker": "D:\\VS_Projects\\fraenkischeAddin\\Commands\\CommandManagerService.cs",
+              "RelativeDocumentMoniker": "fraenkischeAddin\\Commands\\CommandManagerService.cs",
+              "ToolTip": "D:\\VS_Projects\\fraenkischeAddin\\Commands\\CommandManagerService.cs",
+              "RelativeToolTip": "fraenkischeAddin\\Commands\\CommandManagerService.cs",
+              "ViewState": "AgIAAHIAAAAAAAAAAAA4wH0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T06:21:38.303Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "FeatureManager.cs",
               "DocumentMoniker": "D:\\VS_Projects\\fraenkischeAddin\\FeatureManager.cs",
               "RelativeDocumentMoniker": "fraenkischeAddin\\FeatureManager.cs",
               "ToolTip": "D:\\VS_Projects\\fraenkischeAddin\\FeatureManager.cs",
               "RelativeToolTip": "fraenkischeAddin\\FeatureManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBkAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-20T06:16:02.976Z",
               "EditorCaption": ""

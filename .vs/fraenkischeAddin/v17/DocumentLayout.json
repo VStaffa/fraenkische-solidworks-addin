@@ -3,15 +3,31 @@
   "WorkspaceRootPath": "D:\\VS_Projects\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|d:\\vs_projects\\fraenkischeaddin\\commands\\tnumberscraper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|solutionrelative:fraenkischeaddin\\commands\\tnumberscraper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|d:\\vs_projects\\fraenkischeaddin\\commands\\generateinfill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|solutionrelative:fraenkischeaddin\\commands\\generateinfill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|D:\\VS_Projects\\fraenkischeaddin\\commands\\commandmanagerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|solutionrelative:fraenkischeaddin\\commands\\commandmanagerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|d:\\vs_projects\\fraenkischeaddin\\ui\\taskpanehostui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|solutionrelative:fraenkischeaddin\\ui\\taskpanehostui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|d:\\vs_projects\\fraenkischeaddin\\ui\\taskpanehostui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|solutionrelative:fraenkischeaddin\\ui\\taskpanehostui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|d:\\vs_projects\\fraenkischeaddin\\swaddinclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|solutionrelative:fraenkischeaddin\\swaddinclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|d:\\vs_projects\\fraenkischeaddin\\commands\\commandmanagerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|solutionrelative:fraenkischeaddin\\commands\\commandmanagerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|d:\\vs_projects\\fraenkischeaddin\\featuremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|D:\\VS_Projects\\fraenkischeaddin\\featuremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B6917DCD-3CE8-49DD-9A26-5D924597BD35}|fraenkischeAddin\\Fraenkische.SWAddin.csproj|solutionrelative:fraenkischeaddin\\featuremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -27,38 +43,89 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "TNumberScraper.cs",
+              "DocumentMoniker": "D:\\VS_Projects\\fraenkischeAddin\\Commands\\TNumberScraper.cs",
+              "RelativeDocumentMoniker": "fraenkischeAddin\\Commands\\TNumberScraper.cs",
+              "ToolTip": "D:\\VS_Projects\\fraenkischeAddin\\Commands\\TNumberScraper.cs",
+              "RelativeToolTip": "fraenkischeAddin\\Commands\\TNumberScraper.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T06:38:36.408Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GenerateInfill.cs",
+              "DocumentMoniker": "D:\\VS_Projects\\fraenkischeAddin\\Commands\\GenerateInfill.cs",
+              "RelativeDocumentMoniker": "fraenkischeAddin\\Commands\\GenerateInfill.cs",
+              "ToolTip": "D:\\VS_Projects\\fraenkischeAddin\\Commands\\GenerateInfill.cs",
+              "RelativeToolTip": "fraenkischeAddin\\Commands\\GenerateInfill.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T06:38:34.58Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TaskpaneHostUI.cs",
+              "DocumentMoniker": "D:\\VS_Projects\\fraenkischeAddin\\UI\\TaskpaneHostUI.cs",
+              "RelativeDocumentMoniker": "fraenkischeAddin\\UI\\TaskpaneHostUI.cs",
+              "ToolTip": "D:\\VS_Projects\\fraenkischeAddin\\UI\\TaskpaneHostUI.cs",
+              "RelativeToolTip": "fraenkischeAddin\\UI\\TaskpaneHostUI.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAowAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T06:38:12.209Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TaskpaneHostUI.cs [Design]",
+              "DocumentMoniker": "D:\\VS_Projects\\fraenkischeAddin\\UI\\TaskpaneHostUI.cs",
+              "RelativeDocumentMoniker": "fraenkischeAddin\\UI\\TaskpaneHostUI.cs",
+              "ToolTip": "D:\\VS_Projects\\fraenkischeAddin\\UI\\TaskpaneHostUI.cs [Design]",
+              "RelativeToolTip": "fraenkischeAddin\\UI\\TaskpaneHostUI.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-20T06:38:09.088Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "swAddinClass.cs",
               "DocumentMoniker": "D:\\VS_Projects\\fraenkischeAddin\\swAddinClass.cs",
               "RelativeDocumentMoniker": "fraenkischeAddin\\swAddinClass.cs",
               "ToolTip": "D:\\VS_Projects\\fraenkischeAddin\\swAddinClass.cs",
               "RelativeToolTip": "fraenkischeAddin\\swAddinClass.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAmwE4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAwwBYAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-20T06:31:49.202Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "CommandManagerService.cs",
               "DocumentMoniker": "D:\\VS_Projects\\fraenkischeAddin\\Commands\\CommandManagerService.cs",
               "RelativeDocumentMoniker": "fraenkischeAddin\\Commands\\CommandManagerService.cs",
               "ToolTip": "D:\\VS_Projects\\fraenkischeAddin\\Commands\\CommandManagerService.cs",
               "RelativeToolTip": "fraenkischeAddin\\Commands\\CommandManagerService.cs",
-              "ViewState": "AgIAAHIAAAAAAAAAAAA4wH0AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAG4AAAAAAAAAAAAIwH8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-20T06:21:38.303Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "FeatureManager.cs",
               "DocumentMoniker": "D:\\VS_Projects\\fraenkischeAddin\\FeatureManager.cs",
               "RelativeDocumentMoniker": "fraenkischeAddin\\FeatureManager.cs",
               "ToolTip": "D:\\VS_Projects\\fraenkischeAddin\\FeatureManager.cs",
               "RelativeToolTip": "fraenkischeAddin\\FeatureManager.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBkAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-20T06:16:02.976Z",
               "EditorCaption": ""
