@@ -103,6 +103,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="AnotheTextFile.md" />
     <None Include="packages.config" />
     <None Include="test.md" />
   </ItemGroup>
