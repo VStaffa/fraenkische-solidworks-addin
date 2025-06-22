@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="test.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Xarial.XCad.SolidWorks.0.8.2\build\Xarial.XCad.SolidWorks.targets" Condition="Exists('..\packages\Xarial.XCad.SolidWorks.0.8.2\build\Xarial.XCad.SolidWorks.targets')" />
