@@ -45,11 +45,11 @@ namespace Fraenkische.SWAddin.Services
 
             string userInputName = Interaction.InputBox("Enter a name:", "Input Required", componentName);
 
-            //if (!string.IsNullOrWhiteSpace(userInputName))
-            //{
-            //    MessageBox.Show("Nemuze byt prazdne!");
-            //    return;
-            //}
+            if (string.IsNullOrWhiteSpace(userInputName))
+            {
+                MessageBox.Show("Nemuze byt prazdne!");
+                return;
+            }
 
             string foundTNumber = _excelReader.GetTNumberForComponent(userInputName);
 

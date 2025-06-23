@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO;
+using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Fraenkische.SWAddin.Services
@@ -32,6 +32,10 @@ namespace Fraenkische.SWAddin.Services
                         nameCell.IndexOf(componentName, StringComparison.OrdinalIgnoreCase) >= 0)
                     {
                         string tNumber = sheet.Cells[row, 1].Text as string;
+
+                        if (!ConfirmOutputValue(nameCell))
+                            return null;
+
                         return string.IsNullOrWhiteSpace(tNumber) ? null : tNumber;
                     }
                 }
@@ -50,5 +54,9 @@ namespace Fraenkische.SWAddin.Services
 
             return null;
         }
+
+        private bool ConfirmOutputValue(string value) =>  
+            MessageBox.Show($"Nalezena shoda v bunce:\n{value}","Potvrdte nalezenou shodu.",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+
     }
 }
