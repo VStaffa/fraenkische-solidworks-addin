@@ -16,6 +16,8 @@ namespace Fraenkische.SWAddin
         public void Execute()
         {
             MessageBox.Show("TNumber Scraper - EXECUTE!");
+            
+            
         }
 
         public void Register(CommandManagerService cmdMgrService)
