@@ -26,10 +26,10 @@ namespace Fraenkische.SWAddin.Commands
 
         public void Execute()
         {
-            var activeDoc = _swApp.IActiveDoc2 as IAssemblyDoc;
+            var activeDoc = _swApp.IActiveDoc2 as ModelDoc2;
             if (activeDoc == null)
             {
-                System.Windows.Forms.MessageBox.Show("This command works only on assemblies.");
+                System.Windows.Forms.MessageBox.Show("This command works only in parts");
                 return;
             }
 
@@ -39,7 +39,7 @@ namespace Fraenkische.SWAddin.Commands
             var editor = new CustomPropertyEditor();
             var updater = new AssemblyTNumberUpdater(_swApp, reader, editor);
 
-            updater.UpdateAllComponentsTNumbers(activeDoc);
+            updater.UpdateTNumber(activeDoc);
 
             System.Windows.Forms.MessageBox.Show("T-Number update completed.");
         }

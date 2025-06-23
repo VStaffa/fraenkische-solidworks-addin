@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using System.IO;
+using System.Windows;
+using Microsoft.VisualBasic;
 using SolidWorks.Interop.sldworks;
-using SolidWorks.Interop.swconst;
-using SolidWorks.Interop.swcommands;
-using SolidWorks.Interop.swpublished;
+
+
 
 namespace Fraenkische.SWAddin.Services
 {
@@ -26,32 +27,38 @@ namespace Fraenkische.SWAddin.Services
             _propertyEditor = propertyEditor;
         }
 
-        public void UpdateAllComponentsTNumbers(IAssemblyDoc assemblyDoc)
+        public void UpdateTNumber(ModelDoc2 swModel)
         {
-            // 1. Získat komponenty
-            IComponent2[] components = (IComponent2[])assemblyDoc.GetComponents(true);
-
-            foreach (IComponent2 component in components)
+                // 1. Zkontrolovat Custom Property
+            string tNumber = _propertyEditor.GetTNumber(swModel);
+            if (!string.IsNullOrWhiteSpace(tNumber))
             {
-                var model = (ModelDoc2)component.GetModelDoc2();
-                if (model == null)
-                    continue;
-
-                // 2. Zkontrolovat Custom Property
-                string tNumber = _propertyEditor.GetTNumber(model);
-                if (!string.IsNullOrWhiteSpace(tNumber))
-                    continue; // Už má T-číslo
-
-                // 3. Získat název komponenty a hledat v Excelu
-                string componentName = "test";
-                string foundTNumber = _excelReader.GetTNumberForComponent(componentName);
-
-                if (!string.IsNullOrWhiteSpace(foundTNumber))
-                {
-                    // 4. Zapsat do modelu
-                    _propertyEditor.SetTNumber(model, foundTNumber);
-                }
+                MessageBox.Show("Uz ma TCislo");
+                return;
             }
+
+            // Už má T-číslo
+
+            // 2. Získat název komponenty a hledat v Excelu
+            string fullName = swModel.GetTitle();
+            string componentName = Path.GetFileNameWithoutExtension(fullName);
+
+            string userInputName = Interaction.InputBox("Enter a name:", "Input Required", componentName);
+
+            //if (!string.IsNullOrWhiteSpace(userInputName))
+            //{
+            //    MessageBox.Show("Nemuze byt prazdne!");
+            //    return;
+            //}
+
+            string foundTNumber = _excelReader.GetTNumberForComponent(userInputName);
+
+            if (!string.IsNullOrWhiteSpace(foundTNumber))
+            {
+                // 3. Zapsat do modelu
+                _propertyEditor.SetTNumber(swModel, foundTNumber);
+            }
+            
         }
     }
 }
