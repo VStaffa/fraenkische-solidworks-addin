@@ -20,19 +20,14 @@ namespace Fraenkische.SWAddin
             List<ICommand> features = new List<ICommand>()
         {
 
-                //SEM PRIDAVAT NOVE FUNKCE
+            //SEM PRIDAVAT NOVE FUNKCE
 
-                //Callback_0
-                new TNumberScraper(_swApp),
-                //Callback_1
-                new GenerateInfill(_swApp),
-                //Callback_2
-                new TestCommand1(_swApp),
-                //Callback 3
-                new TestCommand2(_swApp),
-
-            // new ExportToStepCommand(_swApp),
-            // new RenameDocumentCommand(_swApp),
+            //Callback_0
+            new UpdateTNumbersCommand(_swApp),
+            //Callback_1
+            //new UpdateTNumbersCommand(_swApp),
+            //Callback_2
+            //Callback 3
             // etc.
         };
 
