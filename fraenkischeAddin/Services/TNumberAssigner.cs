@@ -1,6 +1,6 @@
 ﻿
 using System.IO;
-using System.Windows;
+using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using SolidWorks.Interop.sldworks;
 
@@ -8,14 +8,14 @@ using SolidWorks.Interop.sldworks;
 
 namespace Fraenkische.SWAddin.Services
 {
-    public class AssemblyTNumberUpdater
+    public class TNumberAssigner
     {
         private readonly ISldWorks _swApp;
         private readonly TNumberExcelReader _excelReader;
         private readonly CustomPropertyEditor _propertyEditor;
 
 
-        public AssemblyTNumberUpdater(
+        public TNumberAssigner(
             ISldWorks swApp,
             TNumberExcelReader excelReader,
             CustomPropertyEditor propertyEditor
@@ -33,11 +33,9 @@ namespace Fraenkische.SWAddin.Services
             string tNumber = _propertyEditor.GetTNumber(swModel);
             if (!string.IsNullOrWhiteSpace(tNumber))
             {
-                MessageBox.Show("Uz ma TCislo");
+                MessageBox.Show($"TENTO DÍL JIŽ MÁ T-ČÍSLO!\nT-ČÍSLO: {tNumber}","UPOZORNĚNÍ",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 return;
             }
-
-            // Už má T-číslo
 
             // 2. Získat název komponenty a hledat v Excelu
             string fullName = swModel.GetTitle();
@@ -47,7 +45,7 @@ namespace Fraenkische.SWAddin.Services
 
             if (string.IsNullOrWhiteSpace(userInputName))
             {
-                MessageBox.Show("Nemuze byt prazdne!");
+                MessageBox.Show("Nemuze byt prazdne!","CHYBA",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 return;
             }
 

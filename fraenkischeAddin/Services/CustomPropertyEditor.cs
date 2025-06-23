@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
@@ -37,7 +38,7 @@ namespace Fraenkische.SWAddin.Services
                 (int)swSaveAsOptions_e.swSaveAsOptions_Silent,
                 0,
                 0);
-            MessageBox.Show($"T-Cislo: {tNumber}, Pridano dilu:{model.GetTitle()} ");
+            MessageBox.Show($"Do dilu: {Path.GetFileNameWithoutExtension(model.GetTitle())}\nNahrano T-Cislo: {tNumber}");
         }
     }
 }

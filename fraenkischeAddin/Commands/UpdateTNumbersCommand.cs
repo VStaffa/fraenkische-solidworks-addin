@@ -1,4 +1,5 @@
-﻿using Fraenkische.SWAddin.Commands;
+﻿using System.Windows.Forms;
+using Fraenkische.SWAddin.Commands;
 using Fraenkische.SWAddin.Services;
 using SolidWorks.Interop.sldworks;
 
@@ -19,7 +20,7 @@ namespace Fraenkische.SWAddin.Commands
         {
             cmdMgr.AddCommand(
                 commandTitle: Title,
-                tooltip: "Update missing T-Numbers from Excel",
+                tooltip: "Update T-Numbers from Excel",
                 iconI: 2, // např. 2. ikona ve tvém .bmp
                 callback: Execute);
         }
@@ -29,7 +30,7 @@ namespace Fraenkische.SWAddin.Commands
             var activeDoc = _swApp.IActiveDoc2 as ModelDoc2;
             if (activeDoc == null)
             {
-                System.Windows.Forms.MessageBox.Show("This command works only in parts");
+                System.Windows.Forms.MessageBox.Show("OPEN A PART TO USE THIS FEATURE!","CHYBA!",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 return;
             }
 
@@ -37,7 +38,7 @@ namespace Fraenkische.SWAddin.Commands
 
             var reader = new TNumberExcelReader(excelPath);
             var editor = new CustomPropertyEditor();
-            var updater = new AssemblyTNumberUpdater(_swApp, reader, editor);
+            var updater = new TNumberAssigner(_swApp, reader, editor);
 
             updater.UpdateTNumber(activeDoc);
 

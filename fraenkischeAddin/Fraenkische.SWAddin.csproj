@@ -75,7 +75,7 @@
     <Compile Include="Commands\UpdateTNumbersCommand.cs" />
     <Compile Include="Core\ICommand.cs" />
     <Compile Include="FeatureManager.cs" />
-    <Compile Include="Services\AssemblyTNumberUpdater.cs" />
+    <Compile Include="Services\TNumberAssigner.cs" />
     <Compile Include="Services\CustomPropertyEditor.cs" />
     <Compile Include="Services\TNumberExcelReader.cs" />
     <Compile Include="swAddinClass.cs" />
