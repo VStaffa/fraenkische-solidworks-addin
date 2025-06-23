@@ -5,11 +5,11 @@ using SolidWorks.Interop.sldworks;
 
 namespace Fraenkische.SWAddin.Commands
 {
-    public class UpdateTNumbersCommand : ICommand
+    public class Command_UpdateTNumbers : ICommand
     {
         private readonly ISldWorks _swApp;
 
-        public UpdateTNumbersCommand(ISldWorks swApp)
+        public Command_UpdateTNumbers(ISldWorks swApp)
         {
             _swApp = swApp;
         }

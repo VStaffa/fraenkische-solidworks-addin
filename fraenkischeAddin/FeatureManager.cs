@@ -23,7 +23,7 @@ namespace Fraenkische.SWAddin
             //SEM PRIDAVAT NOVE FUNKCE
 
             //Callback_0
-            new UpdateTNumbersCommand(_swApp),
+            new Command_UpdateTNumbers(_swApp),
             //Callback_1
             //new UpdateTNumbersCommand(_swApp),
             //Callback_2
