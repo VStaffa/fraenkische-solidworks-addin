@@ -27,11 +27,11 @@ namespace Fraenkische.SWAddin.Services
 
                 for (int row = lastRow; row >= 1; row--)
                 {
-                    string nameCell = sheet.Cells[row, 5].Text as string;
-                    if (!string.IsNullOrWhiteSpace(nameCell) &&
-                        nameCell.IndexOf(componentName, StringComparison.OrdinalIgnoreCase) >= 0)
+
+                    string nameCell = sheet.Cells[row, 6].Text as string; // Column F
+                    if (!string.IsNullOrWhiteSpace(nameCell) && nameCell.Equals(componentName, StringComparison.OrdinalIgnoreCase))
                     {
-                        string tNumber = sheet.Cells[row, 1].Text as string;
+                        string tNumber = sheet.Cells[row, 1].Text as string; // T-Number from Column A
 
                         if (!ConfirmOutputValue(nameCell))
                             return null;

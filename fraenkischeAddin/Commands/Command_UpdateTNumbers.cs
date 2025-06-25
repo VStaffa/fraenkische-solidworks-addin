@@ -34,7 +34,7 @@ namespace Fraenkische.SWAddin.Commands
                 return;
             }
 
-            string excelPath = @"C:\Users\staff\Desktop\excel.xlsx";
+            string excelPath = @"C:\Users\staffav\Fraenkische Rohrwerke Gebr. Kirchner GmbH & Co. KG\FIP_CZ_PEEN - Documents\Design Team\Toolshop_drawings.xlsm";
 
             var reader = new TNumberExcelReader(excelPath);
             var editor = new CustomPropertyEditor();
