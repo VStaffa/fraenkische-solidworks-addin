@@ -28,10 +28,10 @@ namespace Fraenkische.SWAddin.Services
                 for (int row = lastRow; row >= 1; row--)
                 {
 
-                    string nameCell = sheet.Cells[row, 6].Text as string; // Column F
-                    if (!string.IsNullOrWhiteSpace(nameCell) && nameCell.Equals(componentName, StringComparison.OrdinalIgnoreCase))
+                    string nameCell = sheet.Cells[row, 1].Text as string; // Column A
+                    if (!string.IsNullOrWhiteSpace(nameCell) && nameCell.Equals(componentName));
                     {
-                        string tNumber = sheet.Cells[row, 1].Text as string; // T-Number from Column A
+                        string tNumber = sheet.Cells[row, 6].Text as string; // T-Number from Column A
 
                         if (!ConfirmOutputValue(nameCell))
                             return null;
@@ -55,8 +55,9 @@ namespace Fraenkische.SWAddin.Services
             return null;
         }
 
-        private bool ConfirmOutputValue(string value) =>  
+        private bool ConfirmOutputValue(string value) => 
             MessageBox.Show($"Nalezena shoda v bunce:\n{value}","Potvrdte nalezenou shodu.",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+
 
     }
 }
