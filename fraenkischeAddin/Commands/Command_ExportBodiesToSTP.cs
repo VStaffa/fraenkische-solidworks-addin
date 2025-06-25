@@ -59,8 +59,6 @@ namespace Fraenkische.SWAddin.Commands
                 string filePath = Path.Combine(targetFolder, bodyName + ".stp");
                 //MessageBox.Show(filePath);
 
-                int errors = 0, warnings = 0;
-
                 swModel.SaveAs3(filePath,0,0);
 
             }
