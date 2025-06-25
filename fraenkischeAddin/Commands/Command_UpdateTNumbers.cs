@@ -38,9 +38,9 @@ namespace Fraenkische.SWAddin.Commands
 
             var reader = new TNumberExcelReader(excelPath);
             var editor = new CustomPropertyEditor();
-            var updater = new TNumberAssigner(_swApp, reader, editor);
+            var assigner = new TNumberAssigner(_swApp, reader, editor);
 
-            updater.UpdateTNumber(activeDoc);
+            assigner.UpdateTNumber(activeDoc);
 
             System.Windows.Forms.MessageBox.Show("T-Number update completed.");
         }
