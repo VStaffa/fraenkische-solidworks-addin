@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="Commands\CommandManagerService.cs" />
     <Compile Include="Commands\Command_UpdateTNumbers.cs" />
+    <Compile Include="Commands\Command_ExportBodiesToSTP.cs" />
     <Compile Include="Core\ICommand.cs" />
     <Compile Include="FeatureManager.cs" />
     <Compile Include="Services\TNumberAssigner.cs" />

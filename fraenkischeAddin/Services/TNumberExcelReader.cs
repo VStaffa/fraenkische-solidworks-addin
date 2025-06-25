@@ -25,20 +25,24 @@ namespace Fraenkische.SWAddin.Services
                 Excel.Range usedRange = sheet.UsedRange;
                 int lastRow = usedRange.Rows.Count;
 
+                bool found = false;
+
                 for (int row = lastRow; row >= 1; row--)
                 {
 
                     string nameCell = sheet.Cells[row, 1].Text as string; // Column A
-                    if (!string.IsNullOrWhiteSpace(nameCell) && nameCell.Equals(componentName));
+                    if (!string.IsNullOrWhiteSpace(nameCell) && nameCell.Equals(componentName))
                     {
                         string tNumber = sheet.Cells[row, 6].Text as string; // T-Number from Column A
+                        found = true;
 
-                        if (!ConfirmOutputValue(nameCell))
+                        if (!ConfirmOutputValue(nameCell, tNumber))
                             return null;
 
                         return string.IsNullOrWhiteSpace(tNumber) ? null : tNumber;
                     }
                 }
+                if (!found) MessageBox.Show($"Pro dil: {componentName} nebylo nalezeno zadne T-Cislo.");
             }
             catch (Exception ex)
             {
@@ -55,8 +59,8 @@ namespace Fraenkische.SWAddin.Services
             return null;
         }
 
-        private bool ConfirmOutputValue(string value) => 
-            MessageBox.Show($"Nalezena shoda v bunce:\n{value}","Potvrdte nalezenou shodu.",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+        private bool ConfirmOutputValue(string value, string comp) => 
+            MessageBox.Show($"Nalezena shoda v bunce:\n{value}\n{comp}","Potvrdte nalezenou shodu.",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
 
 
     }

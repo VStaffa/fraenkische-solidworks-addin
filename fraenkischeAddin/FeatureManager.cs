@@ -25,6 +25,7 @@ namespace Fraenkische.SWAddin
             //Callback_0
             new Command_UpdateTNumbers(_swApp),
             //Callback_1
+            new Command_ExportBodiesToSTP(_swApp),
             //new UpdateTNumbersCommand(_swApp),
             //Callback_2
             //Callback 3

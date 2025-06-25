@@ -1,5 +1,4 @@
 ﻿using System.Windows.Forms;
-using Fraenkische.SWAddin.Commands;
 using Fraenkische.SWAddin.Services;
 using SolidWorks.Interop.sldworks;
 
