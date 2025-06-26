@@ -29,7 +29,7 @@ namespace Fraenkische.SWAddin.Commands
         {
 
             var swModel = _swApp.ActiveDoc as ModelDoc2;
-            var model = _swApp.IActiveDoc2 as PartDoc;
+            PartDoc model = _swApp.IActiveDoc2 as PartDoc;
 
 
             if (model == null)
@@ -38,7 +38,7 @@ namespace Fraenkische.SWAddin.Commands
                 return;
             }
 
-            object[] bodies = model.GetBodies2((int)swBodyType_e.swSolidBody, false);
+            Body2[] bodies = model.GetBodies2((int)swBodyType_e.swSolidBody, false);
             if (bodies == null || bodies.Length == 0)
             {
                 MessageBox.Show("No solid bodies found in the part.","Warning.",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

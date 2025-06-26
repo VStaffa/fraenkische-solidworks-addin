@@ -14,9 +14,13 @@ namespace Fraenkische.SWAddin
 {
 
     [ComVisible(true)]
-    [Guid("B59ACE60-12DE-4C96-9910-4A268557EF64")]
+    //HOME GUID
+    //[Guid("B59ACE60-12DE-4C96-9910-4A268557EF64")]
 
-    public class swAddinClass : SwAddin
+    //WORK GUID
+    [Guid("E5F928C1-B502-41D2-BA19-D86E4AD34786")]
+
+    public class SWAddinClass : SwAddin
     {
         private ISldWorks swApp;
         private int swCookie;
@@ -49,11 +53,11 @@ namespace Fraenkische.SWAddin
         }
         private void LoadUI()
         {
-            var imagePath = Path.Combine(Path.GetDirectoryName(typeof(swAddinClass).Assembly.CodeBase).Replace(@"file:\", string.Empty), "Resources", "AddinLogo.png");
+            var imagePath = Path.Combine(Path.GetDirectoryName(typeof(SWAddinClass).Assembly.CodeBase).Replace(@"file:\", string.Empty), "Resources", "AddinLogo.png");
             //MessageBox.Show(imagePath);
 
             swTaskpaneView = swApp.CreateTaskpaneView2(imagePath, "Smart Designer");
-            swTaskpaneHost = (TaskpaneHostUI)swTaskpaneView.AddControl(swAddinClass.SWTASKPANE_PROGID, string.Empty);
+            swTaskpaneHost = (TaskpaneHostUI)swTaskpaneView.AddControl(SWAddinClass.SWTASKPANE_PROGID, string.Empty);
 
         }
 

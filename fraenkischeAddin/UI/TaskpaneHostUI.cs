@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace Fraenkische.SWAddin.UI
 {
-    [ProgId(swAddinClass.SWTASKPANE_PROGID)]
+    [ProgId(SWAddinClass.SWTASKPANE_PROGID)]
     public partial class TaskpaneHostUI : UserControl
     {
         private Button button1;

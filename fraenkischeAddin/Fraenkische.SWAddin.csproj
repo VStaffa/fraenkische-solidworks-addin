@@ -76,7 +76,7 @@
     <Compile Include="Services\TNumberAssigner.cs" />
     <Compile Include="Services\CustomPropertyEditor.cs" />
     <Compile Include="Services\TNumberExcelReader.cs" />
-    <Compile Include="swAddinClass.cs" />
+    <Compile Include="SWAddinClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\TaskpaneHostUI.cs">
       <SubType>UserControl</SubType>

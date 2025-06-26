@@ -14,7 +14,7 @@ namespace Fraenkische.SWAddin.Services
 
         {
             var propMgr = model.Extension.CustomPropertyManager[""]; // prázdný string = aktuální konfigurace
-            propMgr.Get5("T-Number", false, out string value, out _, out bool wsRes);
+            propMgr.Get5("T-Number", false, out string value, out _, out _);
             return value;
         }
 
