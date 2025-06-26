@@ -11,10 +11,10 @@ namespace Fraenkische.SWAddin
 
     [ComVisible(true)]
     //HOME GUID
-    [Guid("B59ACE60-12DE-4C96-9910-4A268557EF64")]
+    //[Guid("B59ACE60-12DE-4C96-9910-4A268557EF64")]
 
     //WORK GUID
-    //[Guid("E5F928C1-B502-41D2-BA19-D86E4AD34786")]
+    [Guid("E5F928C1-B502-41D2-BA19-D86E4AD34786")]
 
     public class SWAddinClass : SwAddin
     {
