@@ -29,7 +29,7 @@ namespace Fraenkische.SWAddin.Commands
             var activeDoc = _swApp.IActiveDoc2 as ModelDoc2;
             if (activeDoc == null)
             {
-                MessageBox.Show("This command only works on part documents.", "Invalid Document", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("This command only works on 'PART' documents.", "Invalid Document", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

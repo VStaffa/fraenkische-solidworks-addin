@@ -21,7 +21,7 @@ namespace Fraenkische.SWAddin.Commands
             cmdMgr.AddCommand(
                 Title,
                 "Export each solid body as STEP",
-                3,
+                0,
                 Execute);
         }
 
@@ -34,7 +34,7 @@ namespace Fraenkische.SWAddin.Commands
 
             if (model == null)
             {
-                MessageBox.Show("This command only works on part documents.", "Invalid Document", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("This command only works on 'PART' documents.", "Invalid Document", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
