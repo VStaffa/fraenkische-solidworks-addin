@@ -59,8 +59,8 @@ namespace Fraenkische.SWAddin.Services
             return null;
         }
 
-        private bool ConfirmOutputValue(string value, string comp) => 
-            MessageBox.Show($"Nalezena shoda v bunce:\n{value}\n{comp}","Potvrdte nalezenou shodu.",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+        private bool ConfirmOutputValue(string value, string comp) =>
+            MessageBox.Show($"Nalezena shoda v bunce:\n{value}\n{comp}", "Potvrdte nalezenou shodu.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
 
 
     }

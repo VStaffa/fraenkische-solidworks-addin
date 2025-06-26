@@ -6,6 +6,6 @@ namespace Fraenkische.SWAddin
     {
         void Register(CommandManagerService cmdMgrService);
         void Execute();
-        
+
     }
 }

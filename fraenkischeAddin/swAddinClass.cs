@@ -77,7 +77,7 @@ namespace Fraenkische.SWAddin
 
         }
 
-        
+
         //CALLBACK FOR EACH FEATURE
         public void CallBackFunction(string data)
         {
@@ -97,7 +97,7 @@ namespace Fraenkische.SWAddin
                     commandManager.HandleCommandCall(commandIndex);
                     break;
             }
-            
+
         }
     }
 }

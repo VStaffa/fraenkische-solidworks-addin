@@ -1,10 +1,7 @@
-﻿
-using System.IO;
+﻿using System.IO;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using SolidWorks.Interop.sldworks;
-
-
 
 namespace Fraenkische.SWAddin.Services
 {
@@ -19,7 +16,7 @@ namespace Fraenkische.SWAddin.Services
             ISldWorks swApp,
             TNumberExcelReader excelReader,
             CustomPropertyEditor propertyEditor
-            ) 
+            )
 
         {
             _swApp = swApp;
@@ -29,11 +26,11 @@ namespace Fraenkische.SWAddin.Services
 
         public void UpdateTNumber(ModelDoc2 swModel)
         {
-                // 1. Zkontrolovat Custom Property
+            // 1. Zkontrolovat Custom Property
             string tNumber = _propertyEditor.GetTNumber(swModel);
             if (!string.IsNullOrWhiteSpace(tNumber))
             {
-                MessageBox.Show($"TENTO DÍL JIŽ MÁ T-ČÍSLO!\nT-ČÍSLO: {tNumber}","UPOZORNĚNÍ",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show($"TENTO DÍL JIŽ MÁ T-ČÍSLO!\nT-ČÍSLO: {tNumber}", "UPOZORNĚNÍ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -45,7 +42,7 @@ namespace Fraenkische.SWAddin.Services
 
             if (string.IsNullOrWhiteSpace(userInputName))
             {
-                MessageBox.Show("Nemuze byt prazdne!","CHYBA",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Nemuze byt prazdne!", "CHYBA", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -56,7 +53,7 @@ namespace Fraenkische.SWAddin.Services
                 // 3. Zapsat do modelu
                 _propertyEditor.SetTNumber(swModel, foundTNumber);
             }
-            
+
         }
     }
 }

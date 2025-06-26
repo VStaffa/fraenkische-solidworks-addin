@@ -19,9 +19,9 @@ namespace Fraenkische.SWAddin.Commands
         public void Register(CommandManagerService cmdMgr)
         {
             cmdMgr.AddCommand(
-                Title, 
-                "Export each solid body as STEP", 
-                3, 
+                Title,
+                "Export each solid body as STEP",
+                3,
                 Execute);
         }
 
@@ -41,7 +41,7 @@ namespace Fraenkische.SWAddin.Commands
             Body2[] bodies = model.GetBodies2((int)swBodyType_e.swSolidBody, false);
             if (bodies == null || bodies.Length == 0)
             {
-                MessageBox.Show("No solid bodies found in the part.","Warning.",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("No solid bodies found in the part.", "Warning.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -59,7 +59,7 @@ namespace Fraenkische.SWAddin.Commands
                 string filePath = Path.Combine(targetFolder, bodyName + ".stp");
                 //MessageBox.Show(filePath);
 
-                swModel.SaveAs3(filePath,0,0);
+                swModel.SaveAs3(filePath, 0, 0);
 
             }
 

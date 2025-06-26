@@ -1,10 +1,9 @@
-using SolidWorks.Interop.sldworks;
-using SolidWorks.Interop.swconst;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
+using SolidWorks.Interop.sldworks;
+using SolidWorks.Interop.swconst;
 
 namespace Fraenkische.SWAddin.Commands
 {
@@ -44,7 +43,7 @@ namespace Fraenkische.SWAddin.Commands
                 throw new Exception("Failed to create command group.");
         }
 
-        internal void AddCommand(string commandTitle, string tooltip,int iconI, Action callback)
+        internal void AddCommand(string commandTitle, string tooltip, int iconI, Action callback)
         {
             int cmdId = _callbacks.Count; // 🔹 This assigns the command ID
             string callbackName = $"CallBackFunction({_callbacks.Count})";
