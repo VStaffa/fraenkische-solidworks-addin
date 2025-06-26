@@ -13,13 +13,13 @@ namespace Fraenkische.SWAddin.Commands
             _swApp = swApp;
         }
 
-        public string Title => "Update T-Numbers";
+        public string Title => "Load TNumber to PART";
 
         public void Register(CommandManagerService cmdMgr)
         {
             cmdMgr.AddCommand(
                 commandTitle: Title,
-                tooltip: "Update T-Numbers from Excel",
+                tooltip: "Add TNumber to PART",
                 iconI: 2, // např. 2. ikona ve tvém .bmp
                 callback: Execute);
         }
