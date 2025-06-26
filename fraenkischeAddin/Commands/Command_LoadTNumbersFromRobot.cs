@@ -1,11 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using SolidWorks.Interop.sldworks;
 using Excel = Microsoft.Office.Interop.Excel;
-
-
 
 namespace Fraenkische.SWAddin.Commands
 {
@@ -13,12 +12,19 @@ namespace Fraenkische.SWAddin.Commands
     {
         private readonly ISldWorks _swApp;
 
+        // Recommendation 1: Use constants for column indices and file filter
+        private const int DEST_COL_A = 1;
+        private const int DEST_COL_F = 6;
+        private const int SRC_COL_A = 1;
+        private const int SRC_COL_E = 5;
+        private const string EXCEL_FILE_FILTER = "Excel Files|*.xlsx;*.xlsm;*.xls";
+
         public Command_LoadTNumbersFromRobot(ISldWorks swApp)
         {
             _swApp = swApp;
         }
 
-        public string Title => "LoadTNumbersFromRobot";
+        public string Title => "Load TNumbers From Robot";
 
         public void Register(CommandManagerService cmdMgr)
         {
@@ -27,17 +33,16 @@ namespace Fraenkische.SWAddin.Commands
 
         public void Execute()
         {
-
             OpenFileDialog ofd = new OpenFileDialog
             {
-                Title = "Select destination Excel file",
-                Filter = "Excel Files|*.xlsx;*.xlsm;*.xls"
+                Title = "Select 'TOOLBOX' Excel file",
+                Filter = EXCEL_FILE_FILTER
             };
 
             if (ofd.ShowDialog() != DialogResult.OK) return;
             string destPath = ofd.FileName;
 
-            ofd.Title = "Select source Excel file";
+            ofd.Title = "Select 'Podklady pro Robota' Excel file";
             if (ofd.ShowDialog() != DialogResult.OK) return;
             string srcPath = ofd.FileName;
 
@@ -56,43 +61,54 @@ namespace Fraenkische.SWAddin.Commands
                 Excel.Worksheet destWS = destWB.Sheets[1];
                 Excel.Worksheet srcWS = srcWB.Sheets[1];
 
-                int lastRowDest = destWS.Cells[destWS.Rows.Count, "A"].End(Excel.XlDirection.xlUp).Row;
-                int lastRowSrc = srcWS.Cells[srcWS.Rows.Count, "E"].End(Excel.XlDirection.xlUp).Row;
+                int lastRowDest = destWS.Cells[destWS.Rows.Count, DEST_COL_A].End(Excel.XlDirection.xlUp).Row;
+                int lastRowSrc = srcWS.Cells[srcWS.Rows.Count, SRC_COL_E].End(Excel.XlDirection.xlUp).Row;
 
                 int additionsCount = 0;
 
-                for (int i = 1; i <= lastRowDest; i++)
+                // Recommendation 2: Optimize lookup using a dictionary
+                var srcLookup = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                for (int j = 1; j <= lastRowSrc; j++)
                 {
-                    string destA = Convert.ToString(destWS.Cells[i, 1].Value)?.Trim();
-                    string destF = Convert.ToString(destWS.Cells[i, 6].Value)?.Trim();
-
-                    MessageBox.Show(destA + "  " + destF);
-
-                    if (!string.IsNullOrEmpty(destA) && string.IsNullOrEmpty(destF))
+                    string srcE = Convert.ToString(srcWS.Cells[j, SRC_COL_E].Value)?.Trim();
+                    string srcA = Convert.ToString(srcWS.Cells[j, SRC_COL_A].Value);
+                    if (!string.IsNullOrEmpty(srcE) && !string.IsNullOrEmpty(srcA))
                     {
-                        for (int j = lastRowSrc; j >= 1; j--)
+                        string[] tokens = srcE.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                        foreach (var token in tokens)
                         {
-                            string srcE = Convert.ToString(srcWS.Cells[j, 5].Value)?.Trim();
-                            if (!string.IsNullOrEmpty(srcE))
-                            {
-                                string[] tokens = srcE.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                                foreach (var token in tokens)
-                                {
-                                    if (token == destA)
-                                    {
-                                        string srcA = Convert.ToString(srcWS.Cells[j, 1].Value);
-                                        destWS.Cells[i, 6].Value = srcA;
-                                        destWS.Cells[i, 6].Interior.Color = ColorTranslator.ToOle(Color.Orange);
-                                        additionsCount++;
-                                        goto NextRow;
-                                    }
-                                }
-                            }
+                            if (!srcLookup.ContainsKey(token))
+                                srcLookup[token] = srcA;
                         }
                     }
-                NextRow:;
-                    if (i % 50 == 0)
-                        excelApp.StatusBar = $"Processing row {i} of {lastRowDest}";
+                }
+
+                // Recommendation 5: Use a progress bar form for UI responsiveness
+                using (var progress = new ProgressForm(lastRowDest))
+                {
+                    progress.Show();
+                    progress.UpdateProgress(0);
+
+                    for (int i = 1; i <= lastRowDest; i++)
+                    {
+                        string destA = Convert.ToString(destWS.Cells[i, DEST_COL_A].Value)?.Trim();
+                        string destF = Convert.ToString(destWS.Cells[i, DEST_COL_F].Value)?.Trim();
+
+                        if (!string.IsNullOrEmpty(destA) && string.IsNullOrEmpty(destF))
+                        {
+                            if (srcLookup.TryGetValue(destA, out string srcA))
+                            {
+                                destWS.Cells[i, DEST_COL_F].Value = srcA;
+                                destWS.Cells[i, DEST_COL_F].Interior.Color = ColorTranslator.ToOle(Color.Orange);
+                                additionsCount++;
+                            }
+                        }
+
+                        // Update progress bar every 10 rows
+                        if (i % 10 == 0 || i == lastRowDest)
+                            progress.UpdateProgress(i);
+                        Application.DoEvents();
+                    }
                 }
 
                 destWB.Save();
@@ -100,6 +116,8 @@ namespace Fraenkische.SWAddin.Commands
             }
             catch (Exception ex)
             {
+                // Recommendation 4: Log error to file
+                System.IO.File.AppendAllText("Command_LoadTNumbersFromRobot.log", $"{DateTime.Now}: {ex}\n");
                 MessageBox.Show("Error: " + ex.Message);
             }
             finally
@@ -113,6 +131,33 @@ namespace Fraenkische.SWAddin.Commands
                 Marshal.ReleaseComObject(excelApp);
             }
         }
+    }
 
+    // Simple progress bar form for recommendation 5
+    public class ProgressForm : Form
+    {
+        private ProgressBar progressBar;
+        private int max;
+
+        public ProgressForm(int max)
+        {
+            this.max = max;
+            this.Text = "Processing...";
+            this.Width = 400;
+            this.Height = 80;
+            progressBar = new ProgressBar
+            {
+                Dock = DockStyle.Fill,
+                Minimum = 0,
+                Maximum = max
+            };
+            Controls.Add(progressBar);
         }
+
+        public void UpdateProgress(int value)
+        {
+            if (value > max) value = max;
+            progressBar.Value = value;
+        }
+    }
 }
