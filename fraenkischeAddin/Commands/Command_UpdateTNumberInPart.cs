@@ -4,11 +4,11 @@ using SolidWorks.Interop.sldworks;
 
 namespace Fraenkische.SWAddin.Commands
 {
-    public class Command_UpdateTNumbers : ICommand
+    public class Command_UpdateTNumberInPart : ICommand
     {
         private readonly ISldWorks _swApp;
 
-        public Command_UpdateTNumbers(ISldWorks swApp)
+        public Command_UpdateTNumberInPart(ISldWorks swApp)
         {
             _swApp = swApp;
         }
@@ -29,7 +29,7 @@ namespace Fraenkische.SWAddin.Commands
             var activeDoc = _swApp.IActiveDoc2 as ModelDoc2;
             if (activeDoc == null)
             {
-                System.Windows.Forms.MessageBox.Show("OPEN A PART TO USE THIS FEATURE!","CHYBA!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("This command only works on part documents.", "Invalid Document", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

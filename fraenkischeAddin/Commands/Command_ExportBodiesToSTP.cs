@@ -7,9 +7,9 @@ namespace Fraenkische.SWAddin.Commands
 {
     public class Command_ExportBodiesToSTP : ICommand
     {
-        private readonly ISldWorks _swApp;
+        private readonly SldWorks _swApp;
 
-        public Command_ExportBodiesToSTP(ISldWorks swApp)
+        public Command_ExportBodiesToSTP(SldWorks swApp)
         {
             _swApp = swApp;
         }

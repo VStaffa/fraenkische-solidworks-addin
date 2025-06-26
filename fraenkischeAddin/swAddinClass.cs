@@ -11,14 +11,14 @@ namespace Fraenkische.SWAddin
 
     [ComVisible(true)]
     //HOME GUID
-    //[Guid("B59ACE60-12DE-4C96-9910-4A268557EF64")]
+    [Guid("B59ACE60-12DE-4C96-9910-4A268557EF64")]
 
     //WORK GUID
-    [Guid("E5F928C1-B502-41D2-BA19-D86E4AD34786")]
+    //[Guid("E5F928C1-B502-41D2-BA19-D86E4AD34786")]
 
     public class SWAddinClass : SwAddin
     {
-        private ISldWorks swApp;
+        private SldWorks swApp;
         private int swCookie;
         private TaskpaneView swTaskpaneView;
         private TaskpaneHostUI swTaskpaneHost;
@@ -30,7 +30,7 @@ namespace Fraenkische.SWAddin
 
         public bool ConnectToSW(object ThisSW, int Cookie)
         {
-            swApp = (ISldWorks)ThisSW;
+            swApp = (SldWorks)ThisSW;
             swCookie = Cookie;
 
             swApp.SetAddinCallbackInfo2(1, this, swCookie);
@@ -90,12 +90,12 @@ namespace Fraenkische.SWAddin
                 case 1:
                     commandManager.HandleCommandCall(commandIndex);
                     break;
-                    //case 2:
-                    //    commandManager.HandleCommandCall(commandIndex);
-                    //    break;
-                    //case 3:
-                    //    commandManager.HandleCommandCall(commandIndex);
-                    //    break;
+                case 2:
+                    commandManager.HandleCommandCall(commandIndex);
+                    break;
+                case 3:
+                    commandManager.HandleCommandCall(commandIndex);
+                    break;
             }
             
         }

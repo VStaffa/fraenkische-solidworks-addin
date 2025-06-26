@@ -6,10 +6,10 @@ namespace Fraenkische.SWAddin
 {
     public class FeatureManager
     {
-        private readonly ISldWorks _swApp;
+        private readonly SldWorks _swApp;
         private readonly CommandManagerService _cmdMgr;
 
-        public FeatureManager(ISldWorks swApp, CommandManagerService cmdMgr)
+        public FeatureManager(SldWorks swApp, CommandManagerService cmdMgr)
         {
             _swApp = swApp;
             _cmdMgr = cmdMgr;
@@ -23,12 +23,16 @@ namespace Fraenkische.SWAddin
             //SEM PRIDAVAT NOVE FUNKCE
 
             //Callback_0
-            new Command_UpdateTNumbers(_swApp),
+            new Command_UpdateTNumberInPart(_swApp),
+
             //Callback_1
             new Command_ExportBodiesToSTP(_swApp),
-            //new UpdateTNumbersCommand(_swApp),
+
             //Callback_2
+            new Command_LoadTNumberToBOM(_swApp),
+            
             //Callback 3
+            new Command_LoadTNumbersFromRobot(_swApp),
             // etc.
         };
 
