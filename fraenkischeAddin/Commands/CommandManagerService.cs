@@ -1,9 +1,10 @@
+using SolidWorks.Interop.sldworks;
+using SolidWorks.Interop.swconst;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
-using SolidWorks.Interop.sldworks;
-using SolidWorks.Interop.swconst;
 
 namespace Fraenkische.SWAddin.Commands
 {
@@ -85,6 +86,11 @@ namespace Fraenkische.SWAddin.Commands
         public void Finalize()
         {
             _cmdGroup.HasToolbar = true;
+            _cmdGroup.ShowInDocumentType = (int)swDocTemplateTypes_e.swDocTemplateTypeNONE |
+            (int)swDocTemplateTypes_e.swDocTemplateTypePART |
+            (int)swDocTemplateTypes_e.swDocTemplateTypeASSEMBLY |
+            (int)swDocTemplateTypes_e.swDocTemplateTypeDRAWING;
+            ;
             _cmdGroup.HasMenu = true;
             _cmdGroup.Activate();
         }
