@@ -15,10 +15,11 @@ namespace Fraenkische.SWAddin.Commands
         public List<Action> _callbacks = new List<Action>();
         private CommandGroup _cmdGroup;
 
-        // Libovolná identifikace skupiny příkazů
+        // MAIN COMMAND GROUP
         private const int MainCommandGroupId = 5;
         private const string MainTitle = "AutoKONSTRUKTÉR";
         private const string MainTooltip = "Seznam design funkci";
+
         public CommandManagerService(ISldWorks swApp, int addinCookie)
         {
             _swApp = swApp;
