@@ -1,13 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
-using System.Windows.Input;
 using Fraenkische.SWAddin.Commands;
 using Fraenkische.SWAddin.UI;
-
 using SolidWorks.Interop.sldworks;
-using SolidWorks.Interop.swconst;
 using SolidWorks.Interop.swpublished;
 
 namespace Fraenkische.SWAddin
