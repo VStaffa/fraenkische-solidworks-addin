@@ -14,13 +14,13 @@ namespace Fraenkische.SWAddin.Commands
             _swApp = swApp;
         }
 
-        public string Title => "Export Colored Bodies";
+        public string Title => "Export Solid Bodies to STP";
 
         public void Register(CommandManagerService cmdMgr)
         {
             cmdMgr.AddCommand(
                 Title, 
-                "Export each solid body as a colored STEP", 
+                "Export each solid body as STEP", 
                 3, 
                 Execute);
         }

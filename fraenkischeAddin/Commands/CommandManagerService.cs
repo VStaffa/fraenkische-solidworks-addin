@@ -19,7 +19,7 @@ namespace Fraenkische.SWAddin.Commands
         // Libovolná identifikace skupiny příkazů
         private const int MainCommandGroupId = 5;
         private const string MainTitle = "SMART DESIGN COMMANDS";
-        private const string MainTooltip = "Seznam funkci";
+        private const string MainTooltip = "Seznam design funkci";
         public CommandManagerService(ISldWorks swApp, int addinCookie)
         {
             _swApp = swApp;
