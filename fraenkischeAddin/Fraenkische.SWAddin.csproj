@@ -71,10 +71,11 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CMD_BatchBOMtoExcelExport.cs" />
     <Compile Include="Commands\CommandManagerService.cs" />
-    <Compile Include="Commands\Command_LoadTNumbersFromRobot.cs" />
-    <Compile Include="Commands\Command_UpdateTNumberInPart.cs" />
-    <Compile Include="Commands\Command_ExportBodiesToSTP.cs" />
+    <Compile Include="Commands\CMD_LoadTNumbersFromRobot.cs" />
+    <Compile Include="Commands\CMD_UpdateTNumberInPart.cs" />
+    <Compile Include="Commands\CMD_ExportBodiesToSTP.cs" />
     <Compile Include="Core\ICommand.cs" />
     <Compile Include="FeatureManager.cs" />
     <Compile Include="Services\TNumberAssigner.cs" />

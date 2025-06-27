@@ -9,7 +9,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Fraenkische.SWAddin.Commands
 {
-    public class Command_LoadTNumbersFromRobot : ICommand
+    public class CMD_LoadTNumbersFromRobot : ICommand
     {
         private readonly SldWorks _swApp;
 
@@ -20,7 +20,7 @@ namespace Fraenkische.SWAddin.Commands
         private const int SRC_COL_E = 5;
         private const string EXCEL_FILE_FILTER = "Excel Files|*.xlsx;*.xlsm;*.xls";
 
-        public Command_LoadTNumbersFromRobot(SldWorks swApp)
+        public CMD_LoadTNumbersFromRobot(SldWorks swApp)
         {
             _swApp = swApp;
         }

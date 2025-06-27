@@ -96,6 +96,16 @@ namespace Fraenkische.SWAddin
                 case 3:
                     commandManager.HandleCommandCall(commandIndex);
                     break;
+                case 4:
+                    commandManager.HandleCommandCall(commandIndex);
+                    break;
+                case 5:
+                    commandManager.HandleCommandCall(commandIndex);
+                    break;
+                case 6:
+                    commandManager.HandleCommandCall(commandIndex);
+                    break;
+                    
             }
 
         }

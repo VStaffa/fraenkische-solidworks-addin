@@ -23,17 +23,21 @@ namespace Fraenkische.SWAddin
             //SEM PRIDAVAT NOVE FUNKCE
 
             //Callback_0
-            new Command_UpdateTNumberInPart(_swApp),
+            new CMD_UpdateTNumberInPart(_swApp),
 
             //Callback_1
-            new Command_ExportBodiesToSTP(_swApp),
+            new CMD_ExportBodiesToSTP(_swApp),
 
             //Callback_2
             //new Command_LoadTNumberToBOM(_swApp),
             
             //Callback 3
-            new Command_LoadTNumbersFromRobot(_swApp),
+            new CMD_LoadTNumbersFromRobot(_swApp),
+          
+            //Callback 4
+            new CMD_BatchBOMtoExcelExport(_swApp),
             // etc.
+
         };
 
             foreach (var feature in features)
