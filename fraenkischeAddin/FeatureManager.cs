@@ -36,6 +36,9 @@ namespace Fraenkische.SWAddin
           
             //Callback 4
             new CMD_BatchBOMtoExcelExport(_swApp),
+
+            //Callback 5
+            new CMD_MergeExcelFilesInFolder(),
             // etc.
 
         };

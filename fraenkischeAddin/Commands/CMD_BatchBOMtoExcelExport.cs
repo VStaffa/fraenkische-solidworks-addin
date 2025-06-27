@@ -92,7 +92,7 @@ namespace Fraenkische.SWAddin.Commands
             foreach (object table in tableAnnotations)
             {
                 IBomTableAnnotation ta = (IBomTableAnnotation)table;
-                ta.SaveAsExcel(excelPath, false, true);
+                ta.SaveAsExcel(excelPath, false, false);
             }
 
         }
