@@ -80,7 +80,7 @@ namespace Fraenkische.SWAddin.Commands
                 }
 
                 // Save merged workbook
-                string savePath = Path.Combine(folderPath, "Spojeny_BOM_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx");
+                string savePath = Path.Combine(folderPath, "Spojeny_BOM_" + DateTime.Now.ToString("ddMMyyyy_HHmmss") + ".xlsx");
                 outputWorkbook.SaveAs(savePath, Excel.XlFileFormat.xlOpenXMLWorkbook);
                 MessageBox.Show($"Merge completed and saved to:\n{savePath}", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
