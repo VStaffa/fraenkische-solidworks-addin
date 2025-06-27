@@ -8,18 +8,20 @@ namespace Fraenkische.SWAddin.Commands
     {
         private readonly ISldWorks _swApp;
 
+        private const string EXCEL_FILE_FILTER = "Excel Files|*.xlsx;*.xlsm;*.xls";
+
         public Command_UpdateTNumberInPart(ISldWorks swApp)
         {
             _swApp = swApp;
         }
 
-        public string Title => "Load TNumber to PART";
+        public string Title => "Load T-Number to PART";
 
         public void Register(CommandManagerService cmdMgr)
         {
             cmdMgr.AddCommand(
                 commandTitle: Title,
-                tooltip: "Add TNumber to PART",
+                tooltip: "Add T-Number to PART",
                 iconI: 2, // např. 2. ikona ve tvém .bmp
                 callback: Execute);
         }
@@ -33,7 +35,14 @@ namespace Fraenkische.SWAddin.Commands
                 return;
             }
 
-            string excelPath = @"C:\Users\staff\Desktop\excel.xlsx";
+            //OpenFileDialog ofd = new OpenFileDialog
+            //{
+            //    Title = "Select 'TOOLBOX' Excel file",
+            //    Filter = EXCEL_FILE_FILTER
+            //};
+
+            //if (ofd.ShowDialog() != DialogResult.OK) return;
+            string excelPath = @"C:\Users\staffav\Fraenkische Rohrwerke Gebr. Kirchner GmbH & Co. KG\FIP_CZ_PEEN - Documents\Design Team\Toolshop_drawings.xlsm";
 
             var reader = new TNumberExcelReader(excelPath);
             var editor = new CustomPropertyEditor();

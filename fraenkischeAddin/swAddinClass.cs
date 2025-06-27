@@ -43,7 +43,7 @@ namespace Fraenkische.SWAddin
             featureManager.RegisterFeatures();
             commandManager.Finalize();
 
-            //LoadUI();
+            LoadUI();
 
             return true;
         }
@@ -59,7 +59,7 @@ namespace Fraenkische.SWAddin
 
         public bool DisconnectFromSW()
         {
-            //UnloadUI();
+            UnloadUI();
             commandManager.Dispose();
             swApp = null;
             return true;

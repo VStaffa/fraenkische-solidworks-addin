@@ -23,11 +23,11 @@ namespace Fraenkische.SWAddin.Commands
         {
             _swApp = swApp;
         }
-        public string Title => "Load TNumbers From Robot";
+        public string Title => "Load T-Numbers From Robot";
 
         public void Register(CommandManagerService cmdMgr)
         {
-            cmdMgr.AddCommand(Title, "Load New Daily TNumbers From Robot", 1, Execute);
+            cmdMgr.AddCommand(Title, "Load New Daily T-Numbers From Robot", 1, Execute);
         }
 
         public void Execute()
