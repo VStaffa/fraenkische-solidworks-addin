@@ -25,31 +25,41 @@ namespace Fraenkische.SWAddin.Commands
                 iconI: 2, // např. 2. ikona ve tvém .bmp
                 callback: Execute);
         }
-
         public void Execute()
         {
             var activeDoc = _swApp.IActiveDoc2 as ModelDoc2;
+            IFrame frame = _swApp.Frame();
+
             if (activeDoc == null)
             {
                 MessageBox.Show("This command only works on 'PART' documents.", "Invalid Document", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                frame.SetStatusBarText("Ready");
                 return;
             }
 
-            //OpenFileDialog ofd = new OpenFileDialog
-            //{
-            //    Title = "Select 'TOOLBOX' Excel file",
-            //    Filter = EXCEL_FILE_FILTER
-            //};
+            using (var openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = EXCEL_FILE_FILTER;
+                openFileDialog.Title = "Select 'TOOLBOX' Excel File";
 
-            //if (ofd.ShowDialog() != DialogResult.OK) return;
-            string excelPath = @"C:\Users\staffav\Fraenkische Rohrwerke Gebr. Kirchner GmbH & Co. KG\FIP_CZ_PEEN - Documents\Design Team\Toolshop_drawings.xlsm";
+                if (openFileDialog.ShowDialog() != DialogResult.OK)
+                {
+                    frame.SetStatusBarText("Ready");
+                    return;
+                }
 
-            var reader = new TNumberExcelReader(excelPath);
-            var editor = new CustomPropertyEditor();
-            var assigner = new TNumberAssigner(_swApp, reader, editor);
+                string excelPath = openFileDialog.FileName;
 
-            assigner.UpdateTNumber(activeDoc);
+                frame.SetStatusBarText("Reading T-Number from Excel...");
+                var reader = new TNumberExcelReader(excelPath);
+                var editor = new CustomPropertyEditor();
+                var assigner = new TNumberAssigner(_swApp, reader, editor);
 
+                frame.SetStatusBarText("Assigning T-Number to part...");
+                assigner.UpdateTNumber(activeDoc);
+
+                frame.SetStatusBarText("Ready");
+            }
         }
     }
 }

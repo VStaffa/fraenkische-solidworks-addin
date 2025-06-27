@@ -36,6 +36,7 @@ namespace Fraenkische.SWAddin.Commands
 
             IFrame frame;
             frame = _swApp.Frame();
+
             OpenFileDialog ofd = new OpenFileDialog
             {
                 Title = "Select 'TOOLBOX' Excel file",
