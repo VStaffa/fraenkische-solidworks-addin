@@ -23,7 +23,6 @@ namespace Fraenkische.SWAddin.Commands
         {
             _swApp = swApp;
         }
-
         public string Title => "Load TNumbers From Robot";
 
         public void Register(CommandManagerService cmdMgr)

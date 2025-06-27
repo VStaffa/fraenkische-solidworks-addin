@@ -29,7 +29,7 @@ namespace Fraenkische.SWAddin
             new Command_ExportBodiesToSTP(_swApp),
 
             //Callback_2
-            new Command_LoadTNumberToBOM(_swApp),
+            //new Command_LoadTNumberToBOM(_swApp),
             
             //Callback 3
             new Command_LoadTNumbersFromRobot(_swApp),

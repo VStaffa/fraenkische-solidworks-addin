@@ -23,7 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>5</WarningLevel>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <RegisterForComInterop>true</RegisterForComInterop>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -39,19 +39,19 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="SolidWorks.Interop.sldworks">
-      <HintPath>..\..\..\Program Files\SOLIDWORKS Corp\SOLIDWORKS (2)\SolidWorks.Interop.sldworks.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\SWX_2021\SOLIDWORKS\SolidWorks.Interop.sldworks.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="SolidWorks.Interop.swcommands">
-      <HintPath>..\..\..\Program Files\SOLIDWORKS Corp\SOLIDWORKS (2)\SolidWorks.Interop.swcommands.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\SWX_2021\SOLIDWORKS\SolidWorks.Interop.swcommands.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="SolidWorks.Interop.swconst">
-      <HintPath>..\..\..\Program Files\SOLIDWORKS Corp\SOLIDWORKS (2)\SolidWorks.Interop.swconst.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\SWX_2021\SOLIDWORKS\SolidWorks.Interop.swconst.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="SolidWorks.Interop.swpublished">
-      <HintPath>..\..\..\Program Files\SOLIDWORKS Corp\SOLIDWORKS (2)\SolidWorks.Interop.swpublished.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\SWX_2021\SOLIDWORKS\SolidWorks.Interop.swpublished.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
@@ -75,7 +75,6 @@
     <Compile Include="Commands\Command_LoadTNumbersFromRobot.cs" />
     <Compile Include="Commands\Command_UpdateTNumberInPart.cs" />
     <Compile Include="Commands\Command_ExportBodiesToSTP.cs" />
-    <Compile Include="Commands\Command_LoadTNumberToBOM.cs" />
     <Compile Include="Core\ICommand.cs" />
     <Compile Include="FeatureManager.cs" />
     <Compile Include="Services\TNumberAssigner.cs" />
