@@ -31,17 +31,24 @@ namespace Fraenkische.SWAddin.Commands
             string folderPath = PickFolder();
             if (string.IsNullOrEmpty(folderPath)) return;
 
+
             string[] files = Directory.GetFiles(folderPath, "*.SLDDRW");
+
+            if (files.Length == 0)
+            {
+                MessageBox.Show("No drawing files found in the selected folder.", "No Files Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             foreach (string file in files)
             {
                 ModelDoc2 swModel = swApp.OpenDoc6(file, (int)swDocumentTypes_e.swDocDRAWING,
-                                                   (int)swOpenDocOptions_e.swOpenDocOptions_Silent,
-                                                   "",0, 0);
+                                                   (int)swOpenDocOptions_e.swOpenDocOptions_LoadLightweight,
+                                                   "", 0, 0);
 
                 if (swModel == null)
                 {
-                    DebugPrint($"Failed to open: {file}");
+                    MessageBox.Show($"Failed to open: {file}", "File Open Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     continue;
                 }
 
@@ -49,6 +56,8 @@ namespace Fraenkische.SWAddin.Commands
 
                 swApp.CloseDoc(swModel.GetTitle());
             }
+
+            MessageBox.Show("Batch BOM export completed successfully.", "Process Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void ExportBOM(SldWorks swApp, ModelDoc2 swModel)
@@ -58,10 +67,9 @@ namespace Fraenkische.SWAddin.Commands
 
             while (swFeat != null)
             {
-                if (swFeat.Name == "Bill of Materials1")
+                if (swFeat.GetTypeName2() == "BomFeat")
                 {
                     swBomFeat = (BomFeature)swFeat.GetSpecificFeature2();
-                    DebugPrint($"Found BOM: {swFeat.Name}");
                     break;
                 }
 
@@ -70,13 +78,16 @@ namespace Fraenkische.SWAddin.Commands
 
             if (swBomFeat == null)
             {
-                DebugPrint($"No BOM found in: {swModel.GetTitle()}");
+                MessageBox.Show($"No BOM found in: {swModel.GetTitle()}", "BOM Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             object[] tableAnnotations = (object[])swBomFeat.GetTableAnnotations();
 
-            string excelPath = Path.ChangeExtension(swModel.GetPathName(), "_BOM.xls");
+            string filePath = swModel.GetPathName();
+            string dir = Path.GetDirectoryName(filePath);
+            string nameWithoutExt = Path.GetFileNameWithoutExtension(filePath);
+            string excelPath = Path.Combine(dir, nameWithoutExt + "_BOM.xls");
 
             foreach (object table in tableAnnotations)
             {
@@ -84,7 +95,6 @@ namespace Fraenkische.SWAddin.Commands
                 ta.SaveAsExcel(excelPath, false, true);
             }
 
-            DebugPrint($"Exported to: {excelPath}");
         }
 
         private string PickFolder()
@@ -102,8 +112,5 @@ namespace Fraenkische.SWAddin.Commands
             System.Diagnostics.Debug.Print(msg);
             // Or log to file/messagebox if needed
         }
-
-
-
     }
 }
