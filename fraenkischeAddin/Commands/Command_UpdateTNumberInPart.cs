@@ -6,11 +6,11 @@ namespace Fraenkische.SWAddin.Commands
 {
     public class Command_UpdateTNumberInPart : ICommand
     {
-        private readonly ISldWorks _swApp;
+        private readonly SldWorks _swApp;
 
         private const string EXCEL_FILE_FILTER = "Excel Files|*.xlsx;*.xlsm;*.xls";
 
-        public Command_UpdateTNumberInPart(ISldWorks swApp)
+        public Command_UpdateTNumberInPart(SldWorks swApp)
         {
             _swApp = swApp;
         }

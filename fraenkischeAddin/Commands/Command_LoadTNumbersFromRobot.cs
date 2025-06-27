@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using SolidWorks.Interop.swcommands;
 using SolidWorks.Interop.sldworks;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -10,7 +11,7 @@ namespace Fraenkische.SWAddin.Commands
 {
     public class Command_LoadTNumbersFromRobot : ICommand
     {
-        private readonly ISldWorks _swApp;
+        private readonly SldWorks _swApp;
 
         // Recommendation 1: Use constants for column indices and file filter
         private const int DEST_COL_A = 1;
@@ -19,7 +20,7 @@ namespace Fraenkische.SWAddin.Commands
         private const int SRC_COL_E = 5;
         private const string EXCEL_FILE_FILTER = "Excel Files|*.xlsx;*.xlsm;*.xls";
 
-        public Command_LoadTNumbersFromRobot(ISldWorks swApp)
+        public Command_LoadTNumbersFromRobot(SldWorks swApp)
         {
             _swApp = swApp;
         }
@@ -32,6 +33,9 @@ namespace Fraenkische.SWAddin.Commands
 
         public void Execute()
         {
+
+            IFrame frame;
+            frame = _swApp.Frame();
             OpenFileDialog ofd = new OpenFileDialog
             {
                 Title = "Select 'TOOLBOX' Excel file",
@@ -41,6 +45,8 @@ namespace Fraenkische.SWAddin.Commands
             if (ofd.ShowDialog() != DialogResult.OK) return;
             string destPath = ofd.FileName;
 
+
+            frame.SetStatusBarText("Loading 'TOOLBOX' Excel file...");
             ofd.Title = "Select 'Podklady pro Robota' Excel file";
             if (ofd.ShowDialog() != DialogResult.OK) return;
             string srcPath = ofd.FileName;
@@ -54,6 +60,7 @@ namespace Fraenkische.SWAddin.Commands
                 excelApp.ScreenUpdating = false;
                 excelApp.DisplayAlerts = false;
 
+                frame.SetStatusBarText("Opening Excel files...");
                 destWB = excelApp.Workbooks.Open(destPath);
                 srcWB = excelApp.Workbooks.Open(srcPath, ReadOnly: true);
 
@@ -65,7 +72,7 @@ namespace Fraenkische.SWAddin.Commands
 
                 int additionsCount = 0;
 
-                // Recommendation 2: Optimize lookup using a dictionary
+                frame.SetStatusBarText("Building lookup dictionary...");
                 var srcLookup = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 for (int j = 1; j <= lastRowSrc; j++)
                 {
@@ -82,12 +89,12 @@ namespace Fraenkische.SWAddin.Commands
                     }
                 }
 
-                // Recommendation 5: Use a progress bar form for UI responsiveness
                 using (var progress = new ProgressForm(lastRowDest))
                 {
                     progress.Show();
                     progress.UpdateProgress(0);
 
+                    frame.SetStatusBarText("Processing rows...");
                     for (int i = 1; i <= lastRowDest; i++)
                     {
                         string destA = Convert.ToString(destWS.Cells[i, DEST_COL_A].Value)?.Trim();
@@ -103,19 +110,20 @@ namespace Fraenkische.SWAddin.Commands
                             }
                         }
 
-                        // Update progress bar every 10 rows
                         if (i % 10 == 0 || i == lastRowDest)
+                        {
                             progress.UpdateProgress(i);
-                        Application.DoEvents();
+                            Application.DoEvents();
+                        }
                     }
                 }
 
+                frame.SetStatusBarText("Saving changes...");
                 destWB.Save();
                 MessageBox.Show($"{additionsCount} new values added to column F.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                // Recommendation 4: Log error to file
                 System.IO.File.AppendAllText("Command_LoadTNumbersFromRobot.log", $"{DateTime.Now}: {ex}\n");
                 MessageBox.Show("Error: " + ex.Message);
             }
@@ -128,9 +136,11 @@ namespace Fraenkische.SWAddin.Commands
                 excelApp.StatusBar = false;
                 excelApp.Quit();
                 Marshal.ReleaseComObject(excelApp);
+                frame.SetStatusBarText("Ready");
             }
         }
     }
+
 
     // Simple progress bar form for recommendation 5
     public class ProgressForm : Form

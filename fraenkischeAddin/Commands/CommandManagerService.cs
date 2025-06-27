@@ -9,7 +9,7 @@ namespace Fraenkische.SWAddin.Commands
 {
     public class CommandManagerService
     {
-        private readonly ISldWorks _swApp;
+        private readonly SldWorks _swApp;
         private readonly int _addinCookie;
         private readonly ICommandManager _cmdMgr;
         public List<Action> _callbacks = new List<Action>();
@@ -20,7 +20,7 @@ namespace Fraenkische.SWAddin.Commands
         private const string MainTitle = "AutoKONSTRUKTÉR";
         private const string MainTooltip = "Seznam design funkci";
 
-        public CommandManagerService(ISldWorks swApp, int addinCookie)
+        public CommandManagerService(SldWorks swApp, int addinCookie)
         {
             _swApp = swApp;
             _addinCookie = addinCookie;
