@@ -21,10 +21,10 @@ namespace Fraenkische.SWAddin
         private SldWorks swApp;
         private int swCookie;
         private TaskpaneView swTaskpaneView;
-        private TaskpaneHostUI swTaskpaneHost;
-
+        
         private CommandManagerService commandManager;
         private FeatureManager featureManager;
+        private TaskpaneHostUI swTaskpaneHost;
 
         public const string SWTASKPANE_PROGID = "fraenkischeAddin.Taskpane";
 
