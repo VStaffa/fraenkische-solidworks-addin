@@ -53,8 +53,8 @@ namespace Fraenkische.SWAddin.Commands
 
             // Přidej tlačítko do command group
 
-            var basePath = Path.Combine(Path.GetDirectoryName(typeof(SWAddinClass).Assembly.Location), "Resources");
-
+            var basePath = Path.Combine(Path.GetDirectoryName(typeof(SWAddinClass).Assembly.Location), @"Resources\Icons");
+            
             string[] icons = new[]
             {
                 Path.Combine(basePath, "Icons_20x20.bmp"),  // 20x20

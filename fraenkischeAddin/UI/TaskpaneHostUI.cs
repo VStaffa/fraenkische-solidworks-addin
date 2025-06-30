@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Fraenkische.SWAddin.UI
 {
@@ -21,11 +23,11 @@ namespace Fraenkische.SWAddin.UI
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(18, 44);
+            this.button1.Location = new System.Drawing.Point(93, 26);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(297, 148);
+            this.button1.Size = new System.Drawing.Size(149, 33);
             this.button1.TabIndex = 0;
-            this.button1.Text = "TestButton";
+            this.button1.Text = "AUTOKoch MANUAL";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -35,13 +37,15 @@ namespace Fraenkische.SWAddin.UI
             this.Name = "TaskpaneHostUI";
             this.Size = new System.Drawing.Size(343, 517);
             this.ResumeLayout(false);
-         
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("clicked the button", "My Button");
+            var basePath = Path.Combine(Path.GetDirectoryName(typeof(SWAddinClass).Assembly.Location), @"Resources\Manuals");
+            var manualPath = Path.Combine(basePath, "AUTOKoch - USER MANUAL.pdf");
+            
+            Process.Start(new ProcessStartInfo(manualPath) {UseShellExecute = true });
         }
     }
 }
