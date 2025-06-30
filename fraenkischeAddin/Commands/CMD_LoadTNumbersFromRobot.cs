@@ -39,7 +39,7 @@ namespace Fraenkische.SWAddin.Commands
 
             OpenFileDialog ofd = new OpenFileDialog
             {
-                Title = "Select 'TOOLBOX' Excel file",
+                Title = "Select 'TOOL_SHOP' Excel file",
                 Filter = EXCEL_FILE_FILTER
             };
 

@@ -61,6 +61,14 @@ namespace Fraenkische.SWAddin.Commands
 
                     if (lastRow > 1)
                     {
+
+                        Excel.Range fileLabelCell = outputSheet.Cells[pasteRow, 2];
+                        fileLabelCell.Value = Path.GetFileNameWithoutExtension(file);
+                        fileLabelCell.Font.Size = 18;
+                        fileLabelCell.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightBlue);
+
+                        pasteRow++; // Move to next row for data
+
                         Excel.Range dataRange = sourceSheet.Range[sourceSheet.Cells[1, 1], sourceSheet.Cells[lastRow, sourceSheet.UsedRange.Columns.Count]];
                         Excel.Range destination = outputSheet.Cells[pasteRow, 1];
                         dataRange.Copy(destination);
