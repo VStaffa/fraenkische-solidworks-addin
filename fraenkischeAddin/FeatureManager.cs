@@ -39,6 +39,9 @@ namespace Fraenkische.SWAddin
 
             //Callback 5
             new CMD_MergeExcelFilesInFolder(),
+
+            //Callback 5
+            new CMD_LoadPriceFromRobot(_swApp),
             // etc.
 
         };

@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CMD_BatchBOMtoExcelExport.cs" />
+    <Compile Include="Commands\CMD_LoadPriceFromRobot.cs" />
     <Compile Include="Commands\CMD_MergeExcelFilesInFolder.cs" />
     <Compile Include="Commands\CommandManagerService.cs" />
     <Compile Include="Commands\CMD_LoadTNumbersFromRobot.cs" />
@@ -79,6 +80,9 @@
     <Compile Include="Commands\CMD_ExportBodiesToSTP.cs" />
     <Compile Include="Core\ICommand.cs" />
     <Compile Include="FeatureManager.cs" />
+    <Compile Include="Services\ProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Services\TNumberAssigner.cs" />
     <Compile Include="Services\CustomPropertyEditor.cs" />
     <Compile Include="Services\TNumberExcelReader.cs" />
