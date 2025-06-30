@@ -21,7 +21,6 @@ namespace Fraenkische.SWAddin
         private SldWorks swApp;
         private int swCookie;
         private TaskpaneView swTaskpaneView;
-        private TaskpaneHostUI swTaskpaneHost;
 
         private CommandManagerService commandManager;
         private FeatureManager featureManager;
@@ -77,7 +76,8 @@ namespace Fraenkische.SWAddin
 
         }
 
-
+        #region ICOMMAND CALLBACK HANDLING
+        // This method is called by SolidWorks when a command is executed
         //CALLBACK FOR EACH FEATURE
         public void CallBackFunction(string data)
         {
@@ -109,5 +109,6 @@ namespace Fraenkische.SWAddin
             }
 
         }
+        #endregion
     }
 }
