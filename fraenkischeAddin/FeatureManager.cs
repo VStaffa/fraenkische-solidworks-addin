@@ -42,6 +42,9 @@ namespace Fraenkische.SWAddin
 
             //Callback 5
             new CMD_LoadPriceFromRobot(_swApp),
+
+            //Callback 6
+            new CMD_UpdateLocalExcels(),
             // etc.
 
         };

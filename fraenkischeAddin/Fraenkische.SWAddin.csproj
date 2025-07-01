@@ -78,6 +78,7 @@
     <Compile Include="Commands\CMD_LoadTNumbersFromRobot.cs" />
     <Compile Include="Commands\CMD_UpdateTNumberInPart.cs" />
     <Compile Include="Commands\CMD_ExportBodiesToSTP.cs" />
+    <Compile Include="Commands\CMD_UpdateLocalExcels.cs" />
     <Compile Include="Core\ICommand.cs" />
     <Compile Include="FeatureManager.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -162,6 +163,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\Docs\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

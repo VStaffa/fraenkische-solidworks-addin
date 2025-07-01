@@ -15,7 +15,7 @@ namespace Fraenkische.SWAddin.Commands
 
         // Recommendation 1: Use constants for column indices and file filter
         private const int DEST_COL_A = 1;
-        private const int DEST_COL_D = 4;
+        private const int DEST_COL_D = 5;
         private const int SRC_COL_O = 15;
         private const int SRC_COL_E = 5;
         private const string EXCEL_FILE_FILTER = "Excel Files|*.xlsx;*.xlsm;*.xls";

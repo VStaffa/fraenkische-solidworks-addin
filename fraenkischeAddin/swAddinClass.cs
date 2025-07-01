@@ -32,26 +32,23 @@ namespace Fraenkische.SWAddin
         {
             swApp = (SldWorks)ThisSW;
             swCookie = Cookie;
-
             swApp.SetAddinCallbackInfo2(1, this, swCookie);
 
-            //MessageBox.Show("Design Team Addin Connected Sucessfully!");
-
+            //ADD COMMAND GROUP AND POPULATE COMMANDS
             commandManager = new CommandManagerService(swApp, swCookie);
             featureManager = new FeatureManager(swApp, commandManager);
-
             featureManager.RegisterFeatures();
             commandManager.Finalize();
 
+            //CREATE TASKPANE
             LoadUI();
 
             return true;
         }
+
         private void LoadUI()
         {
             var imagePath = Path.Combine(Path.GetDirectoryName(typeof(SWAddinClass).Assembly.CodeBase).Replace(@"file:\", string.Empty), @"Resources\Icons\AddinLogo.png");
-            //MessageBox.Show(imagePath);
-
             swTaskpaneView = swApp.CreateTaskpaneView2(imagePath, "Smart Designer");
             swTaskpaneHost = (TaskpaneHostUI)swTaskpaneView.AddControl(SWAddinClass.SWTASKPANE_PROGID, string.Empty);
 
@@ -106,7 +103,12 @@ namespace Fraenkische.SWAddin
                 case 6:
                     commandManager.HandleCommandCall(commandIndex);
                     break;
-                    
+                case 7:
+                    commandManager.HandleCommandCall(commandIndex);
+                    break;
+                case 8:
+                    commandManager.HandleCommandCall(commandIndex);
+                    break;
             }
 
         }
