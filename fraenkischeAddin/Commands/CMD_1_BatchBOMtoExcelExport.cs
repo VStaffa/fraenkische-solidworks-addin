@@ -78,7 +78,6 @@ namespace Fraenkische.SWAddin.Commands
 
             if (swBomFeat == null)
             {
-                MessageBox.Show($"No BOM found in: {swModel.GetTitle()}", "BOM Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

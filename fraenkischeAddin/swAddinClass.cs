@@ -46,7 +46,7 @@ namespace Fraenkische.SWAddin
             return true;
         }
 
-        #region DOCUMENT CHANGE LABLE HANDLER
+        #region CURRENT OPEN DOCUMENT HANDLING
         private int OnActiveDocChanged()
         {
             UpdateActiveDocumentName();
