@@ -15,7 +15,7 @@ namespace Fraenkische.SWAddin.Commands
             cmdMgr.AddCommand(
                 commandTitle: Title,
                 tooltip: "Excel BOM Merger",
-                iconI: 2, // např. 2. ikona ve tvém .bmp
+                iconI: 4, // např. 2. ikona ve tvém .bmp
                 callback: Execute);
         }
         public void Execute()

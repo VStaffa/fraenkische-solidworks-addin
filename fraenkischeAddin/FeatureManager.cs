@@ -45,7 +45,7 @@ namespace Fraenkische.SWAddin
                 _featureMap[feature.GetType()] = feature;
                 feature.Register(_cmdMgr);
             }
-            
+
         }
     }
 }

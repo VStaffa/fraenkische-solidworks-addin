@@ -21,7 +21,7 @@ namespace Fraenkische.SWAddin.Commands
             cmdMgr.AddCommand(
                 Title,
                 "Open all drawings in a folder and export their BOMs to Excel",
-                1,
+                0,
                 Execute);
         }
 

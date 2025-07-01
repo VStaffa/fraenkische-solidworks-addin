@@ -28,7 +28,7 @@ namespace Fraenkische.SWAddin.Commands
             cmdMgrService.AddCommand(
                 commandTitle: "Update Local Excels",
                 tooltip: "Update local Excel files with latest data",
-                iconI: 0, // Use appropriate icon index
+                iconI: 5, // Use appropriate icon index
                 callback: Execute);
         }
     }

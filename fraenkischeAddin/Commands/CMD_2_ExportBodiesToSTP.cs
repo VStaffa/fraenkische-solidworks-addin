@@ -21,7 +21,7 @@ namespace Fraenkische.SWAddin.Commands
             cmdMgr.AddCommand(
                 Title,
                 "Export each solid body as STEP",
-                0,
+                1,
                 Execute);
         }
 

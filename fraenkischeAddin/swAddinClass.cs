@@ -1,10 +1,10 @@
-﻿using System;
-using System.IO;
-using System.Runtime.InteropServices;
-using Fraenkische.SWAddin.Commands;
+﻿using Fraenkische.SWAddin.Commands;
 using Fraenkische.SWAddin.UI;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swpublished;
+using System;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Fraenkische.SWAddin
 {
@@ -19,7 +19,7 @@ namespace Fraenkische.SWAddin
         private SldWorks swApp;
         private int swCookie;
         private TaskpaneView swTaskpaneView;
-        
+
         private CommandManagerService commandManager;
         private FeatureManager featureManager;
         private TaskpaneHostUI swTaskpaneHost;
@@ -89,11 +89,11 @@ namespace Fraenkische.SWAddin
             swTaskpaneHost.cmd_6_Clicked += () =>
             {
                 featureManager.Get<CMD_6_UpdateLocalExcels>()?.Execute();
-            };  
+            };
             swTaskpaneHost.cmd_5_Clicked += () =>
             {
                 featureManager.Get<CMD_5_MergeExcelFilesInFolder>()?.Execute();
-            };  
+            };
             swTaskpaneHost.cmd_7_Clicked += () =>
             {
                 featureManager.Get<CMD_4_LoadTNumbersFromRobot>()?.Execute();

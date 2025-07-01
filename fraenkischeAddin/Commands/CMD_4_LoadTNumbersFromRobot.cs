@@ -28,7 +28,7 @@ namespace Fraenkische.SWAddin.Commands
 
         public void Register(CommandManagerService cmdMgr)
         {
-            cmdMgr.AddCommand(Title, "Load New Daily T-Numbers From Robot", 1, Execute);
+            cmdMgr.AddCommand(Title, "Load New Daily T-Numbers From Robot", 3, Execute);
         }
 
         public void Execute()
