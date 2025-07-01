@@ -51,6 +51,7 @@ namespace Fraenkische.SWAddin.Commands
 
             _callbacks.Add(callback);     // 🔹 Stores the callback at that index
 
+            #region ICON SETUP
             // Přidej tlačítko do command group
 
             var basePath = Path.Combine(Path.GetDirectoryName(typeof(SWAddinClass).Assembly.Location), @"Resources\Icons");
@@ -70,6 +71,8 @@ namespace Fraenkische.SWAddin.Commands
             // set icons before AddCommandItem2
             _cmdGroup.IconList = icons;
             _cmdGroup.MainIconList = mainIcons;
+
+            #endregion
 
             _cmdGroup.AddCommandItem2(
                 commandTitle,
