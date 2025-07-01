@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace Fraenkische.SWAddin.Commands
 {
-    internal class CMD_UpdateLocalExcels : ICommand
+    internal class CMD_6_UpdateLocalExcels : ICommand
     {
         public void Execute()
         {

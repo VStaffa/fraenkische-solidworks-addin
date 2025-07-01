@@ -6,7 +6,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Fraenkische.SWAddin.Commands
 {
-    internal class CMD_MergeExcelFilesInFolder : ICommand
+    internal class CMD_5_MergeExcelFilesInFolder : ICommand
     {
         public string Title => "Merge Excel Files (BOMs) In Folder.";
 

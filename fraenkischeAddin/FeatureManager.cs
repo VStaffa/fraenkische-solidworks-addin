@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using Fraenkische.SWAddin.Commands;
+﻿using Fraenkische.SWAddin.Commands;
 using SolidWorks.Interop.sldworks;
+using System;
+using System.Collections.Generic;
 
 namespace Fraenkische.SWAddin
 {
@@ -9,12 +10,18 @@ namespace Fraenkische.SWAddin
         private readonly SldWorks _swApp;
         private readonly CommandManagerService _cmdMgr;
 
+        private readonly Dictionary<Type, ICommand> _featureMap = new Dictionary<Type, ICommand>();
+
+
         public FeatureManager(SldWorks swApp, CommandManagerService cmdMgr)
         {
             _swApp = swApp;
             _cmdMgr = cmdMgr;
         }
-
+        public T Get<T>() where T : class, ICommand
+        {
+            return _featureMap.TryGetValue(typeof(T), out var cmd) ? cmd as T : null;
+        }
         public void RegisterFeatures()
         {
             List<ICommand> features = new List<ICommand>()
@@ -22,35 +29,23 @@ namespace Fraenkische.SWAddin
 
             //SEM PRIDAVAT NOVE FUNKCE
 
-            //Callback_0
-            new CMD_UpdateTNumberInPart(_swApp),
-
-            //Callback_1
-            new CMD_ExportBodiesToSTP(_swApp),
-
-            //Callback_2
-            //new Command_LoadTNumberToBOM(_swApp),
-            
-            //Callback 3
-            new CMD_LoadTNumbersFromRobot(_swApp),
-          
-            //Callback 4
-            new CMD_BatchBOMtoExcelExport(_swApp),
-
-            //Callback 5
-            new CMD_MergeExcelFilesInFolder(),
-
-            //Callback 5
-            new CMD_LoadPriceFromRobot(_swApp),
-
-            //Callback 6
-            new CMD_UpdateLocalExcels(),
-            // etc.
+            //Callback_0 ++ 
+            new CMD_1_BatchBOMtoExcelExport(_swApp),
+            new CMD_2_ExportBodiesToSTP(_swApp),
+            new CMD_3_LoadPriceFromRobot(_swApp),
+            new CMD_4_LoadTNumbersFromRobot(_swApp),
+            new CMD_5_MergeExcelFilesInFolder(),
+            new CMD_6_UpdateLocalExcels(),
+            new CMD_7_UpdateTNumberInPart(_swApp),
 
         };
 
             foreach (var feature in features)
+            {
+                _featureMap[feature.GetType()] = feature;
                 feature.Register(_cmdMgr);
+            }
+            
         }
     }
 }

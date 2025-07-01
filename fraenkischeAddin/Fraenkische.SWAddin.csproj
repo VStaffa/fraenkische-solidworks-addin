@@ -71,14 +71,14 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\CMD_BatchBOMtoExcelExport.cs" />
-    <Compile Include="Commands\CMD_LoadPriceFromRobot.cs" />
-    <Compile Include="Commands\CMD_MergeExcelFilesInFolder.cs" />
+    <Compile Include="Commands\CMD_1_BatchBOMtoExcelExport.cs" />
+    <Compile Include="Commands\CMD_3_LoadPriceFromRobot.cs" />
+    <Compile Include="Commands\CMD_5_MergeExcelFilesInFolder.cs" />
     <Compile Include="Commands\CommandManagerService.cs" />
-    <Compile Include="Commands\CMD_LoadTNumbersFromRobot.cs" />
-    <Compile Include="Commands\CMD_UpdateTNumberInPart.cs" />
-    <Compile Include="Commands\CMD_ExportBodiesToSTP.cs" />
-    <Compile Include="Commands\CMD_UpdateLocalExcels.cs" />
+    <Compile Include="Commands\CMD_4_LoadTNumbersFromRobot.cs" />
+    <Compile Include="Commands\CMD_7_UpdateTNumberInPart.cs" />
+    <Compile Include="Commands\CMD_2_ExportBodiesToSTP.cs" />
+    <Compile Include="Commands\CMD_6_UpdateLocalExcels.cs" />
     <Compile Include="Core\ICommand.cs" />
     <Compile Include="FeatureManager.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

@@ -43,8 +43,27 @@ namespace Fraenkische.SWAddin
             //CREATE TASKPANE
             LoadUI();
 
+            swApp.ActiveDocChangeNotify += OnActiveDocChanged;
+            UpdateActiveDocumentName();
             return true;
         }
+
+        #region DOCUMENT CHANGE LABLE HANDLER
+        private int OnActiveDocChanged()
+        {
+            UpdateActiveDocumentName();
+            return 0;
+        }
+
+        private void UpdateActiveDocumentName()
+        {
+            var doc = swApp.IActiveDoc2;
+            string name = doc != null ? Path.GetFileName(doc.GetPathName()) : "(none)";
+            swTaskpaneHost?.UpdateDocumentName(name);
+        }
+        #endregion
+
+        #region TASKPANE HANDLER
 
         private void LoadUI()
         {
@@ -52,7 +71,39 @@ namespace Fraenkische.SWAddin
             swTaskpaneView = swApp.CreateTaskpaneView2(imagePath, "Smart Designer");
             swTaskpaneHost = (TaskpaneHostUI)swTaskpaneView.AddControl(SWAddinClass.SWTASKPANE_PROGID, string.Empty);
 
+            #region MATCH TASKPANE UI TO COMMANDS
+            swTaskpaneHost.cmd_2_Clicked += () =>
+            {
+                featureManager.Get<CMD_2_ExportBodiesToSTP>()?.Execute();
+            };
+            swTaskpaneHost.cmd_1_Clicked += () =>
+            {
+                featureManager.Get<CMD_1_BatchBOMtoExcelExport>()?.Execute();
+            };
+            swTaskpaneHost.cmd_3_Clicked += () =>
+            {
+                featureManager.Get<CMD_3_LoadPriceFromRobot>()?.Execute();
+            };
+            swTaskpaneHost.cmd_4_Clicked += () =>
+            {
+                featureManager.Get<CMD_7_UpdateTNumberInPart>()?.Execute();
+            };
+            swTaskpaneHost.cmd_6_Clicked += () =>
+            {
+                featureManager.Get<CMD_6_UpdateLocalExcels>()?.Execute();
+            };  
+            swTaskpaneHost.cmd_5_Clicked += () =>
+            {
+                featureManager.Get<CMD_5_MergeExcelFilesInFolder>()?.Execute();
+            };  
+            swTaskpaneHost.cmd_7_Clicked += () =>
+            {
+                featureManager.Get<CMD_4_LoadTNumbersFromRobot>()?.Execute();
+            };
+            #endregion
         }
+
+        #endregion
 
         public bool DisconnectFromSW()
         {
@@ -75,6 +126,7 @@ namespace Fraenkische.SWAddin
         }
 
         #region ICOMMAND CALLBACK HANDLING
+
         // This method is called by SolidWorks when a command is executed
         //CALLBACK FOR EACH FEATURE
         public void CallBackFunction(string data)

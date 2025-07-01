@@ -9,26 +9,26 @@ using Fraenkische.SWAddin.Services;
 
 namespace Fraenkische.SWAddin.Commands
 {
-    internal class CMD_LoadTNumbersFromRobot : ICommand
+    internal class CMD_3_LoadPriceFromRobot : ICommand
     {
         private readonly SldWorks _swApp;
 
         // Recommendation 1: Use constants for column indices and file filter
         private const int DEST_COL_A = 1;
-        private const int DEST_COL_F = 6;
-        private const int SRC_COL_A = 1;
+        private const int DEST_COL_D = 5;
+        private const int SRC_COL_O = 15;
         private const int SRC_COL_E = 5;
         private const string EXCEL_FILE_FILTER = "Excel Files|*.xlsx;*.xlsm;*.xls";
 
-        public CMD_LoadTNumbersFromRobot(SldWorks swApp)
+        public CMD_3_LoadPriceFromRobot(SldWorks swApp)
         {
             _swApp = swApp;
         }
-        public string Title => "Load T-Numbers From Robot";
+        public string Title => "Load PRICE from ROBOT";
 
         public void Register(CommandManagerService cmdMgr)
         {
-            cmdMgr.AddCommand(Title, "Load New Daily T-Numbers From Robot", 1, Execute);
+            cmdMgr.AddCommand(Title, "Load Prices of found parts.", 2, Execute);
         }
 
         public void Execute()
@@ -39,7 +39,7 @@ namespace Fraenkische.SWAddin.Commands
 
             OpenFileDialog ofd = new OpenFileDialog
             {
-                Title = "Select 'TOOL_SHOP' Excel file",
+                Title = "Select 'DESTINANTION' Excel file",
                 Filter = EXCEL_FILE_FILTER
             };
 
@@ -76,7 +76,7 @@ namespace Fraenkische.SWAddin.Commands
                 for (int j = 1; j <= lastRowSrc; j++)
                 {
                     string srcE = Convert.ToString(srcWS.Cells[j, SRC_COL_E].Value)?.Trim();
-                    string srcA = Convert.ToString(srcWS.Cells[j, SRC_COL_A].Value);
+                    string srcA = Convert.ToString(srcWS.Cells[j, SRC_COL_O].Value);
                     if (!string.IsNullOrEmpty(srcE) && !string.IsNullOrEmpty(srcA))
                     {
                         string[] tokens = srcE.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -97,14 +97,14 @@ namespace Fraenkische.SWAddin.Commands
                     for (int i = 1; i <= lastRowDest; i++)
                     {
                         string destA = Convert.ToString(destWS.Cells[i, DEST_COL_A].Value)?.Trim();
-                        string destF = Convert.ToString(destWS.Cells[i, DEST_COL_F].Value)?.Trim();
+                        string destF = Convert.ToString(destWS.Cells[i, DEST_COL_D].Value)?.Trim();
 
                         if (!string.IsNullOrEmpty(destA) && string.IsNullOrEmpty(destF))
                         {
                             if (srcLookup.TryGetValue(destA, out string srcA))
                             {
-                                destWS.Cells[i, DEST_COL_F].Value = srcA;
-                                destWS.Cells[i, DEST_COL_F].Interior.Color = ColorTranslator.ToOle(Color.Orange);
+                                destWS.Cells[i, DEST_COL_D].Value = srcA;
+                                destWS.Cells[i, DEST_COL_D].Interior.Color = ColorTranslator.ToOle(Color.Orange);
                                 additionsCount++;
                             }
                         }
@@ -119,7 +119,7 @@ namespace Fraenkische.SWAddin.Commands
 
                 frame.SetStatusBarText("Saving changes...");
                 destWB.Save();
-                MessageBox.Show($"{additionsCount} new values added to column F.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"{additionsCount} new values added to column D.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -139,5 +139,4 @@ namespace Fraenkische.SWAddin.Commands
             }
         }
     }
-
 }

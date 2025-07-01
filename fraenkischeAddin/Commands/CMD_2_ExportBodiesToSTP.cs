@@ -5,11 +5,11 @@ using SolidWorks.Interop.swconst;
 
 namespace Fraenkische.SWAddin.Commands
 {
-    internal class CMD_ExportBodiesToSTP : ICommand
+    internal class CMD_2_ExportBodiesToSTP : ICommand
     {
         private readonly SldWorks _swApp;
 
-        public CMD_ExportBodiesToSTP(SldWorks swApp)
+        public CMD_2_ExportBodiesToSTP(SldWorks swApp)
         {
             _swApp = swApp;
         }

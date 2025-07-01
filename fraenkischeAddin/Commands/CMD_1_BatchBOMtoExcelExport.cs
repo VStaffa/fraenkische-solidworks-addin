@@ -6,10 +6,10 @@ using SolidWorks.Interop.swconst;
 
 namespace Fraenkische.SWAddin.Commands
 {
-    internal class CMD_BatchBOMtoExcelExport : ICommand
+    internal class CMD_1_BatchBOMtoExcelExport : ICommand
     {
         private readonly SldWorks _swApp;
-        public CMD_BatchBOMtoExcelExport(SldWorks swApp)
+        public CMD_1_BatchBOMtoExcelExport(SldWorks swApp)
         {
             _swApp = swApp;
         }
@@ -21,7 +21,7 @@ namespace Fraenkische.SWAddin.Commands
             cmdMgr.AddCommand(
                 Title,
                 "Open all drawings in a folder and export their BOMs to Excel",
-                3,
+                1,
                 Execute);
         }
 
