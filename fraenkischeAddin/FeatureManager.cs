@@ -4,7 +4,7 @@ using SolidWorks.Interop.sldworks;
 
 namespace Fraenkische.SWAddin
 {
-    public class FeatureManager
+    internal class FeatureManager
     {
         private readonly SldWorks _swApp;
         private readonly CommandManagerService _cmdMgr;

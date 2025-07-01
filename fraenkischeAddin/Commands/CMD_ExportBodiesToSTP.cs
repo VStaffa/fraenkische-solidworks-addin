@@ -5,7 +5,7 @@ using SolidWorks.Interop.swconst;
 
 namespace Fraenkische.SWAddin.Commands
 {
-    public class CMD_ExportBodiesToSTP : ICommand
+    internal class CMD_ExportBodiesToSTP : ICommand
     {
         private readonly SldWorks _swApp;
 

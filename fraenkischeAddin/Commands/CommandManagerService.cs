@@ -7,7 +7,7 @@ using SolidWorks.Interop.swconst;
 
 namespace Fraenkische.SWAddin.Commands
 {
-    public class CommandManagerService
+    internal class CommandManagerService
     {
         private readonly SldWorks _swApp;
         private readonly int _addinCookie;

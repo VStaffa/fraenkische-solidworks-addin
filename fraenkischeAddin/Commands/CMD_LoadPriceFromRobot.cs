@@ -9,7 +9,7 @@ using Fraenkische.SWAddin.Services;
 
 namespace Fraenkische.SWAddin.Commands
 {
-    public class CMD_LoadPriceFromRobot : ICommand
+    internal class CMD_LoadPriceFromRobot : ICommand
     {
         private readonly SldWorks _swApp;
 

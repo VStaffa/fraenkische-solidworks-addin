@@ -4,7 +4,7 @@ using SolidWorks.Interop.sldworks;
 
 namespace Fraenkische.SWAddin.Commands
 {
-    public class CMD_UpdateTNumberInPart : ICommand
+    internal class CMD_UpdateTNumberInPart : ICommand
     {
         private readonly SldWorks _swApp;
 
