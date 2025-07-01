@@ -58,12 +58,12 @@ namespace Fraenkische.SWAddin.Commands
             string[] icons = new[]
             {
                 Path.Combine(basePath, "Icons_20x20.bmp"),  // 20x20
-                Path.Combine(basePath, "Icons_32x32.bmp"), // 32x32
+
             };
 
             string[] mainIcons = new[]
-{
-                Path.Combine(basePath, "mainIcons_20x20.bmp"),  // 20x20
+            {       
+
                 Path.Combine(basePath, "mainIcons_32x32.bmp"), // 32x32
             };
 
