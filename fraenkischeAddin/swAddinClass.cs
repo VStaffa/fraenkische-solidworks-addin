@@ -10,8 +10,6 @@ namespace Fraenkische.SWAddin
 {
 
     [ComVisible(true)]
-    //HOME GUID
-    //[Guid("B59ACE60-12DE-4C96-9910-4A268557EF64")]
 
     //WORK GUID
     [Guid("E5F928C1-B502-41D2-BA19-D86E4AD34786")]
@@ -105,6 +103,7 @@ namespace Fraenkische.SWAddin
 
         #endregion
 
+        #region Dsconnect from SolidWorks and UNLOAD
         public bool DisconnectFromSW()
         {
             UnloadUI();
@@ -124,6 +123,7 @@ namespace Fraenkische.SWAddin
             }
 
         }
+        #endregion
 
         #region ICOMMAND CALLBACK HANDLING
 
