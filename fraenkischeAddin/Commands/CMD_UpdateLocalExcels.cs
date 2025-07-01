@@ -18,7 +18,7 @@ namespace Fraenkische.SWAddin.Commands
             string robotFileName = Path.GetFileName(robotSourcePath);
             string toolshopFileName = Path.GetFileName(toolshopSourcePath);
 
-            string destinationPath = Path.Combine(Path.GetDirectoryName(typeof(SWAddinClass).Assembly.CodeBase).Replace(@"file:\", string.Empty), @"Resources\Docs");
+            string destinationPath = Path.Combine(Path.GetDirectoryName(typeof(SWAddinClass).Assembly.CodeBase).Replace(@"file:\", string.Empty), @"Resources");
 
             MessageBox.Show(Path.Combine(destinationPath, robotFileName));
             MessageBox.Show(Path.Combine(destinationPath, toolshopFileName));
