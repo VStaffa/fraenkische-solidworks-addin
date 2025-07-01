@@ -65,7 +65,7 @@ namespace Fraenkische.SWAddin.Commands
             string[] mainIcons = new[]
             {       
 
-                Path.Combine(basePath, "mainIcons_32x32.bmp"), // 32x32
+                Path.Combine(basePath, "mainIcons_20x20.bmp"), // 32x32
             };
 
             // set icons before AddCommandItem2
