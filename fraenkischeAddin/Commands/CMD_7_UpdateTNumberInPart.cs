@@ -32,7 +32,7 @@ namespace Fraenkische.SWAddin.Commands
 
             if (activeDoc == null)
             {
-                MessageBox.Show("This command only works on 'PART' documents.", "Invalid Document", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Open a document", "Invalid Document", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 frame.SetStatusBarText("Ready");
                 return;
             }

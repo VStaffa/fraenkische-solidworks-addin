@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Text.RegularExpressions;
 
 namespace Fraenkische.SWAddin.Services
 {
@@ -18,19 +19,23 @@ namespace Fraenkische.SWAddin.Services
             Excel.Application xlApp = new Excel.Application();
             Excel.Workbook workbook = null;
 
+            int row;
+
             try
             {
                 workbook = xlApp.Workbooks.Open(_excelPath, ReadOnly: true);
                 Excel.Worksheet sheet = workbook.Sheets[1];
                 Excel.Range usedRange = sheet.UsedRange;
-                int lastRow = usedRange.Rows.Count;
 
                 bool found = false;
+                
 
-                for (int row = lastRow; row >= 1; row--)
+                Match match = Regex.Match(componentName, @"\d+$");
+
+                if (match.Success)
                 {
-
-                    string nameCell = sheet.Cells[row, 1].Text as string; // Column A
+                    row = int.Parse(match.Value) + 1;
+                    string nameCell = sheet.Cells[row, 1].Text as string;
                     if (!string.IsNullOrWhiteSpace(nameCell) && nameCell.Equals(componentName))
                     {
                         string tNumber = sheet.Cells[row, 6].Text as string; // T-Number from Column A
@@ -41,8 +46,10 @@ namespace Fraenkische.SWAddin.Services
 
                         return string.IsNullOrWhiteSpace(tNumber) ? null : tNumber;
                     }
+
+                    if (!found) MessageBox.Show($"Pro dil: {componentName} nebylo nalezeno zadne T-Cislo.");
                 }
-                if (!found) MessageBox.Show($"Pro dil: {componentName} nebylo nalezeno zadne T-Cislo.");
+
             }
             catch (Exception ex)
             {
