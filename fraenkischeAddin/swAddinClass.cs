@@ -70,13 +70,13 @@ namespace Fraenkische.SWAddin
             swTaskpaneHost = (TaskpaneHostUI)swTaskpaneView.AddControl(SWAddinClass.SWTASKPANE_PROGID, string.Empty);
 
             #region MATCH TASKPANE UI TO COMMANDS
-            swTaskpaneHost.cmd_2_Clicked += () =>
-            {
-                featureManager.Get<CMD_2_ExportBodiesToSTP>()?.Execute();
-            };
             swTaskpaneHost.cmd_1_Clicked += () =>
             {
                 featureManager.Get<CMD_1_BatchBOMtoExcelExport>()?.Execute();
+            };
+            swTaskpaneHost.cmd_2_Clicked += () =>
+            {
+                featureManager.Get<CMD_2_ExportBodiesToSTP>()?.Execute();
             };
             swTaskpaneHost.cmd_3_Clicked += () =>
             {
@@ -84,19 +84,19 @@ namespace Fraenkische.SWAddin
             };
             swTaskpaneHost.cmd_4_Clicked += () =>
             {
-                featureManager.Get<CMD_7_UpdateTNumberInPart>()?.Execute();
-            };
-            swTaskpaneHost.cmd_6_Clicked += () =>
-            {
-                featureManager.Get<CMD_6_UpdateLocalExcels>()?.Execute();
+                featureManager.Get<CMD_4_LoadTNumbersFromRobot>()?.Execute();
             };
             swTaskpaneHost.cmd_5_Clicked += () =>
             {
                 featureManager.Get<CMD_5_MergeExcelFilesInFolder>()?.Execute();
             };
+            swTaskpaneHost.cmd_6_Clicked += () =>
+            {
+                featureManager.Get<CMD_6_UpdateLocalExcels>()?.Execute();
+            };
             swTaskpaneHost.cmd_7_Clicked += () =>
             {
-                featureManager.Get<CMD_4_LoadTNumbersFromRobot>()?.Execute();
+                featureManager.Get<CMD_7_UpdateTNumberInPart>()?.Execute();
             };
             #endregion
         }
