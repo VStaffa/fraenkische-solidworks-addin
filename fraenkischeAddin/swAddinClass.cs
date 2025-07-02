@@ -69,6 +69,9 @@ namespace Fraenkische.SWAddin
             swTaskpaneView = swApp.CreateTaskpaneView2(imagePath, "Smart Designer");
             swTaskpaneHost = (TaskpaneHostUI)swTaskpaneView.AddControl(SWAddinClass.SWTASKPANE_PROGID, string.Empty);
 
+            swTaskpaneHost.Width = 400;
+            swTaskpaneHost.MinimumSize = new System.Drawing.Size (400, 0);
+
             #region MATCH TASKPANE UI TO COMMANDS
             swTaskpaneHost.cmd_1_Clicked += () =>
             {

@@ -83,6 +83,7 @@ namespace Fraenkische.SWAddin.UI
             // 
             // tabControl1
             // 
+            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
@@ -91,17 +92,17 @@ namespace Fraenkische.SWAddin.UI
             this.tabControl1.Location = new System.Drawing.Point(3, 121);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(374, 503);
+            this.tabControl1.Size = new System.Drawing.Size(380, 500);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.btn_cmd_7);
             this.tabPage1.Controls.Add(this.btn_cmd_2);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(366, 474);
+            this.tabPage1.Size = new System.Drawing.Size(372, 468);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "PART";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -110,27 +111,27 @@ namespace Fraenkische.SWAddin.UI
             // 
             this.btn_cmd_2.Location = new System.Drawing.Point(3, 6);
             this.btn_cmd_2.Name = "btn_cmd_2";
-            this.btn_cmd_2.Size = new System.Drawing.Size(149, 33);
+            this.btn_cmd_2.Size = new System.Drawing.Size(161, 50);
             this.btn_cmd_2.TabIndex = 2;
             this.btn_cmd_2.Text = "Bodies To STP Export";
             this.btn_cmd_2.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(366, 474);
+            this.tabPage2.Size = new System.Drawing.Size(372, 468);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "ASSEMBLY";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(366, 474);
+            this.tabPage3.Size = new System.Drawing.Size(372, 468);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "DRAWING";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -139,10 +140,10 @@ namespace Fraenkische.SWAddin.UI
             // 
             this.tabPage4.Controls.Add(this.btn_man_1);
             this.tabPage4.Controls.Add(this.btn_man_2);
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Location = new System.Drawing.Point(4, 28);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(366, 474);
+            this.tabPage4.Size = new System.Drawing.Size(372, 468);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "MANUALS";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -174,10 +175,10 @@ namespace Fraenkische.SWAddin.UI
             this.tabPage5.Controls.Add(this.btn_cmd_4);
             this.tabPage5.Controls.Add(this.btn_cmd_5);
             this.tabPage5.Controls.Add(this.btn_cmd_6);
-            this.tabPage5.Location = new System.Drawing.Point(4, 25);
+            this.tabPage5.Location = new System.Drawing.Point(4, 28);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(366, 474);
+            this.tabPage5.Size = new System.Drawing.Size(372, 468);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "OTHER";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -249,11 +250,11 @@ namespace Fraenkische.SWAddin.UI
             // 
             // btn_cmd_7
             // 
-            this.btn_cmd_7.Location = new System.Drawing.Point(6, 62);
+            this.btn_cmd_7.Location = new System.Drawing.Point(3, 62);
             this.btn_cmd_7.Name = "btn_cmd_7";
-            this.btn_cmd_7.Size = new System.Drawing.Size(149, 48);
+            this.btn_cmd_7.Size = new System.Drawing.Size(161, 53);
             this.btn_cmd_7.TabIndex = 5;
-            this.btn_cmd_7.Text = "Načti T-Číslo Dílu";
+            this.btn_cmd_7.Text = "Load T-Number to Part";
             this.btn_cmd_7.UseVisualStyleBackColor = true;
             // 
             // TaskpaneHostUI
@@ -263,7 +264,7 @@ namespace Fraenkische.SWAddin.UI
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tabControl1);
             this.Name = "TaskpaneHostUI";
-            this.Size = new System.Drawing.Size(380, 700);
+            this.Size = new System.Drawing.Size(400, 700);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
