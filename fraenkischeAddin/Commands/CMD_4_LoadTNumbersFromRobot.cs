@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
-using Outlook = Microsoft.Office.Interop.Outlook;   // přidáno
+using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace Fraenkische.SWAddin.Commands
 {
