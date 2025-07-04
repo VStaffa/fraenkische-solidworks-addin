@@ -14,6 +14,8 @@ namespace Fraenkische.SWAddin.Commands
     internal class CMD_4_LoadTNumbersFromRobot : ICommand
     {
         private readonly SldWorks _swApp;
+
+        // Seznam email adres 
         private readonly string recAdresses = "vaclav.staffa@fraenkische-cz.com;" +
             "tomas.kalina@fraenkische-cz.com;" +
             "jaroslav.hruska@fraenkische-cz.com;" +
