@@ -46,8 +46,10 @@ namespace Fraenkische.SWAddin.Commands
 
         public void Execute()
         {
-            // teď ukládáme i informace o existenci souboru a přidání vlastnosti
-            var additions = new List<(string PartName, string Author, string TNumber, bool FileFound, bool PropertyAdded)>();
+            // Rozšířený seznam o stavy pro part i drawing
+            var additions = new List<(string PartName, string Author, string TNumber,
+                                      bool FileFound, bool PropertyAdded,
+                                      bool DrawingFound, bool DrawingSaved)>();
             IFrame frame = _swApp.Frame();
 
             // Výběr souborů
@@ -67,7 +69,6 @@ namespace Fraenkische.SWAddin.Commands
                 excelApp.ScreenUpdating = false;
                 excelApp.DisplayAlerts = false;
 
-                // Načtení dat do slovníku
                 frame.SetStatusBarText("Opening Excel files.");
                 destWB = excelApp.Workbooks.Open(destPath);
                 srcWB = excelApp.Workbooks.Open(srcPath, ReadOnly: true);
@@ -92,7 +93,6 @@ namespace Fraenkische.SWAddin.Commands
                                 srcLookup[token] = srcA;
                 }
 
-                // Zápis nových T-čísel, úprava modelu a sběr dat pro e-mail
                 int additionsCount = 0;
                 frame.SetStatusBarText("Processing rows.");
                 for (int i = 1; i <= lastRowDest; i++)
@@ -103,21 +103,22 @@ namespace Fraenkische.SWAddin.Commands
                     {
                         if (srcLookup.TryGetValue(partName, out string newT))
                         {
-                            // zápis do Excelu
+                            // Zápis do Excelu
                             destWS.Cells[i, DEST_COL_F].Value = newT;
-                            var destCell = destWS.Cells[i, DEST_COL_F];
-                            destCell.Interior.Color =
+                            destWS.Cells[i, DEST_COL_F].Interior.Color =
                                 System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Orange);
                             additionsCount++;
 
                             string author = Convert.ToString(destWS.Cells[i, 3].Value)?.Trim();
 
-                            // Otevření a úprava SolidWorks modelu
+                            // Otevření a úprava part modelu
                             string partDir = @"C:\Users\staff\Desktop\BFP";
                             string partPath = Path.Combine(partDir, partName, partName + ".sldprt");
 
                             bool fileFound = File.Exists(partPath);
                             bool propertyAdded = false;
+                            bool drawingFound = false;
+                            bool drawingSaved = false;
 
                             if (fileFound)
                             {
@@ -131,24 +132,45 @@ namespace Fraenkische.SWAddin.Commands
                                     var cusMgr = model.Extension.CustomPropertyManager[""];
                                     cusMgr.Add3("T-Number",
                                                (int)swCustomInfoType_e.swCustomInfoText,
-                                               newT,1);
+                                               newT, 1);
                                     model.ForceRebuild3(true);
                                     model.Save();
                                     propertyAdded = true;
                                     _swApp.CloseDoc(model.GetTitle());
+
+                                    // Otevření a úprava výkresu
+                                    string drwPath = Path.Combine(partDir, partName, partName + ".slddrw");
+                                    drawingFound = File.Exists(drwPath);
+                                    if (drawingFound)
+                                    {
+                                        var drw = _swApp.OpenDoc6(
+                                            drwPath,
+                                            (int)swDocumentTypes_e.swDocDRAWING,
+                                            (int)swOpenDocOptions_e.swOpenDocOptions_Silent,
+                                            "", 0, 0) as ModelDoc2;
+                                        if (drw != null)
+                                        {
+                                            drw.ForceRebuild3(true);
+                                            drw.Save();
+                                            drawingSaved = true;
+                                            _swApp.CloseDoc(drw.GetTitle());
+                                        }
+                                    }
                                 }
                             }
 
-                            additions.Add((partName, author, newT, fileFound, propertyAdded));
+                            additions.Add((partName, author, newT,
+                                           fileFound, propertyAdded,
+                                           drawingFound, drawingSaved));
                         }
                     }
                 }
 
-                // Uložení změn v Excelu
+                // Uložení Excelu
                 frame.SetStatusBarText("Saving changes.");
                 destWB.Save();
 
-                // Odeslání e-mailu přes Outlook
+                // Odeslání e-mailu
                 if (additions.Count > 0)
                 {
                     try
@@ -168,18 +190,20 @@ namespace Fraenkische.SWAddin.Commands
                             foreach (var item in group)
                             {
                                 sb.AppendLine(
-                                    $"Část: {item.PartName}\t" +
+                                    $"DÍL: {item.PartName}\t" +
                                     $"T-Číslo: {item.TNumber}\t\t" +
-                                    $"Soubor nalezen: {(item.FileFound ? "Ano" : "Ne")}\t\t" +
-                                    $"Custom Property pridana: {(item.PropertyAdded ? "Ano" : "Ne")}"
+                                    $"Díl nalezen: {(item.FileFound ? "OK" : "Nenalezen")}\t\t" +
+                                    $"Díl upraven: {(item.PropertyAdded ? "OK" : "Chyba")}\t\t" +
+                                    $"Výkres nalezen: {(item.DrawingFound ? "OK" : "Nenalezen")}\t\t" +
+                                    $"Výkres upraven: {(item.DrawingSaved ? "OK" : "Chyba")}"
                                 );
                             }
-                            sb.AppendLine(new string('-', 70));
+                            sb.AppendLine(new string('-', 80));
                         }
 
                         sb.AppendLine();
-                        sb.AppendLine("S pozdravem.");
-                        sb.AppendLine("Váš AUTOKonstrukter.");
+                        sb.AppendLine("S pozdravem,");
+                        sb.AppendLine("Váš AUTOKonstrukter");
                         sb.AppendLine("Fraenkische s.r.o.");
 
                         mailItem.Body = sb.ToString();
