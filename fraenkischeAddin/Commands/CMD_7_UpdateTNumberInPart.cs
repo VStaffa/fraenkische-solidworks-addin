@@ -1,6 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using Fraenkische.SWAddin.Core;
 using Fraenkische.SWAddin.Services;
 using SolidWorks.Interop.sldworks;
+using System.Windows.Forms;
 
 namespace Fraenkische.SWAddin.Commands
 {
@@ -28,12 +29,11 @@ namespace Fraenkische.SWAddin.Commands
         public void Execute()
         {
             var activeDoc = _swApp.IActiveDoc2 as ModelDoc2;
-            IFrame frame = _swApp.Frame();
 
             if (activeDoc == null)
             {
                 MessageBox.Show("Open a document", "Invalid Document", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                frame.SetStatusBarText("Ready");
+                SetBarText.Write("Ready");
                 return;
             }
 
@@ -44,21 +44,21 @@ namespace Fraenkische.SWAddin.Commands
 
                 if (openFileDialog.ShowDialog() != DialogResult.OK)
                 {
-                    frame.SetStatusBarText("Ready");
+                    SetBarText.Write("Ready");
                     return;
                 }
 
                 string excelPath = openFileDialog.FileName;
 
-                frame.SetStatusBarText("Reading T-Number from Excel...");
+                SetBarText.Write("Reading T-Number from Excel...");
                 var reader = new TNumberExcelReader(excelPath);
                 var editor = new CustomPropertyEditor();
                 var assigner = new TNumberAssigner(_swApp, reader, editor);
 
-                frame.SetStatusBarText("Assigning T-Number to part...");
+                SetBarText.Write("Assigning T-Number to part...");
                 assigner.UpdateTNumber(activeDoc);
 
-                frame.SetStatusBarText("Ready");
+                SetBarText.Write("Ready");
             }
         }
     }

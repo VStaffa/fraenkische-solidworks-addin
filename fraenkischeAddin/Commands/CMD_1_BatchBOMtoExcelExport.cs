@@ -31,7 +31,6 @@ namespace Fraenkische.SWAddin.Commands
             string folderPath = PickFolder();
             if (string.IsNullOrEmpty(folderPath)) return;
 
-
             string[] files = Directory.GetFiles(folderPath, "*.SLDDRW");
 
             if (files.Length == 0)

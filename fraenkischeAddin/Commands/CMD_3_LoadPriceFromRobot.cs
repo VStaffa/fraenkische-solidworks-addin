@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Fraenkische.SWAddin.Core;
+using Fraenkische.SWAddin.Services;
+using SolidWorks.Interop.sldworks;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using SolidWorks.Interop.sldworks;
 using Excel = Microsoft.Office.Interop.Excel;
-using Fraenkische.SWAddin.Services;
 
 namespace Fraenkische.SWAddin.Commands
 {
@@ -33,10 +34,6 @@ namespace Fraenkische.SWAddin.Commands
 
         public void Execute()
         {
-
-            IFrame frame;
-            frame = _swApp.Frame();
-
             OpenFileDialog ofd = new OpenFileDialog
             {
                 Title = "Select 'DESTINANTION' Excel file",
@@ -59,7 +56,7 @@ namespace Fraenkische.SWAddin.Commands
                 excelApp.ScreenUpdating = false;
                 excelApp.DisplayAlerts = false;
 
-                frame.SetStatusBarText("Opening Excel files...");
+                SetBarText.Write("Opening Excel files..."); 
                 destWB = excelApp.Workbooks.Open(destPath);
                 srcWB = excelApp.Workbooks.Open(srcPath, ReadOnly: true);
 
@@ -71,7 +68,7 @@ namespace Fraenkische.SWAddin.Commands
 
                 int additionsCount = 0;
 
-                frame.SetStatusBarText("Building lookup dictionary...");
+                SetBarText.Write("Building lookup dictionary...");
                 var srcLookup = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 for (int j = 1; j <= lastRowSrc; j++)
                 {
@@ -93,7 +90,7 @@ namespace Fraenkische.SWAddin.Commands
                     progress.Show();
                     progress.UpdateProgress(0);
 
-                    frame.SetStatusBarText("Processing rows...");
+                    SetBarText.Write("Processing rows...");
                     for (int i = 1; i <= lastRowDest; i++)
                     {
                         string destA = Convert.ToString(destWS.Cells[i, DEST_COL_A].Value)?.Trim();
@@ -117,7 +114,7 @@ namespace Fraenkische.SWAddin.Commands
                     }
                 }
 
-                frame.SetStatusBarText("Saving changes...");
+                SetBarText.Write("Saving changes...");
                 destWB.Save();
                 MessageBox.Show($"{additionsCount} new values added to column D.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -135,7 +132,7 @@ namespace Fraenkische.SWAddin.Commands
                 excelApp.StatusBar = false;
                 excelApp.Quit();
                 Marshal.ReleaseComObject(excelApp);
-                frame.SetStatusBarText("Ready");
+                SetBarText.Write("Ready");
             }
         }
     }

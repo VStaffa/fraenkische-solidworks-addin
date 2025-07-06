@@ -1,7 +1,8 @@
-﻿using System.IO;
-using System.Windows.Forms;
+﻿using Fraenkische.SWAddin.Core;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Fraenkische.SWAddin.Commands
 {
@@ -30,28 +31,26 @@ namespace Fraenkische.SWAddin.Commands
             var swModel = _swApp.ActiveDoc as ModelDoc2;
             PartDoc model = _swApp.IActiveDoc2 as PartDoc;
 
-            IFrame frame = _swApp.Frame();
-
             if (model == null)
             {
                 MessageBox.Show("This command only works on 'PART' documents.", "Invalid Document", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                frame.SetStatusBarText("Ready");
+                SetBarText.Write("Ready");
                 return;
             }
 
-            frame.SetStatusBarText("Finding solid bodies...");
+            SetBarText.Write("Finding solid bodies...");
             object[] bodies = model.GetBodies2((int)swBodyType_e.swSolidBody, false);
             if (bodies == null || bodies.Length == 0)
             {
                 MessageBox.Show("No solid bodies found in the part.", "Warning.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                frame.SetStatusBarText("Ready");
+                SetBarText.Write("Ready");
                 return;
             }
 
             string targetFolder = ChooseFolder();
             if (string.IsNullOrWhiteSpace(targetFolder))
             {
-                frame.SetStatusBarText("Ready");
+                SetBarText.Write("Ready");
                 return;
             }
 
@@ -61,7 +60,7 @@ namespace Fraenkische.SWAddin.Commands
             foreach (IBody2 body in bodies)
             {
                 current++;
-                frame.SetStatusBarText($"Exporting body {current} of {total}...");
+                SetBarText.Write($"Exporting body {current} of {total}...");
 
                 // Hide other bodies
                 foreach (Body2 b in bodies) b.HideBody(true);
@@ -79,9 +78,9 @@ namespace Fraenkische.SWAddin.Commands
                 body.HideBody(false);
             }
 
-            frame.SetStatusBarText("Export completed.");
+            SetBarText.Write("Export completed.");
             MessageBox.Show("Export completed.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            frame.SetStatusBarText("Ready");
+            SetBarText.Write("Ready");
         }
         private string ChooseFolder()
         {

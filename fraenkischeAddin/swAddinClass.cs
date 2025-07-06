@@ -23,6 +23,7 @@ namespace Fraenkische.SWAddin
         private CommandManagerService commandManager;
         private FeatureManager featureManager;
         private TaskpaneHostUI swTaskpaneHost;
+        internal static Frame myFrame { get; private set; }
 
         public const string SWTASKPANE_PROGID = "fraenkischeAddin.Taskpane";
 
@@ -35,8 +36,11 @@ namespace Fraenkische.SWAddin
             //ADD COMMAND GROUP AND POPULATE COMMANDS
             commandManager = new CommandManagerService(swApp, swCookie);
             featureManager = new FeatureManager(swApp, commandManager);
+
             featureManager.RegisterFeatures();
             commandManager.Finalize();
+
+            myFrame = swApp.Frame();
 
             //CREATE TASKPANE
             LoadUI();

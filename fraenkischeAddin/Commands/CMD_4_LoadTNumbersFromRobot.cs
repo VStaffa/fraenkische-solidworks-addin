@@ -1,4 +1,5 @@
 ﻿using SolidWorks.Interop.sldworks;
+using SolidWorks.Interop.swconst;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -45,7 +46,8 @@ namespace Fraenkische.SWAddin.Commands
 
         public void Execute()
         {
-            var additions = new List<Tuple<string, string, string>>();
+            // teď ukládáme i informace o existenci souboru a přidání vlastnosti
+            var additions = new List<(string PartName, string Author, string TNumber, bool FileFound, bool PropertyAdded)>();
             IFrame frame = _swApp.Frame();
 
             // Výběr souborů
@@ -66,7 +68,7 @@ namespace Fraenkische.SWAddin.Commands
                 excelApp.DisplayAlerts = false;
 
                 // Načtení dat do slovníku
-                frame.SetStatusBarText("Opening Excel files...");
+                frame.SetStatusBarText("Opening Excel files.");
                 destWB = excelApp.Workbooks.Open(destPath);
                 srcWB = excelApp.Workbooks.Open(srcPath, ReadOnly: true);
 
@@ -78,7 +80,7 @@ namespace Fraenkische.SWAddin.Commands
                 int lastRowSrc = srcWS.Cells[srcWS.Rows.Count, SRC_COL_E]
                                          .End(Excel.XlDirection.xlUp).Row;
 
-                frame.SetStatusBarText("Building lookup dictionary...");
+                frame.SetStatusBarText("Building lookup dictionary.");
                 var srcLookup = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 for (int j = 1; j <= lastRowSrc; j++)
                 {
@@ -90,9 +92,9 @@ namespace Fraenkische.SWAddin.Commands
                                 srcLookup[token] = srcA;
                 }
 
-                // Zápis nových T-čísel a sběr dat pro e-mail
+                // Zápis nových T-čísel, úprava modelu a sběr dat pro e-mail
                 int additionsCount = 0;
-                frame.SetStatusBarText("Processing rows...");
+                frame.SetStatusBarText("Processing rows.");
                 for (int i = 1; i <= lastRowDest; i++)
                 {
                     string partName = Convert.ToString(destWS.Cells[i, DEST_COL_A].Value)?.Trim();
@@ -101,20 +103,49 @@ namespace Fraenkische.SWAddin.Commands
                     {
                         if (srcLookup.TryGetValue(partName, out string newT))
                         {
+                            // zápis do Excelu
                             destWS.Cells[i, DEST_COL_F].Value = newT;
-
                             var destCell = destWS.Cells[i, DEST_COL_F];
-                            destCell.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Orange);
+                            destCell.Interior.Color =
+                                System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Orange);
                             additionsCount++;
 
                             string author = Convert.ToString(destWS.Cells[i, 3].Value)?.Trim();
-                            additions.Add(Tuple.Create(partName, author, newT));
+
+                            // Otevření a úprava SolidWorks modelu
+                            string partDir = @"C:\Users\staff\Desktop\BFP";
+                            string partPath = Path.Combine(partDir, partName, partName + ".sldprt");
+
+                            bool fileFound = File.Exists(partPath);
+                            bool propertyAdded = false;
+
+                            if (fileFound)
+                            {
+                                var model = _swApp.OpenDoc6(
+                                    partPath,
+                                    (int)swDocumentTypes_e.swDocPART,
+                                    (int)swOpenDocOptions_e.swOpenDocOptions_Silent,
+                                    "", 0, 0) as ModelDoc2;
+                                if (model != null)
+                                {
+                                    var cusMgr = model.Extension.CustomPropertyManager[""];
+                                    cusMgr.Add3("T-Number",
+                                               (int)swCustomInfoType_e.swCustomInfoText,
+                                               newT,1);
+                                    model.ForceRebuild3(true);
+                                    model.Save();
+                                    propertyAdded = true;
+                                    _swApp.CloseDoc(model.GetTitle());
+                                }
+                            }
+
+                            additions.Add((partName, author, newT, fileFound, propertyAdded));
                         }
                     }
                 }
 
-                // Uložení změn
-                frame.SetStatusBarText("Saving changes...");
+                // Uložení změn v Excelu
+                frame.SetStatusBarText("Saving changes.");
                 destWB.Save();
 
                 // Odeslání e-mailu přes Outlook
@@ -123,51 +154,59 @@ namespace Fraenkische.SWAddin.Commands
                     try
                     {
                         var outlookApp = new Outlook.Application();
-                        var mailItem = (Outlook.MailItem)outlookApp.CreateItem(Outlook.OlItemType.olMailItem);
+                        var mailItem = (Outlook.MailItem)outlookApp.CreateItem(
+                            Outlook.OlItemType.olMailItem);
 
                         mailItem.Subject = $"Denní update T-Čísel {DateTime.Now:yyyy-MM-dd}";
-                        mailItem.To = recAdresses;         // úprava na reálné adresy
+                        mailItem.To = recAdresses;
                         var sb = new StringBuilder("Nově přidaná T-Čísla:\r\n\n");
-                        // group by author
-                        var byAuthor = additions.GroupBy(x => x.Item2);
+
+                        var byAuthor = additions.GroupBy(x => x.Author);
                         foreach (var group in byAuthor)
                         {
-                            // author header
                             sb.AppendLine($"Autor: {group.Key}");
-
-                            // each item under that author, with tabs between fields
                             foreach (var item in group)
-                                sb.AppendLine($"{item.Item1}\t\tT-Číslo:{item.Item3}");
-
-                            // separator line between authors
-                            sb.AppendLine(new string('-', 55));
+                            {
+                                sb.AppendLine(
+                                    $"Část: {item.PartName}\t" +
+                                    $"T-Číslo: {item.TNumber}\t\t" +
+                                    $"Soubor nalezen: {(item.FileFound ? "Ano" : "Ne")}\t\t" +
+                                    $"Custom Property pridana: {(item.PropertyAdded ? "Ano" : "Ne")}"
+                                );
+                            }
+                            sb.AppendLine(new string('-', 70));
                         }
 
-                        //PODPIS
-                        sb.AppendLine();
                         sb.AppendLine();
                         sb.AppendLine("S pozdravem.");
-                        sb.AppendLine("Váš AUTOKonsturktér.");
+                        sb.AppendLine("Váš AUTOKonstrukter.");
                         sb.AppendLine("Fraenkische s.r.o.");
 
                         mailItem.Body = sb.ToString();
                         mailItem.Display();
 
-                        // Uvolnění COM
                         Marshal.ReleaseComObject(mailItem);
                         Marshal.ReleaseComObject(outlookApp);
                     }
                     catch (Exception mailEx)
                     {
-                        File.AppendAllText("Command_LoadTNumbersFromRobot_mail.log", $"{DateTime.Now}: {mailEx}\n");
+                        File.AppendAllText(
+                            "Command_LoadTNumbersFromRobot_mail.log",
+                            $"{DateTime.Now}: {mailEx}\n");
                     }
                 }
 
-                MessageBox.Show($"{additionsCount} new values added to column F.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    $"{additionsCount} new values added to column F.",
+                    "Done",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                File.AppendAllText("Command_LoadTNumbersFromRobot.log", $"{DateTime.Now}: {ex}\n");
+                File.AppendAllText(
+                    "Command_LoadTNumbersFromRobot.log",
+                    $"{DateTime.Now}: {ex}\n");
                 MessageBox.Show("Error: " + ex.Message);
             }
             finally
