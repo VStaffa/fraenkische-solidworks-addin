@@ -112,7 +112,7 @@ namespace Fraenkische.SWAddin.Commands
                             string author = Convert.ToString(destWS.Cells[i, 3].Value)?.Trim();
 
                             // Otevření a úprava part modelu
-                            string partDir = @"C:\Users\staff\Desktop\BFP";
+                            string partDir = @"M:\FIP_CZ_PRO\2900_Vyroba stroju a nastroju\2931_Vyroba stroju a zarizeni\Konstrukce\Nástrojárna\BFP-CZ-TS-(6000 - 6999)";
                             string partPath = Path.Combine(partDir, partName, partName + ".sldprt");
 
                             bool fileFound = File.Exists(partPath);

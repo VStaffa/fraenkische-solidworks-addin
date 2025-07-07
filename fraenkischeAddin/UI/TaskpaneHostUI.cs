@@ -15,7 +15,6 @@ namespace Fraenkische.SWAddin.UI
         private TabPage tabPage1;
         private TabPage tabPage2;
         private TabPage tabPage3;
-        private TabPage tabPage4;
         private TabPage tabPage5;
 
         private PictureBox pictureBox1;
@@ -68,8 +67,12 @@ namespace Fraenkische.SWAddin.UI
             this.btn_cmd_2 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btn_man_6 = new System.Windows.Forms.Button();
+            this.btn_man_3 = new System.Windows.Forms.Button();
+            this.btn_man_5 = new System.Windows.Forms.Button();
+            this.btn_man_1 = new System.Windows.Forms.Button();
+            this.btn_man_4 = new System.Windows.Forms.Button();
             this.btn_cmd_1 = new System.Windows.Forms.Button();
             this.btn_cmd_3 = new System.Windows.Forms.Button();
             this.btn_cmd_4 = new System.Windows.Forms.Button();
@@ -77,11 +80,6 @@ namespace Fraenkische.SWAddin.UI
             this.btn_cmd_6 = new System.Windows.Forms.Button();
             this.lblActiveDocName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btn_man_4 = new System.Windows.Forms.Button();
-            this.btn_man_1 = new System.Windows.Forms.Button();
-            this.btn_man_5 = new System.Windows.Forms.Button();
-            this.btn_man_3 = new System.Windows.Forms.Button();
-            this.btn_man_6 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -94,18 +92,18 @@ namespace Fraenkische.SWAddin.UI
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(3, 121);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(380, 500);
+            this.tabControl1.Size = new System.Drawing.Size(289, 563);
             this.tabControl1.TabIndex = 2;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.Color.Transparent;
             this.tabPage1.Controls.Add(this.btn_man_7);
             this.tabPage1.Controls.Add(this.btn_man_2);
             this.tabPage1.Controls.Add(this.btn_cmd_7);
@@ -113,10 +111,9 @@ namespace Fraenkische.SWAddin.UI
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(372, 468);
+            this.tabPage1.Size = new System.Drawing.Size(281, 531);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "PART";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // btn_man_7
             // 
@@ -130,6 +127,7 @@ namespace Fraenkische.SWAddin.UI
             this.btn_man_7.Size = new System.Drawing.Size(35, 35);
             this.btn_man_7.TabIndex = 7;
             this.btn_man_7.UseVisualStyleBackColor = false;
+            this.btn_man_7.Click += new System.EventHandler(this.btn_man_7_Click);
             // 
             // btn_man_2
             // 
@@ -143,6 +141,7 @@ namespace Fraenkische.SWAddin.UI
             this.btn_man_2.Size = new System.Drawing.Size(35, 35);
             this.btn_man_2.TabIndex = 6;
             this.btn_man_2.UseVisualStyleBackColor = false;
+            this.btn_man_2.Click += new System.EventHandler(this.btn_man_2_Click_1);
             // 
             // btn_cmd_7
             // 
@@ -167,7 +166,7 @@ namespace Fraenkische.SWAddin.UI
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(372, 468);
+            this.tabPage2.Size = new System.Drawing.Size(281, 468);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "ASSEMBLY";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -177,20 +176,10 @@ namespace Fraenkische.SWAddin.UI
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(372, 468);
+            this.tabPage3.Size = new System.Drawing.Size(281, 468);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "DRAWING";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 28);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(372, 468);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "MANUALS";
-            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // tabPage5
             // 
@@ -207,10 +196,80 @@ namespace Fraenkische.SWAddin.UI
             this.tabPage5.Location = new System.Drawing.Point(4, 28);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(372, 468);
+            this.tabPage5.Size = new System.Drawing.Size(281, 468);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "OTHER";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // btn_man_6
+            // 
+            this.btn_man_6.BackColor = System.Drawing.Color.Transparent;
+            this.btn_man_6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_man_6.FlatAppearance.BorderSize = 0;
+            this.btn_man_6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_man_6.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
+            this.btn_man_6.Location = new System.Drawing.Point(192, 420);
+            this.btn_man_6.Name = "btn_man_6";
+            this.btn_man_6.Size = new System.Drawing.Size(35, 35);
+            this.btn_man_6.TabIndex = 14;
+            this.btn_man_6.UseVisualStyleBackColor = false;
+            this.btn_man_6.Click += new System.EventHandler(this.btn_man_6_Click);
+            // 
+            // btn_man_3
+            // 
+            this.btn_man_3.BackColor = System.Drawing.Color.Transparent;
+            this.btn_man_3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_man_3.FlatAppearance.BorderSize = 0;
+            this.btn_man_3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_man_3.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
+            this.btn_man_3.Location = new System.Drawing.Point(192, 211);
+            this.btn_man_3.Name = "btn_man_3";
+            this.btn_man_3.Size = new System.Drawing.Size(35, 35);
+            this.btn_man_3.TabIndex = 13;
+            this.btn_man_3.UseVisualStyleBackColor = false;
+            this.btn_man_3.Click += new System.EventHandler(this.btn_man_3_Click);
+            // 
+            // btn_man_5
+            // 
+            this.btn_man_5.BackColor = System.Drawing.Color.Transparent;
+            this.btn_man_5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_man_5.FlatAppearance.BorderSize = 0;
+            this.btn_man_5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_man_5.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
+            this.btn_man_5.Location = new System.Drawing.Point(192, 157);
+            this.btn_man_5.Name = "btn_man_5";
+            this.btn_man_5.Size = new System.Drawing.Size(35, 35);
+            this.btn_man_5.TabIndex = 12;
+            this.btn_man_5.UseVisualStyleBackColor = false;
+            this.btn_man_5.Click += new System.EventHandler(this.btn_man_5_Click);
+            // 
+            // btn_man_1
+            // 
+            this.btn_man_1.BackColor = System.Drawing.Color.Transparent;
+            this.btn_man_1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_man_1.FlatAppearance.BorderSize = 0;
+            this.btn_man_1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_man_1.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
+            this.btn_man_1.Location = new System.Drawing.Point(192, 104);
+            this.btn_man_1.Name = "btn_man_1";
+            this.btn_man_1.Size = new System.Drawing.Size(35, 35);
+            this.btn_man_1.TabIndex = 11;
+            this.btn_man_1.UseVisualStyleBackColor = false;
+            this.btn_man_1.Click += new System.EventHandler(this.btn_man_1_Click);
+            // 
+            // btn_man_4
+            // 
+            this.btn_man_4.BackColor = System.Drawing.Color.Transparent;
+            this.btn_man_4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_man_4.FlatAppearance.BorderSize = 0;
+            this.btn_man_4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_man_4.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
+            this.btn_man_4.Location = new System.Drawing.Point(192, 14);
+            this.btn_man_4.Name = "btn_man_4";
+            this.btn_man_4.Size = new System.Drawing.Size(35, 35);
+            this.btn_man_4.TabIndex = 10;
+            this.btn_man_4.UseVisualStyleBackColor = false;
+            this.btn_man_4.Click += new System.EventHandler(this.btn_man_4_Click);
             // 
             // btn_cmd_1
             // 
@@ -260,7 +319,7 @@ namespace Fraenkische.SWAddin.UI
             // lblActiveDocName
             // 
             this.lblActiveDocName.AutoSize = true;
-            this.lblActiveDocName.Location = new System.Drawing.Point(6, 92);
+            this.lblActiveDocName.Location = new System.Drawing.Point(4, 95);
             this.lblActiveDocName.Name = "lblActiveDocName";
             this.lblActiveDocName.Size = new System.Drawing.Size(121, 13);
             this.lblActiveDocName.TabIndex = 4;
@@ -277,79 +336,14 @@ namespace Fraenkische.SWAddin.UI
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
-            // btn_man_4
-            // 
-            this.btn_man_4.BackColor = System.Drawing.Color.Transparent;
-            this.btn_man_4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_man_4.FlatAppearance.BorderSize = 0;
-            this.btn_man_4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_man_4.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
-            this.btn_man_4.Location = new System.Drawing.Point(192, 14);
-            this.btn_man_4.Name = "btn_man_4";
-            this.btn_man_4.Size = new System.Drawing.Size(35, 35);
-            this.btn_man_4.TabIndex = 10;
-            this.btn_man_4.UseVisualStyleBackColor = false;
-            // 
-            // btn_man_1
-            // 
-            this.btn_man_1.BackColor = System.Drawing.Color.Transparent;
-            this.btn_man_1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_man_1.FlatAppearance.BorderSize = 0;
-            this.btn_man_1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_man_1.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
-            this.btn_man_1.Location = new System.Drawing.Point(192, 104);
-            this.btn_man_1.Name = "btn_man_1";
-            this.btn_man_1.Size = new System.Drawing.Size(35, 35);
-            this.btn_man_1.TabIndex = 11;
-            this.btn_man_1.UseVisualStyleBackColor = false;
-            // 
-            // btn_man_5
-            // 
-            this.btn_man_5.BackColor = System.Drawing.Color.Transparent;
-            this.btn_man_5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_man_5.FlatAppearance.BorderSize = 0;
-            this.btn_man_5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_man_5.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
-            this.btn_man_5.Location = new System.Drawing.Point(192, 157);
-            this.btn_man_5.Name = "btn_man_5";
-            this.btn_man_5.Size = new System.Drawing.Size(35, 35);
-            this.btn_man_5.TabIndex = 12;
-            this.btn_man_5.UseVisualStyleBackColor = false;
-            // 
-            // btn_man_3
-            // 
-            this.btn_man_3.BackColor = System.Drawing.Color.Transparent;
-            this.btn_man_3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_man_3.FlatAppearance.BorderSize = 0;
-            this.btn_man_3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_man_3.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
-            this.btn_man_3.Location = new System.Drawing.Point(192, 211);
-            this.btn_man_3.Name = "btn_man_3";
-            this.btn_man_3.Size = new System.Drawing.Size(35, 35);
-            this.btn_man_3.TabIndex = 13;
-            this.btn_man_3.UseVisualStyleBackColor = false;
-            // 
-            // btn_man_6
-            // 
-            this.btn_man_6.BackColor = System.Drawing.Color.Transparent;
-            this.btn_man_6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_man_6.FlatAppearance.BorderSize = 0;
-            this.btn_man_6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_man_6.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
-            this.btn_man_6.Location = new System.Drawing.Point(192, 420);
-            this.btn_man_6.Name = "btn_man_6";
-            this.btn_man_6.Size = new System.Drawing.Size(35, 35);
-            this.btn_man_6.TabIndex = 14;
-            this.btn_man_6.UseVisualStyleBackColor = false;
-            // 
             // TaskpaneHostUI
             // 
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.lblActiveDocName);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tabControl1);
             this.Name = "TaskpaneHostUI";
-            this.Size = new System.Drawing.Size(390, 700);
+            this.Size = new System.Drawing.Size(300, 700);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
@@ -359,20 +353,17 @@ namespace Fraenkische.SWAddin.UI
 
         }
 
-
         public void UpdateDocumentName(string docName)
         {
             lblActiveDocName.Text = $"Active Document: {docName}";
         }
-        private void btn_man_1_Click(object sender, EventArgs e)
-        {
-            var basePath = Path.Combine(Path.GetDirectoryName(typeof(SWAddinClass).Assembly.Location), @"Resources\Manuals");
-            var manualPath = Path.Combine(basePath, "AUTOKoch - USER MANUAL.pdf");
 
-            Process.Start(new ProcessStartInfo(manualPath) { UseShellExecute = true });
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
-        private void btn_man_2_Click(object sender, EventArgs e)
+        private void btn_man_1_Click(object sender, EventArgs e)
         {
             var basePath = Path.Combine(Path.GetDirectoryName(typeof(SWAddinClass).Assembly.Location), @"Resources\Manuals");
             var manualPath = Path.Combine(basePath, "BOM Export - MANUAL.pdf");
@@ -380,9 +371,31 @@ namespace Fraenkische.SWAddin.UI
             Process.Start(new ProcessStartInfo(manualPath) { UseShellExecute = true });
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void btn_man_2_Click_1(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Manual for Bodies to STEP command is not available yet.", "Manual Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+        private void btn_man_3_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Manual for Load Prices to Excel command is not available yet.", "Manual Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void btn_man_4_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Manual for Daily T-Number Update command is not available yet.", "Manual Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void btn_man_5_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Manual for Merge Excel BOMs command is not available yet.", "Manual Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void btn_man_6_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Manual for Update Source Excels command is not available yet.", "Manual Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btn_man_7_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Manual for T-Number to PART command is not available yet.", "Manual Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
     }
 }
