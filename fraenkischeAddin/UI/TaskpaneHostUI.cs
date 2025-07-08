@@ -94,10 +94,10 @@ namespace Fraenkische.SWAddin.UI
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(3, 121);
+            this.tabControl1.Location = new System.Drawing.Point(5, 121);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(289, 563);
+            this.tabControl1.Size = new System.Drawing.Size(290, 576);
             this.tabControl1.TabIndex = 2;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -111,7 +111,7 @@ namespace Fraenkische.SWAddin.UI
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(281, 531);
+            this.tabPage1.Size = new System.Drawing.Size(282, 544);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "PART";
             // 
@@ -166,7 +166,7 @@ namespace Fraenkische.SWAddin.UI
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(281, 468);
+            this.tabPage2.Size = new System.Drawing.Size(282, 544);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "ASSEMBLY";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -176,7 +176,7 @@ namespace Fraenkische.SWAddin.UI
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(281, 468);
+            this.tabPage3.Size = new System.Drawing.Size(282, 544);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "DRAWING";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -196,7 +196,7 @@ namespace Fraenkische.SWAddin.UI
             this.tabPage5.Location = new System.Drawing.Point(4, 28);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(281, 468);
+            this.tabPage5.Size = new System.Drawing.Size(282, 544);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "OTHER";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -222,7 +222,7 @@ namespace Fraenkische.SWAddin.UI
             this.btn_man_3.FlatAppearance.BorderSize = 0;
             this.btn_man_3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_man_3.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
-            this.btn_man_3.Location = new System.Drawing.Point(192, 211);
+            this.btn_man_3.Location = new System.Drawing.Point(192, 227);
             this.btn_man_3.Name = "btn_man_3";
             this.btn_man_3.Size = new System.Drawing.Size(35, 35);
             this.btn_man_3.TabIndex = 13;
@@ -236,7 +236,7 @@ namespace Fraenkische.SWAddin.UI
             this.btn_man_5.FlatAppearance.BorderSize = 0;
             this.btn_man_5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_man_5.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
-            this.btn_man_5.Location = new System.Drawing.Point(192, 157);
+            this.btn_man_5.Location = new System.Drawing.Point(192, 173);
             this.btn_man_5.Name = "btn_man_5";
             this.btn_man_5.Size = new System.Drawing.Size(35, 35);
             this.btn_man_5.TabIndex = 12;
@@ -250,7 +250,7 @@ namespace Fraenkische.SWAddin.UI
             this.btn_man_1.FlatAppearance.BorderSize = 0;
             this.btn_man_1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_man_1.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
-            this.btn_man_1.Location = new System.Drawing.Point(192, 104);
+            this.btn_man_1.Location = new System.Drawing.Point(192, 120);
             this.btn_man_1.Name = "btn_man_1";
             this.btn_man_1.Size = new System.Drawing.Size(35, 35);
             this.btn_man_1.TabIndex = 11;
@@ -273,7 +273,7 @@ namespace Fraenkische.SWAddin.UI
             // 
             // btn_cmd_1
             // 
-            this.btn_cmd_1.Location = new System.Drawing.Point(6, 96);
+            this.btn_cmd_1.Location = new System.Drawing.Point(6, 112);
             this.btn_cmd_1.Name = "btn_cmd_1";
             this.btn_cmd_1.Size = new System.Drawing.Size(180, 50);
             this.btn_cmd_1.TabIndex = 9;
@@ -282,7 +282,7 @@ namespace Fraenkische.SWAddin.UI
             // 
             // btn_cmd_3
             // 
-            this.btn_cmd_3.Location = new System.Drawing.Point(6, 203);
+            this.btn_cmd_3.Location = new System.Drawing.Point(6, 219);
             this.btn_cmd_3.Name = "btn_cmd_3";
             this.btn_cmd_3.Size = new System.Drawing.Size(180, 50);
             this.btn_cmd_3.TabIndex = 8;
@@ -300,7 +300,7 @@ namespace Fraenkische.SWAddin.UI
             // 
             // btn_cmd_5
             // 
-            this.btn_cmd_5.Location = new System.Drawing.Point(6, 149);
+            this.btn_cmd_5.Location = new System.Drawing.Point(6, 165);
             this.btn_cmd_5.Name = "btn_cmd_5";
             this.btn_cmd_5.Size = new System.Drawing.Size(180, 50);
             this.btn_cmd_5.TabIndex = 6;
@@ -329,7 +329,7 @@ namespace Fraenkische.SWAddin.UI
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(7, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(5, 5);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(185, 80);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -373,7 +373,10 @@ namespace Fraenkische.SWAddin.UI
 
         private void btn_man_2_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show("Manual for Bodies to STEP command is not available yet.", "Manual Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            var basePath = Path.Combine(Path.GetDirectoryName(typeof(SWAddinClass).Assembly.Location), @"Resources\Manuals");
+            var manualPath = Path.Combine(basePath, "ExportBodiesToSTEP.pdf");
+
+            Process.Start(new ProcessStartInfo(manualPath) { UseShellExecute = true });
         }
         private void btn_man_3_Click(object sender, EventArgs e)
         {

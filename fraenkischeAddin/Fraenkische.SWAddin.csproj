@@ -183,6 +183,9 @@
     <None Include="Resources\Manuals\BOM Export - MANUAL.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\Manuals\ExportBodiesToSTEP.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Docs\" />
