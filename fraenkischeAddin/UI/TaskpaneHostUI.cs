@@ -286,7 +286,7 @@ namespace Fraenkische.SWAddin.UI
             this.btn_cmd_1.Name = "btn_cmd_1";
             this.btn_cmd_1.Size = new System.Drawing.Size(180, 50);
             this.btn_cmd_1.TabIndex = 9;
-            this.btn_cmd_1.Text = "BOM Export";
+            this.btn_cmd_1.Text = "Batch BOM Export";
             this.btn_cmd_1.UseVisualStyleBackColor = true;
             // 
             // btn_cmd_3
@@ -300,12 +300,14 @@ namespace Fraenkische.SWAddin.UI
             // 
             // btn_cmd_4
             // 
+            this.btn_cmd_4.BackColor = System.Drawing.Color.Coral;
+            this.btn_cmd_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cmd_4.Location = new System.Drawing.Point(6, 6);
             this.btn_cmd_4.Name = "btn_cmd_4";
             this.btn_cmd_4.Size = new System.Drawing.Size(180, 50);
             this.btn_cmd_4.TabIndex = 7;
             this.btn_cmd_4.Text = "Daily T-Number Update";
-            this.btn_cmd_4.UseVisualStyleBackColor = true;
+            this.btn_cmd_4.UseVisualStyleBackColor = false;
             // 
             // btn_cmd_5
             // 
@@ -318,6 +320,7 @@ namespace Fraenkische.SWAddin.UI
             // 
             // btn_cmd_6
             // 
+            this.btn_cmd_6.Enabled = false;
             this.btn_cmd_6.Location = new System.Drawing.Point(6, 412);
             this.btn_cmd_6.Name = "btn_cmd_6";
             this.btn_cmd_6.Size = new System.Drawing.Size(180, 50);

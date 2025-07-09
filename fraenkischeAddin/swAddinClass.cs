@@ -69,7 +69,7 @@ namespace Fraenkische.SWAddin
 
         private void LoadUI()
         {
-            var imagePath = Path.Combine(Path.GetDirectoryName(typeof(SWAddinClass).Assembly.CodeBase).Replace(@"file:\", string.Empty), @"Resources\Icons\AddinLogo.png");
+            var imagePath = Path.Combine(Path.GetDirectoryName(typeof(SWAddinClass).Assembly.CodeBase).Replace(@"file:\", string.Empty), @"Resources\Icons\mainIcons_20x20.bmp");
             swTaskpaneView = swApp.CreateTaskpaneView2(imagePath, "Smart Designer");
             swTaskpaneHost = (TaskpaneHostUI)swTaskpaneView.AddControl(SWAddinClass.SWTASKPANE_PROGID, string.Empty);
 
