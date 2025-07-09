@@ -70,6 +70,8 @@ namespace Fraenkische.SWAddin.UI
             this.btn_cmd_7 = new System.Windows.Forms.Button();
             this.btn_cmd_2 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btn_man_8 = new System.Windows.Forms.Button();
+            this.btn_cmd_8 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.btn_man_6 = new System.Windows.Forms.Button();
@@ -84,8 +86,6 @@ namespace Fraenkische.SWAddin.UI
             this.btn_cmd_6 = new System.Windows.Forms.Button();
             this.lblActiveDocName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btn_man_8 = new System.Windows.Forms.Button();
-            this.btn_cmd_8 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -179,6 +179,29 @@ namespace Fraenkische.SWAddin.UI
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "ASSEMBLY";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btn_man_8
+            // 
+            this.btn_man_8.BackColor = System.Drawing.Color.Transparent;
+            this.btn_man_8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_man_8.FlatAppearance.BorderSize = 0;
+            this.btn_man_8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_man_8.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
+            this.btn_man_8.Location = new System.Drawing.Point(192, 14);
+            this.btn_man_8.Name = "btn_man_8";
+            this.btn_man_8.Size = new System.Drawing.Size(35, 35);
+            this.btn_man_8.TabIndex = 8;
+            this.btn_man_8.UseVisualStyleBackColor = false;
+            this.btn_man_8.Click += new System.EventHandler(this.btn_man_8_Click);
+            // 
+            // btn_cmd_8
+            // 
+            this.btn_cmd_8.Location = new System.Drawing.Point(6, 6);
+            this.btn_cmd_8.Name = "btn_cmd_8";
+            this.btn_cmd_8.Size = new System.Drawing.Size(180, 50);
+            this.btn_cmd_8.TabIndex = 7;
+            this.btn_cmd_8.Text = "Create Gauge Drawing";
+            this.btn_cmd_8.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
@@ -300,8 +323,8 @@ namespace Fraenkische.SWAddin.UI
             // 
             // btn_cmd_4
             // 
-            this.btn_cmd_4.BackColor = System.Drawing.Color.Coral;
-            this.btn_cmd_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_cmd_4.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btn_cmd_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cmd_4.Location = new System.Drawing.Point(6, 6);
             this.btn_cmd_4.Name = "btn_cmd_4";
             this.btn_cmd_4.Size = new System.Drawing.Size(180, 50);
@@ -347,29 +370,6 @@ namespace Fraenkische.SWAddin.UI
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
-            // 
-            // btn_man_8
-            // 
-            this.btn_man_8.BackColor = System.Drawing.Color.Transparent;
-            this.btn_man_8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_man_8.FlatAppearance.BorderSize = 0;
-            this.btn_man_8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_man_8.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
-            this.btn_man_8.Location = new System.Drawing.Point(192, 14);
-            this.btn_man_8.Name = "btn_man_8";
-            this.btn_man_8.Size = new System.Drawing.Size(35, 35);
-            this.btn_man_8.TabIndex = 8;
-            this.btn_man_8.UseVisualStyleBackColor = false;
-            this.btn_man_8.Click += new System.EventHandler(this.btn_man_8_Click);
-            // 
-            // btn_cmd_8
-            // 
-            this.btn_cmd_8.Location = new System.Drawing.Point(6, 6);
-            this.btn_cmd_8.Name = "btn_cmd_8";
-            this.btn_cmd_8.Size = new System.Drawing.Size(180, 50);
-            this.btn_cmd_8.TabIndex = 7;
-            this.btn_cmd_8.Text = "Create Gauge Drawing";
-            this.btn_cmd_8.UseVisualStyleBackColor = true;
             // 
             // TaskpaneHostUI
             // 
