@@ -34,6 +34,8 @@ namespace Fraenkische.SWAddin.UI
         private Button btn_man_5;
         private Button btn_man_1;
         private Button btn_man_4;
+        private Button btn_man_8;
+        private Button btn_cmd_8;
         private Label lblActiveDocName;
 
         public event Action cmd_1_Clicked;
@@ -43,6 +45,7 @@ namespace Fraenkische.SWAddin.UI
         public event Action cmd_5_Clicked;
         public event Action cmd_6_Clicked;
         public event Action cmd_7_Clicked;
+        public event Action cmd_8_Clicked;
 
         public TaskpaneHostUI()
         {
@@ -54,6 +57,7 @@ namespace Fraenkische.SWAddin.UI
             btn_cmd_5.Click += (s, e) => cmd_5_Clicked?.Invoke();
             btn_cmd_6.Click += (s, e) => cmd_6_Clicked?.Invoke();
             btn_cmd_7.Click += (s, e) => cmd_7_Clicked?.Invoke();
+            btn_cmd_8.Click += (s, e) => cmd_8_Clicked?.Invoke();
         }
 
         private void InitializeComponent()
@@ -80,8 +84,11 @@ namespace Fraenkische.SWAddin.UI
             this.btn_cmd_6 = new System.Windows.Forms.Button();
             this.lblActiveDocName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btn_man_8 = new System.Windows.Forms.Button();
+            this.btn_cmd_8 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -163,6 +170,8 @@ namespace Fraenkische.SWAddin.UI
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btn_man_8);
+            this.tabPage2.Controls.Add(this.btn_cmd_8);
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -336,6 +345,29 @@ namespace Fraenkische.SWAddin.UI
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
+            // btn_man_8
+            // 
+            this.btn_man_8.BackColor = System.Drawing.Color.Transparent;
+            this.btn_man_8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_man_8.FlatAppearance.BorderSize = 0;
+            this.btn_man_8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_man_8.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
+            this.btn_man_8.Location = new System.Drawing.Point(192, 14);
+            this.btn_man_8.Name = "btn_man_8";
+            this.btn_man_8.Size = new System.Drawing.Size(35, 35);
+            this.btn_man_8.TabIndex = 8;
+            this.btn_man_8.UseVisualStyleBackColor = false;
+            this.btn_man_8.Click += new System.EventHandler(this.btn_man_8_Click);
+            // 
+            // btn_cmd_8
+            // 
+            this.btn_cmd_8.Location = new System.Drawing.Point(6, 6);
+            this.btn_cmd_8.Name = "btn_cmd_8";
+            this.btn_cmd_8.Size = new System.Drawing.Size(180, 50);
+            this.btn_cmd_8.TabIndex = 7;
+            this.btn_cmd_8.Text = "Create Gauge Drawing";
+            this.btn_cmd_8.UseVisualStyleBackColor = true;
+            // 
             // TaskpaneHostUI
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
@@ -346,6 +378,7 @@ namespace Fraenkische.SWAddin.UI
             this.Size = new System.Drawing.Size(300, 700);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -400,5 +433,9 @@ namespace Fraenkische.SWAddin.UI
             MessageBox.Show("Manual for T-Number to PART command is not available yet.", "Manual Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void btn_man_8_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Manual for Bodies to STEP command is not available yet.", "Manual Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

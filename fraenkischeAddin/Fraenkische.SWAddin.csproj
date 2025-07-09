@@ -74,6 +74,7 @@
     <Compile Include="Commands\CMD_1_BatchBOMtoExcelExport.cs" />
     <Compile Include="Commands\CMD_3_LoadPriceFromRobot.cs" />
     <Compile Include="Commands\CMD_5_MergeExcelFilesInFolder.cs" />
+    <Compile Include="Commands\CMD_8_CreateGaugeDrawing.cs" />
     <Compile Include="Commands\CommandManagerService.cs" />
     <Compile Include="Commands\CMD_4_LoadTNumbersFromRobot.cs" />
     <Compile Include="Commands\CMD_7_UpdateTNumberInPart.cs" />
@@ -184,6 +185,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Manuals\ExportBodiesToSTEP.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\SWTemplates\GaugeBOMTemp.sldbomtbt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\SWTemplates\GaugeDrawTemp.DRWDOT">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

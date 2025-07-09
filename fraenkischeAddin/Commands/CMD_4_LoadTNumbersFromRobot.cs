@@ -112,7 +112,7 @@ namespace Fraenkische.SWAddin.Commands
                             string author = Convert.ToString(destWS.Cells[i, 3].Value)?.Trim();
 
                             // Otevření a úprava part modelu
-                            string partDir = @"M:\FIP_CZ_PRO\2900_Vyroba stroju a nastroju\2931_Vyroba stroju a zarizeni\Konstrukce\Nástrojárna\BFP-CZ-TS-(6000 - 6999)";
+                            string partDir = @"C:\Users\staffav\Desktop\Nová složka";
                             string partPath = Path.Combine(partDir, partName, partName + ".sldprt");
 
                             bool fileFound = File.Exists(partPath);
@@ -153,7 +153,21 @@ namespace Fraenkische.SWAddin.Commands
                                             drw.ForceRebuild3(true);
                                             drw.Save();
                                             drawingSaved = true;
-                                            _swApp.CloseDoc(drw.GetTitle());
+
+                                            // --- Nově: Uložení výkresu jako PDF ---
+                                            string pdfPath = Path.Combine(partDir, partName, partName + ".pdf");
+                                            int pdfErr = 0, pdfWarn = 0;
+                                            drw.Extension.SaveAs3(
+                                                pdfPath,
+                                                (int)swSaveAsVersion_e.swSaveAsCurrentVersion,
+                                                (int)swSaveAsOptions_e.swSaveAsOptions_Silent,
+                                                null,
+                                                null,
+                                                ref pdfErr,
+                                                ref pdfWarn
+                                            );
+                                        
+                                        _swApp.CloseDoc(drw.GetTitle());
                                         }
                                     }
                                 }

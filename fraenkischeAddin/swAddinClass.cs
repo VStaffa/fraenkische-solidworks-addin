@@ -105,6 +105,10 @@ namespace Fraenkische.SWAddin
             {
                 featureManager.Get<CMD_7_UpdateTNumberInPart>()?.Execute();
             };
+            swTaskpaneHost.cmd_8_Clicked += () =>
+            {
+                featureManager.Get<CMD_8_CreateGaugeDrawing>()?.Execute();
+            };
             #endregion
         }
 

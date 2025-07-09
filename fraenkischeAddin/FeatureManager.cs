@@ -37,6 +37,7 @@ namespace Fraenkische.SWAddin
             new CMD_5_MergeExcelFilesInFolder(),
             new CMD_6_UpdateLocalExcels(),
             new CMD_7_UpdateTNumberInPart(_swApp),
+            new CMD_8_CreateGaugeDrawing(_swApp),
 
         };
 
