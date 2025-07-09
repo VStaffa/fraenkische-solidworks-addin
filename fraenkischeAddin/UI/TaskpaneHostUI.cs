@@ -30,12 +30,12 @@ namespace Fraenkische.SWAddin.UI
         private Button btn_man_2;
         private Button btn_man_7;
         private Button btn_man_6;
-        private Button btn_man_3;
-        private Button btn_man_5;
         private Button btn_man_1;
         private Button btn_man_4;
         private Button btn_man_8;
         private Button btn_cmd_8;
+        private Button btn_man_9;
+        private Button btn_cmd_9;
         private Label lblActiveDocName;
 
         public event Action cmd_1_Clicked;
@@ -46,6 +46,7 @@ namespace Fraenkische.SWAddin.UI
         public event Action cmd_6_Clicked;
         public event Action cmd_7_Clicked;
         public event Action cmd_8_Clicked;
+        public event Action cmd_9_Clicked;
 
         public TaskpaneHostUI()
         {
@@ -58,6 +59,7 @@ namespace Fraenkische.SWAddin.UI
             btn_cmd_6.Click += (s, e) => cmd_6_Clicked?.Invoke();
             btn_cmd_7.Click += (s, e) => cmd_7_Clicked?.Invoke();
             btn_cmd_8.Click += (s, e) => cmd_8_Clicked?.Invoke();
+            btn_cmd_9.Click += (s, e) => cmd_9_Clicked?.Invoke();   
         }
 
         private void InitializeComponent()
@@ -70,13 +72,13 @@ namespace Fraenkische.SWAddin.UI
             this.btn_cmd_7 = new System.Windows.Forms.Button();
             this.btn_cmd_2 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btn_man_9 = new System.Windows.Forms.Button();
+            this.btn_cmd_9 = new System.Windows.Forms.Button();
             this.btn_man_8 = new System.Windows.Forms.Button();
             this.btn_cmd_8 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.btn_man_6 = new System.Windows.Forms.Button();
-            this.btn_man_3 = new System.Windows.Forms.Button();
-            this.btn_man_5 = new System.Windows.Forms.Button();
             this.btn_man_1 = new System.Windows.Forms.Button();
             this.btn_man_4 = new System.Windows.Forms.Button();
             this.btn_cmd_1 = new System.Windows.Forms.Button();
@@ -156,7 +158,7 @@ namespace Fraenkische.SWAddin.UI
             this.btn_cmd_7.Name = "btn_cmd_7";
             this.btn_cmd_7.Size = new System.Drawing.Size(180, 50);
             this.btn_cmd_7.TabIndex = 5;
-            this.btn_cmd_7.Text = "T-Number to PART";
+            this.btn_cmd_7.Text = "Load T-Number to PART";
             this.btn_cmd_7.UseVisualStyleBackColor = true;
             // 
             // btn_cmd_2
@@ -165,11 +167,13 @@ namespace Fraenkische.SWAddin.UI
             this.btn_cmd_2.Name = "btn_cmd_2";
             this.btn_cmd_2.Size = new System.Drawing.Size(180, 50);
             this.btn_cmd_2.TabIndex = 2;
-            this.btn_cmd_2.Text = "Bodies to STEP";
+            this.btn_cmd_2.Text = "Export Bodies to STEP";
             this.btn_cmd_2.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btn_man_9);
+            this.tabPage2.Controls.Add(this.btn_cmd_9);
             this.tabPage2.Controls.Add(this.btn_man_8);
             this.tabPage2.Controls.Add(this.btn_cmd_8);
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
@@ -179,6 +183,29 @@ namespace Fraenkische.SWAddin.UI
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "ASSEMBLY";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btn_man_9
+            // 
+            this.btn_man_9.BackColor = System.Drawing.Color.Transparent;
+            this.btn_man_9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_man_9.FlatAppearance.BorderSize = 0;
+            this.btn_man_9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_man_9.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
+            this.btn_man_9.Location = new System.Drawing.Point(192, 105);
+            this.btn_man_9.Name = "btn_man_9";
+            this.btn_man_9.Size = new System.Drawing.Size(35, 35);
+            this.btn_man_9.TabIndex = 10;
+            this.btn_man_9.UseVisualStyleBackColor = false;
+            this.btn_man_9.Click += new System.EventHandler(this.btn_man_9_Click);
+            // 
+            // btn_cmd_9
+            // 
+            this.btn_cmd_9.Location = new System.Drawing.Point(6, 97);
+            this.btn_cmd_9.Name = "btn_cmd_9";
+            this.btn_cmd_9.Size = new System.Drawing.Size(180, 50);
+            this.btn_cmd_9.TabIndex = 9;
+            this.btn_cmd_9.Text = "Generate Infill";
+            this.btn_cmd_9.UseVisualStyleBackColor = true;
             // 
             // btn_man_8
             // 
@@ -216,8 +243,6 @@ namespace Fraenkische.SWAddin.UI
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.btn_man_6);
-            this.tabPage5.Controls.Add(this.btn_man_3);
-            this.tabPage5.Controls.Add(this.btn_man_5);
             this.tabPage5.Controls.Add(this.btn_man_1);
             this.tabPage5.Controls.Add(this.btn_man_4);
             this.tabPage5.Controls.Add(this.btn_cmd_1);
@@ -247,44 +272,15 @@ namespace Fraenkische.SWAddin.UI
             this.btn_man_6.UseVisualStyleBackColor = false;
             this.btn_man_6.Click += new System.EventHandler(this.btn_man_6_Click);
             // 
-            // btn_man_3
-            // 
-            this.btn_man_3.BackColor = System.Drawing.Color.Transparent;
-            this.btn_man_3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_man_3.FlatAppearance.BorderSize = 0;
-            this.btn_man_3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_man_3.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
-            this.btn_man_3.Location = new System.Drawing.Point(192, 227);
-            this.btn_man_3.Name = "btn_man_3";
-            this.btn_man_3.Size = new System.Drawing.Size(35, 35);
-            this.btn_man_3.TabIndex = 13;
-            this.btn_man_3.UseVisualStyleBackColor = false;
-            this.btn_man_3.Click += new System.EventHandler(this.btn_man_3_Click);
-            // 
-            // btn_man_5
-            // 
-            this.btn_man_5.BackColor = System.Drawing.Color.Transparent;
-            this.btn_man_5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_man_5.FlatAppearance.BorderSize = 0;
-            this.btn_man_5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_man_5.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
-            this.btn_man_5.Location = new System.Drawing.Point(192, 173);
-            this.btn_man_5.Name = "btn_man_5";
-            this.btn_man_5.Size = new System.Drawing.Size(35, 35);
-            this.btn_man_5.TabIndex = 12;
-            this.btn_man_5.UseVisualStyleBackColor = false;
-            this.btn_man_5.Click += new System.EventHandler(this.btn_man_5_Click);
-            // 
             // btn_man_1
             // 
             this.btn_man_1.BackColor = System.Drawing.Color.Transparent;
             this.btn_man_1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_man_1.FlatAppearance.BorderSize = 0;
             this.btn_man_1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_man_1.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
-            this.btn_man_1.Location = new System.Drawing.Point(192, 120);
+            this.btn_man_1.Location = new System.Drawing.Point(192, 112);
             this.btn_man_1.Name = "btn_man_1";
-            this.btn_man_1.Size = new System.Drawing.Size(35, 35);
+            this.btn_man_1.Size = new System.Drawing.Size(45, 157);
             this.btn_man_1.TabIndex = 11;
             this.btn_man_1.UseVisualStyleBackColor = false;
             this.btn_man_1.Click += new System.EventHandler(this.btn_man_1_Click);
@@ -441,6 +437,11 @@ namespace Fraenkische.SWAddin.UI
         private void btn_man_8_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Manual for Bodies to STEP command is not available yet.", "Manual Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btn_man_9_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Manual for Generate Infill command is not available yet.", "Manual Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

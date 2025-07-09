@@ -109,6 +109,10 @@ namespace Fraenkische.SWAddin
             {
                 featureManager.Get<CMD_8_CreateGaugeDrawing>()?.Execute();
             };
+            swTaskpaneHost.cmd_9_Clicked += () =>
+            {
+                featureManager.Get<CMD_9_InfillGenerator>()?.Execute();
+            };  
             #endregion
         }
 
@@ -172,6 +176,16 @@ namespace Fraenkische.SWAddin
                 case 8:
                     commandManager.HandleCommandCall(commandIndex);
                     break;
+                case 9:
+                    commandManager.HandleCommandCall(commandIndex);
+                    break;
+                case 10:
+                    commandManager.HandleCommandCall(commandIndex);
+                    break;
+                case 11:
+                    commandManager.HandleCommandCall(commandIndex);
+                    break;
+                    
             }
 
         }

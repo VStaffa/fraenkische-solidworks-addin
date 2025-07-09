@@ -80,7 +80,9 @@
     <Compile Include="Commands\CMD_7_UpdateTNumberInPart.cs" />
     <Compile Include="Commands\CMD_2_ExportBodiesToSTP.cs" />
     <Compile Include="Commands\CMD_6_UpdateLocalExcels.cs" />
+    <Compile Include="Commands\CMD_9_InfillGenerator.cs" />
     <Compile Include="Core\ICommand.cs" />
+    <Compile Include="Core\InfillType.cs" />
     <Compile Include="Core\SetBarText.cs" />
     <Compile Include="FeatureManager.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
