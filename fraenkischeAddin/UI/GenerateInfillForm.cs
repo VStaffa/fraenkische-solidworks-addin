@@ -8,7 +8,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Environment = System.Environment;
 
 namespace Fraenkische.SWAddin.UI
 {
@@ -38,6 +37,8 @@ namespace Fraenkische.SWAddin.UI
         private Label label4;
         private string _lenVal;
 
+        private string  assPath = string.Empty;
+
         public GenerateInfillForm(SldWorks swApp)
         {
             InitializeComponent();
@@ -45,12 +46,6 @@ namespace Fraenkische.SWAddin.UI
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             _swApp = swApp;
             _infillTypes = new List<InfillType>();
-
-            // Deaktivovat checkboxy
-            var active = _swApp.ActiveDoc;
-            bool inAsm = active is AssemblyDoc asmDoc &&
-                         !string.IsNullOrEmpty(active.GetPathName());
-            check_insert.Enabled = inAsm;
 
             InitializeInfillTypes();
             PopulateComboBox();
@@ -65,6 +60,18 @@ namespace Fraenkische.SWAddin.UI
             // Počáteční stav
             btn_gen.Enabled = false;
             lbl_desc.Text = lbl_length.Text = "-- STISKNĚTE OBNOVIT --";
+
+            ModelDoc2 actDoc = _swApp.ActiveDoc as ModelDoc2;
+            
+
+            if (actDoc != null)
+            {
+                if (actDoc.GetType() == 2)
+                {
+                    assPath = actDoc.GetPathName();
+                    check_insert.Enabled = true;
+                }
+            }
         }
 
         /// <summary>
@@ -189,20 +196,13 @@ namespace Fraenkische.SWAddin.UI
         private void OnGenerateClicked(object sender, EventArgs e)
         {
             var type = _infillTypes[cbox_types.SelectedIndex];
-            _swApp.CommandInProgress = true;
 
             // 1) Rozhodnutí kam ukládat
             string outputDir;
-            var active = _swApp.ActiveDoc;
-            if (active is AssemblyDoc asm &&
-                !string.IsNullOrEmpty(active.GetPathName()))
+            var active = (ModelDoc2)_swApp.ActiveDoc;
+
+            if (active == null)
             {
-                // běžíme v sestavě se skutečnou cestou
-                outputDir = Path.GetDirectoryName(active.GetPathName());
-            }
-            else
-            {
-                // část nebo prázdné — necháme uživatele vybrat složku
                 using (var dlg = new FolderBrowserDialog
                 {
                     Description = "Vyberte složku pro uložení vygenerované výplně"
@@ -218,7 +218,39 @@ namespace Fraenkische.SWAddin.UI
                     outputDir = dlg.SelectedPath;
 
                 }
+                
             }
+            else
+            {
+                if (active.GetType() is 2)
+                {
+                    // běžíme v sestavě se skutečnou cestou
+                    outputDir = Path.GetDirectoryName(active.GetPathName());
+
+                }
+                else
+                {
+                    // Part nebo prázdné — necháme uživatele vybrat složku
+                    using (var dlg = new FolderBrowserDialog
+                    {
+                        Description = "Vyberte složku pro uložení vygenerované výplně"
+                    })
+                    {
+                        if (dlg.ShowDialog() != DialogResult.OK)
+                        {
+                            MessageBox.Show("Ukládání bylo zrušeno.", "Zrušeno",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            _swApp.CommandInProgress = false;
+                            return;
+                        }
+                        outputDir = dlg.SelectedPath;
+
+                    }
+                    
+                }
+            }
+
+            _swApp.DocumentVisible(false,1);
 
             // 2) Otevřít template (Read-Only)
             int errs = 0, warns = 0;
@@ -255,22 +287,31 @@ namespace Fraenkische.SWAddin.UI
             var savePath = Path.Combine(outputDir, _descVal + ".SLDPRT");
             model.Extension.SaveAs3(
                 savePath,
-                (int)swSaveAsVersion_e.swSaveAsCurrentVersion,
-                2,
+                0,
+                (int)swSaveAsOptions_e.swSaveAsOptions_CopyAndOpen,
                 null,
                 null,
                 ref errs, ref warns);
 
             // 7) Volitelné vložení a otevření složky
-            if (check_insert.Checked && _swApp.ActiveDoc is AssemblyDoc)
-                _swApp.ActiveDoc.AddComponent4(savePath, "", 0, 0, 0);
+            if (check_insert.Checked == true)
+            {
+                //MessageBox.Show(assPath);
+                //MessageBox.Show(savePath);
+                AssemblyDoc swModel = _swApp.ActivateDoc3(assPath,true,0,0);
+                swModel.AddComponent5(savePath,0, "", false, "", 0, 0, 0);
+                _swApp.CloseDoc(savePath);
+            }
+
             if (check_openFolder.Checked)
                 Process.Start("explorer.exe", outputDir);
 
             // 8) Zavřít šablonu beze změn
-            _swApp.CloseDoc(model.GetTitle());
+            //_swApp.CloseDoc(model.GetTitle());
             SetBarText.Write("Výplň vygenerována");
+            _swApp.DocumentVisible(true, 1);
             _swApp.CommandInProgress = false;
+
 
             MessageBox.Show("Výplň úspěšně vytvořena!", "Hotovo",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -357,8 +398,7 @@ namespace Fraenkische.SWAddin.UI
             // check_insert
             // 
             this.check_insert.AutoSize = true;
-            this.check_insert.Checked = true;
-            this.check_insert.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.check_insert.Enabled = false;
             this.check_insert.Location = new System.Drawing.Point(323, 129);
             this.check_insert.Name = "check_insert";
             this.check_insert.Size = new System.Drawing.Size(110, 17);
