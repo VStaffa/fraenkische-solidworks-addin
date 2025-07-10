@@ -337,7 +337,7 @@ namespace Fraenkische.SWAddin.UI
                 Process.Start("explorer.exe", outputDir);
 
             // 8) Zavřít šablonu beze změn
-            //_swApp.CloseDoc(model.GetTitle());
+            
             SetBarText.Write("Výplň vygenerována");
             _swApp.DocumentVisible(true, 1);
             _swApp.CommandInProgress = false;
