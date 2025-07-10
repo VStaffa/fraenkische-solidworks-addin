@@ -320,7 +320,7 @@ namespace Fraenkische.SWAddin.UI
                         _insertedFaceNames[i],
                         (int)swSelectType_e.swSelFACES);
                     insertedFaces[i] = entity as IFace2;
-                    MessageBox.Show($"Plocha '{_insertedFaceNames[i]}' nalezena.");Started adding 
+                    MessageBox.Show($"Plocha '{_insertedFaceNames[i]}' nalezena.");
                     if (insertedFaces[i] == null)
                     {
                         MessageBox.Show($"Plocha '{_insertedFaceNames[i]}' ve vložené součásti nenalezena.",
