@@ -25,17 +25,16 @@ namespace Fraenkische.SWAddin.UI
         private Button btn_cmd_3;
         private Button btn_cmd_4;
         private Button btn_cmd_5;
-        private Button btn_cmd_6;
         private Button btn_cmd_7;
         private Button btn_man_2;
         private Button btn_man_7;
-        private Button btn_man_6;
         private Button btn_man_1;
         private Button btn_man_4;
         private Button btn_man_8;
         private Button btn_cmd_8;
         private Button btn_man_9;
         private Button btn_cmd_9;
+        private GroupBox groupBox1;
         private Label lblActiveDocName;
 
         public event Action cmd_1_Clicked;
@@ -56,7 +55,6 @@ namespace Fraenkische.SWAddin.UI
             btn_cmd_3.Click += (s, e) => cmd_3_Clicked?.Invoke();
             btn_cmd_4.Click += (s, e) => cmd_4_Clicked?.Invoke();
             btn_cmd_5.Click += (s, e) => cmd_5_Clicked?.Invoke();
-            btn_cmd_6.Click += (s, e) => cmd_6_Clicked?.Invoke();
             btn_cmd_7.Click += (s, e) => cmd_7_Clicked?.Invoke();
             btn_cmd_8.Click += (s, e) => cmd_8_Clicked?.Invoke();
             btn_cmd_9.Click += (s, e) => cmd_9_Clicked?.Invoke();   
@@ -78,16 +76,15 @@ namespace Fraenkische.SWAddin.UI
             this.btn_cmd_8 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.btn_man_6 = new System.Windows.Forms.Button();
             this.btn_man_1 = new System.Windows.Forms.Button();
             this.btn_man_4 = new System.Windows.Forms.Button();
             this.btn_cmd_1 = new System.Windows.Forms.Button();
             this.btn_cmd_3 = new System.Windows.Forms.Button();
             this.btn_cmd_4 = new System.Windows.Forms.Button();
             this.btn_cmd_5 = new System.Windows.Forms.Button();
-            this.btn_cmd_6 = new System.Windows.Forms.Button();
             this.lblActiveDocName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -103,10 +100,10 @@ namespace Fraenkische.SWAddin.UI
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(5, 121);
+            this.tabControl1.Location = new System.Drawing.Point(3, 312);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(290, 576);
+            this.tabControl1.Size = new System.Drawing.Size(290, 385);
             this.tabControl1.TabIndex = 2;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -120,7 +117,7 @@ namespace Fraenkische.SWAddin.UI
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(282, 544);
+            this.tabPage1.Size = new System.Drawing.Size(282, 353);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "PART";
             // 
@@ -179,7 +176,7 @@ namespace Fraenkische.SWAddin.UI
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(282, 544);
+            this.tabPage2.Size = new System.Drawing.Size(282, 353);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "ASSEMBLY";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -235,42 +232,26 @@ namespace Fraenkische.SWAddin.UI
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(282, 544);
+            this.tabPage3.Size = new System.Drawing.Size(282, 353);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "DRAWING";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(this.btn_man_6);
             this.tabPage5.Controls.Add(this.btn_man_1);
             this.tabPage5.Controls.Add(this.btn_man_4);
             this.tabPage5.Controls.Add(this.btn_cmd_1);
             this.tabPage5.Controls.Add(this.btn_cmd_3);
             this.tabPage5.Controls.Add(this.btn_cmd_4);
             this.tabPage5.Controls.Add(this.btn_cmd_5);
-            this.tabPage5.Controls.Add(this.btn_cmd_6);
             this.tabPage5.Location = new System.Drawing.Point(4, 28);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(282, 544);
+            this.tabPage5.Size = new System.Drawing.Size(282, 353);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "OTHER";
             this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // btn_man_6
-            // 
-            this.btn_man_6.BackColor = System.Drawing.Color.Transparent;
-            this.btn_man_6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_man_6.FlatAppearance.BorderSize = 0;
-            this.btn_man_6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_man_6.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
-            this.btn_man_6.Location = new System.Drawing.Point(192, 420);
-            this.btn_man_6.Name = "btn_man_6";
-            this.btn_man_6.Size = new System.Drawing.Size(35, 35);
-            this.btn_man_6.TabIndex = 14;
-            this.btn_man_6.UseVisualStyleBackColor = false;
-            this.btn_man_6.Click += new System.EventHandler(this.btn_man_6_Click);
             // 
             // btn_man_1
             // 
@@ -337,16 +318,6 @@ namespace Fraenkische.SWAddin.UI
             this.btn_cmd_5.Text = "Merge Excel BOMs";
             this.btn_cmd_5.UseVisualStyleBackColor = true;
             // 
-            // btn_cmd_6
-            // 
-            this.btn_cmd_6.Enabled = false;
-            this.btn_cmd_6.Location = new System.Drawing.Point(6, 412);
-            this.btn_cmd_6.Name = "btn_cmd_6";
-            this.btn_cmd_6.Size = new System.Drawing.Size(180, 50);
-            this.btn_cmd_6.TabIndex = 5;
-            this.btn_cmd_6.Text = "Update Source Excels";
-            this.btn_cmd_6.UseVisualStyleBackColor = true;
-            // 
             // lblActiveDocName
             // 
             this.lblActiveDocName.AutoSize = true;
@@ -369,9 +340,19 @@ namespace Fraenkische.SWAddin.UI
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(13, 127);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(261, 166);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "SHARED";
+            // 
             // TaskpaneHostUI
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblActiveDocName);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tabControl1);
@@ -443,5 +424,6 @@ namespace Fraenkische.SWAddin.UI
         {
             MessageBox.Show("Manual for Generate Infill command is not available yet.", "Manual Not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
     }
 }
