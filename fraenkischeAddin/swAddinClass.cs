@@ -97,10 +97,10 @@ namespace Fraenkische.SWAddin
             {
                 featureManager.Get<CMD_5_MergeExcelFilesInFolder>()?.Execute();
             };
-            swTaskpaneHost.cmd_6_Clicked += () =>
-            {
-                featureManager.Get<CMD_6_UpdateLocalExcels>()?.Execute();
-            };
+            //swTaskpaneHost.cmd_6_Clicked += () =>
+            //{
+            //    featureManager.Get<CMD_6_UpdateLocalExcels>()?.Execute();
+            //};
             swTaskpaneHost.cmd_7_Clicked += () =>
             {
                 featureManager.Get<CMD_7_UpdateTNumberInPart>()?.Execute();

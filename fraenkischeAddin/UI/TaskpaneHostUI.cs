@@ -42,7 +42,7 @@ namespace Fraenkische.SWAddin.UI
         public event Action cmd_3_Clicked;
         public event Action cmd_4_Clicked;
         public event Action cmd_5_Clicked;
-        public event Action cmd_6_Clicked;
+        //public event Action cmd_6_Clicked;
         public event Action cmd_7_Clicked;
         public event Action cmd_8_Clicked;
         public event Action cmd_9_Clicked;
@@ -55,6 +55,7 @@ namespace Fraenkische.SWAddin.UI
             btn_cmd_3.Click += (s, e) => cmd_3_Clicked?.Invoke();
             btn_cmd_4.Click += (s, e) => cmd_4_Clicked?.Invoke();
             btn_cmd_5.Click += (s, e) => cmd_5_Clicked?.Invoke();
+            //btn_cmd_6.Click += (s, e) => cmd_6_Clicked?.Invoke();
             btn_cmd_7.Click += (s, e) => cmd_7_Clicked?.Invoke();
             btn_cmd_8.Click += (s, e) => cmd_8_Clicked?.Invoke();
             btn_cmd_9.Click += (s, e) => cmd_9_Clicked?.Invoke();   
