@@ -65,7 +65,7 @@ namespace Fraenkische.SWAddin
         }
         #endregion
 
-        #region TASKPANE HANDLER
+        #region TASKPANE BUTTON CLICK HANDLER
 
         private void LoadUI()
         {
@@ -111,7 +111,7 @@ namespace Fraenkische.SWAddin
             };
             swTaskpaneHost.cmd_9_Clicked += () =>
             {
-                featureManager.Get<CMD_9_InfillGenerator>()?.Execute();
+                featureManager.Get<CMD_9_GenerateInfill>()?.Execute();
             };  
             #endregion
         }

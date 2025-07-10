@@ -191,7 +191,7 @@ namespace Fraenkische.SWAddin.UI
             this.btn_man_9.FlatAppearance.BorderSize = 0;
             this.btn_man_9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_man_9.Image = global::Fraenkische.SWAddin.Properties.Resources.helpIcon;
-            this.btn_man_9.Location = new System.Drawing.Point(192, 105);
+            this.btn_man_9.Location = new System.Drawing.Point(192, 70);
             this.btn_man_9.Name = "btn_man_9";
             this.btn_man_9.Size = new System.Drawing.Size(35, 35);
             this.btn_man_9.TabIndex = 10;
@@ -200,7 +200,7 @@ namespace Fraenkische.SWAddin.UI
             // 
             // btn_cmd_9
             // 
-            this.btn_cmd_9.Location = new System.Drawing.Point(6, 97);
+            this.btn_cmd_9.Location = new System.Drawing.Point(6, 62);
             this.btn_cmd_9.Name = "btn_cmd_9";
             this.btn_cmd_9.Size = new System.Drawing.Size(180, 50);
             this.btn_cmd_9.TabIndex = 9;
