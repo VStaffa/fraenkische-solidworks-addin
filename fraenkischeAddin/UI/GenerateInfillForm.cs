@@ -38,6 +38,7 @@ namespace Fraenkische.SWAddin.UI
         private string _lenVal;
 
         private string  assPath = string.Empty;
+        private readonly string[] _insertedFaceNames = { "Leva", "Prava", "Horni", "Dolni" };
 
         public GenerateInfillForm(SldWorks swApp)
         {
@@ -62,7 +63,6 @@ namespace Fraenkische.SWAddin.UI
             lbl_desc.Text = lbl_length.Text = "-- STISKNĚTE OBNOVIT --";
 
             ModelDoc2 actDoc = _swApp.ActiveDoc as ModelDoc2;
-            
 
             if (actDoc != null)
             {
@@ -298,8 +298,38 @@ namespace Fraenkische.SWAddin.UI
             {
                 //MessageBox.Show(assPath);
                 //MessageBox.Show(savePath);
-                AssemblyDoc swModel = _swApp.ActivateDoc3(assPath,true,0,0);
-                swModel.AddComponent5(savePath,0, "", false, "", 0, 0, 0);
+
+
+
+                var swModel = _swApp.ActivateDoc3(assPath,true,0,0) as ModelDoc2;
+                var swAssy = (AssemblyDoc)swModel;
+                Component2 newComp;
+
+                newComp = swAssy.AddComponent5(savePath, 0, "", false, "", 0, 0, 0);
+
+                var compDoc = (PartDoc)newComp.GetModelDoc2();
+                //compDoc.GetEntityByName("Leva", (int)swSelectType_e.swSelFACES);
+
+                swModel.ClearSelection2(true);
+
+                // Najdeme v ní plochy podle jmen
+                var insertedFaces = new IFace2[4];
+                for (int i = 0; i < 4; i++)
+                {
+                    var entity = compDoc.GetEntityByName(
+                        _insertedFaceNames[i],
+                        (int)swSelectType_e.swSelFACES);
+                    insertedFaces[i] = entity as IFace2;
+                    MessageBox.Show($"Plocha '{_insertedFaceNames[i]}' nalezena.");Started adding 
+                    if (insertedFaces[i] == null)
+                    {
+                        MessageBox.Show($"Plocha '{_insertedFaceNames[i]}' ve vložené součásti nenalezena.",
+                                        "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        SetBarText.Clear();
+                        return;
+                    }
+                }
+
                 _swApp.CloseDoc(savePath);
             }
 
