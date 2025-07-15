@@ -5,6 +5,7 @@ using SolidWorks.Interop.swconst;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -37,8 +38,12 @@ namespace Fraenkische.SWAddin.UI
         private Label label4;
         private string _lenVal;
 
-        private string  assPath = string.Empty;
-        private readonly string[] _insertedFaceNames = { "Leva", "Prava", "Horni", "Dolni" };
+        private string assPath = string.Empty;
+        private CheckBox check_offset;
+
+        private readonly bool _autoMode;
+        private readonly Face2[] _asmPair1;
+        private readonly Face2[] _asmPair2;
 
         public GenerateInfillForm(SldWorks swApp)
         {
@@ -47,6 +52,8 @@ namespace Fraenkische.SWAddin.UI
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             _swApp = swApp;
             _infillTypes = new List<InfillType>();
+
+            this.Text = "GENERATE INFILL FORM - CUSTOM SIZE MODE";
 
             InitializeInfillTypes();
             PopulateComboBox();
@@ -57,6 +64,7 @@ namespace Fraenkische.SWAddin.UI
             txt_h.TextChanged += OnInputChanged;
             btn_ref.Click += OnRefreshClicked;
             btn_gen.Click += OnGenerateClicked;
+            check_offset.CheckedChanged += OnInputChanged;
 
             // Počáteční stav
             btn_gen.Enabled = false;
@@ -74,6 +82,39 @@ namespace Fraenkische.SWAddin.UI
             }
         }
 
+        /// <summary>
+        /// Konstruktor pro automatický režim: pevné rozměry, uživatel jen vybere typ infillu a potvrdí.
+        /// </summary>
+        public GenerateInfillForm(SldWorks swApp, int widthMm, int heightMm, Face2[] asmPair1, Face2[] asmPair2)
+            : this(swApp)   // zavolá původní ctor, který udělá InitializeComponent a eventy
+        {
+            // předvyplníme
+            txt_w.Text = widthMm.ToString();
+            txt_h.Text = heightMm.ToString();
+
+            // zamkneme editaci
+            txt_w.ReadOnly = true;
+            txt_h.ReadOnly = true;
+            label1.Enabled = false;  // popisky WIDTH/HEIGHT, pokud chcete
+            label1.Text = "ROZMĚRY VYBRANÉHO OTVORU:";
+            label2.Enabled = false;
+            label2.Visible = false;
+
+            check_offset.Checked = true; // přidáme offset, pokud je potřeba
+            check_offset.Enabled = false; // vypneme možnost změny offsetu
+            
+
+            // tlačítko REFRESH necháme aktivní, nechá uživatele přepočítat popisky při změně typu
+            btn_ref.Enabled = true;
+
+            _autoMode = true;
+            _asmPair1 = asmPair1;
+            _asmPair2 = asmPair2;
+            check_insert.Checked = true; // automaticky přidáme do sestavy
+            check_insert.Visible = false;
+
+            this.Text = "GENERATE INFILL FORM - INSERT + MATE MODE";
+        }
         /// <summary>
         /// Naplnění seznamu InfillType – jeden template, více konfigurací
         /// </summary>
@@ -100,7 +141,7 @@ namespace Fraenkische.SWAddin.UI
                 templatePath: template,
                 configName: "Plexi_6mm_odjimatelne",
                 descPrefix: "Plexi_odjimatelne_6mm_",
-                lenPrefix: "4x(XXX)+(XXX) L = ",
+                lenPrefix: "4x (00823987-T) + (00823990-T + 00823991-T) L = ",
                 offset: -14));
 
             _infillTypes.Add(new InfillType(
@@ -171,10 +212,26 @@ namespace Fraenkische.SWAddin.UI
                 txt_w.Text = _pWidth.ToString();
                 txt_h.Text = _pHeight.ToString();
             }
-
             var type = _infillTypes[cbox_types.SelectedIndex];
+            var selIndex = _infillTypes.IndexOf(type);
+
+            var perimeter = CalculatePerimeter(_pWidth, _pHeight, selIndex);
+
+            if (check_offset.Checked)
+            {
+                // Přidáme offset, pokud je potřeba
+                _pWidth += type.Offset;
+                _pHeight += type.Offset;
+                if (_pWidth < 0 || _pHeight < 0)
+                {
+                    MessageBox.Show(
+                        "S offsetem musí být rozměry větší než 0 mm",
+                        "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
             _descVal = $"{type.DescPrefix}{_pWidth}x{_pHeight}";
-            var perimeter = CalculatePerimeter(_pWidth, _pHeight, type.Offset);
             _lenVal = $"{type.LenPrefix}{perimeter}mm";
 
             lbl_desc.Text = _descVal;
@@ -185,9 +242,22 @@ namespace Fraenkische.SWAddin.UI
         /// <summary>
         /// Výpočet obvodu + offset
         /// </summary>
-        private int CalculatePerimeter(int x, int y, int offset)
+        private int CalculatePerimeter(int x, int y, int t)
         {
-            return 2 * (x + y) + offset;
+            switch (t)
+            {
+                case 1:
+                    if (2 * (x + y) - 424 <= 0)
+                    {
+                        return 0;
+                    }
+                    else return 2 * (x + y) - 424;
+
+                default:
+                    return 2 * (x + y);
+
+            }
+
         }
 
         /// <summary>
@@ -216,9 +286,7 @@ namespace Fraenkische.SWAddin.UI
                         return;
                     }
                     outputDir = dlg.SelectedPath;
-
                 }
-                
             }
             else
             {
@@ -246,11 +314,11 @@ namespace Fraenkische.SWAddin.UI
                         outputDir = dlg.SelectedPath;
 
                     }
-                    
+
                 }
             }
 
-            _swApp.DocumentVisible(false,1);
+            _swApp.DocumentVisible(false, 1);
 
             // 2) Otevřít template (Read-Only)
             int errs = 0, warns = 0;
@@ -281,63 +349,89 @@ namespace Fraenkische.SWAddin.UI
                 _lenVal,
                 (int)swCustomPropertyAddOption_e.swCustomPropertyReplaceValue);
 
-
-
             // 6) Uložit jako kopii
             var savePath = Path.Combine(outputDir, _descVal + ".SLDPRT");
             model.Extension.SaveAs3(
                 savePath,
                 0,
-                (int)swSaveAsOptions_e.swSaveAsOptions_CopyAndOpen,
+                512,
                 null,
                 null,
                 ref errs, ref warns);
 
-            // 7) Volitelné vložení a otevření složky
-            if (check_insert.Checked == true)
+
+            // 6.1) Přidat do sestavy, pokud je to možné
+            var activeDoc = (ModelDoc2)_swApp.ActivateDoc(assPath);
+            var asm = activeDoc as IAssemblyDoc;
+            Component2 comp = null;
+
+            if (asm != null)
             {
-                //MessageBox.Show(assPath);
-                //MessageBox.Show(savePath);
-
-
-
-                var swModel = _swApp.ActivateDoc3(assPath,true,0,0) as ModelDoc2;
-                var swAssy = (AssemblyDoc)swModel;
-                Component2 newComp;
-
-                newComp = swAssy.AddComponent5(savePath, 0, "", false, "", 0, 0, 0);
-
-                var compDoc = (PartDoc)newComp.GetModelDoc2();
-                //compDoc.GetEntityByName("Leva", (int)swSelectType_e.swSelFACES);
-
-                swModel.ClearSelection2(true);
-
-                // Najdeme v ní plochy podle jmen
-                var insertedFaces = new IFace2[4];
-                for (int i = 0; i < 4; i++)
-                {
-                    var entity = compDoc.GetEntityByName(
-                        _insertedFaceNames[i],
-                        (int)swSelectType_e.swSelFACES);
-                    insertedFaces[i] = entity as IFace2;
-                    MessageBox.Show($"Plocha '{_insertedFaceNames[i]}' nalezena.");
-                    if (insertedFaces[i] == null)
-                    {
-                        MessageBox.Show($"Plocha '{_insertedFaceNames[i]}' ve vložené součásti nenalezena.",
-                                        "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        SetBarText.Clear();
-                        return;
-                    }
-                }
-
-                _swApp.CloseDoc(savePath);
+                comp = asm.AddComponent4(savePath, "", 0, 0, 0);
+                activeDoc.EditRebuild3();
             }
+
+            // ZAVAZBIT NOVĚ VLOŽENÝ DÍL
+            if (_autoMode && comp != null)
+            {
+                var swExt = activeDoc.Extension;
+                SelectionMgr selMgr = activeDoc.SelectionManager;
+
+                MateFeatureData mateData;
+                SymmetricMateFeatureData symmetricMateFeatureData;
+
+                object plane;
+
+                mateData = (MateFeatureData)asm.CreateMateData(8);
+                symmetricMateFeatureData = (SymmetricMateFeatureData)mateData;
+
+
+                AddSymetricalMate(_asmPair2, "Horizontal");
+                AddSymetricalMate(_asmPair1, "Vertical");
+
+                // Pomocná lokální funkce pro vložení jednoho Width Mate
+                void AddSymetricalMate(Face2[] asmFaces, string direction)
+                {
+
+                    MateFeatureData mateData;
+                    SymmetricMateFeatureData symmetricMateFeatureData;
+
+                    object plane = null;
+
+                    mateData = (MateFeatureData)asm.CreateMateData(8);
+                    symmetricMateFeatureData = (SymmetricMateFeatureData)mateData;
+
+                    symmetricMateFeatureData.SymmetryPlane = null;
+                    symmetricMateFeatureData.EntitiesToMate = null;
+
+                    // a) vymažeme výběr
+                    activeDoc.ClearSelection2(true);
+
+                    string assemblyName = Path.GetFileNameWithoutExtension(activeDoc.GetPathName());
+                    string compName = comp.Name2;
+
+                    plane = swExt.SelectByID2(
+                        $"{direction}@{compName}",
+                        "PLANE",
+                        0, 0, 0, true, 16, null, 0);
+
+                    symmetricMateFeatureData.SymmetryPlane = plane;
+                    symmetricMateFeatureData.EntitiesToMate = asmFaces;
+
+                    asm.CreateMate(mateData);
+
+                    activeDoc.GraphicsRedraw2();
+                    activeDoc.ClearSelection2(true);
+                }
+                
+            }
+
 
             if (check_openFolder.Checked)
                 Process.Start("explorer.exe", outputDir);
 
-            // 8) Zavřít šablonu beze změn
-            
+            // 7) Zavřít šablonu beze změn
+
             SetBarText.Write("Výplň vygenerována");
             _swApp.DocumentVisible(true, 1);
             _swApp.CommandInProgress = false;
@@ -345,6 +439,8 @@ namespace Fraenkische.SWAddin.UI
 
             MessageBox.Show("Výplň úspěšně vytvořena!", "Hotovo",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            return;
         }
 
         private void InitializeComponent()
@@ -362,6 +458,7 @@ namespace Fraenkische.SWAddin.UI
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.check_offset = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btn_ref
@@ -449,7 +546,7 @@ namespace Fraenkische.SWAddin.UI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 56);
+            this.label1.Location = new System.Drawing.Point(12, 53);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 9;
@@ -458,7 +555,7 @@ namespace Fraenkische.SWAddin.UI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(115, 56);
+            this.label2.Location = new System.Drawing.Point(115, 52);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 13);
             this.label2.TabIndex = 10;
@@ -484,9 +581,20 @@ namespace Fraenkische.SWAddin.UI
             this.label4.TabIndex = 12;
             this.label4.Text = "BOM INFO:";
             // 
+            // check_offset
+            // 
+            this.check_offset.AutoSize = true;
+            this.check_offset.Location = new System.Drawing.Point(195, 51);
+            this.check_offset.Name = "check_offset";
+            this.check_offset.Size = new System.Drawing.Size(93, 17);
+            this.check_offset.TabIndex = 13;
+            this.check_offset.Text = "ADD OFFSET";
+            this.check_offset.UseVisualStyleBackColor = true;
+            // 
             // GenerateInfillForm
             // 
             this.ClientSize = new System.Drawing.Size(555, 161);
+            this.Controls.Add(this.check_offset);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
