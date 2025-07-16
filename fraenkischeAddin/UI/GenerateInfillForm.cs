@@ -380,48 +380,55 @@ namespace Fraenkische.SWAddin.UI
                 MateFeatureData mateData;
                 SymmetricMateFeatureData symmetricMateFeatureData;
 
-                object plane;
-
                 mateData = (MateFeatureData)asm.CreateMateData(8);
                 symmetricMateFeatureData = (SymmetricMateFeatureData)mateData;
 
 
                 AddSymetricalMate(_asmPair2, "Horizontal");
-                AddSymetricalMate(_asmPair1, "Vertical");
 
-                // Pomocná lokální funkce pro vložení jednoho Width Mate
+                // Pomocná lokální funkce pro vložení jednoho Symetrical Mate
                 void AddSymetricalMate(Face2[] asmFaces, string direction)
                 {
-
-                    MateFeatureData mateData;
                     SymmetricMateFeatureData symmetricMateFeatureData;
+                    CoincidentMateFeatureData coincidentMateFeatureData;
+
+                    object faceVar;
 
                     object plane = null;
 
-                    mateData = (MateFeatureData)asm.CreateMateData(8);
-                    symmetricMateFeatureData = (SymmetricMateFeatureData)mateData;
-
+                    //0 - Coicident, 8 - Symmetrical
+                    coincidentMateFeatureData = (CoincidentMateFeatureData)asm.CreateMateData(0);
+                    symmetricMateFeatureData = (SymmetricMateFeatureData)asm.CreateMateData(8);
+                    
                     symmetricMateFeatureData.SymmetryPlane = null;
                     symmetricMateFeatureData.EntitiesToMate = null;
+                    symmetricMateFeatureData.MateAlignment = (int)swMateReferenceAlignment_e.swMateReferenceAlignment_Aligned;
+
+
 
                     // a) vymažeme výběr
                     activeDoc.ClearSelection2(true);
 
-                    string assemblyName = Path.GetFileNameWithoutExtension(activeDoc.GetPathName());
                     string compName = comp.Name2;
+                    string assemblyName = Path.GetFileNameWithoutExtension(activeDoc.GetPathName());
+
+                    MessageBox.Show($"{direction}@{compName}@{assemblyName}");
 
                     plane = swExt.SelectByID2(
-                        $"{direction}@{compName}",
+                        $"{direction}@{compName}@{assemblyName}",
                         "PLANE",
-                        0, 0, 0, true, 16, null, 0);
+                        0, 0, 0, false, 4, null, 0);
+
+                    faceVar = asmFaces;
+
+                    foreach (Face2 f in asmFaces) {
+                        ISurface surf = f.GetSurface();
+                    }
 
                     symmetricMateFeatureData.SymmetryPlane = plane;
-                    symmetricMateFeatureData.EntitiesToMate = asmFaces;
+                    symmetricMateFeatureData.EntitiesToMate = faceVar;
 
-                    asm.CreateMate(mateData);
-
-                    activeDoc.GraphicsRedraw2();
-                    activeDoc.ClearSelection2(true);
+                    asm.CreateMate(symmetricMateFeatureData);
                 }
                 
             }
@@ -584,7 +591,7 @@ namespace Fraenkische.SWAddin.UI
             // check_offset
             // 
             this.check_offset.AutoSize = true;
-            this.check_offset.Location = new System.Drawing.Point(195, 51);
+            this.check_offset.Location = new System.Drawing.Point(195, 52);
             this.check_offset.Name = "check_offset";
             this.check_offset.Size = new System.Drawing.Size(93, 17);
             this.check_offset.TabIndex = 13;
@@ -593,7 +600,7 @@ namespace Fraenkische.SWAddin.UI
             // 
             // GenerateInfillForm
             // 
-            this.ClientSize = new System.Drawing.Size(555, 161);
+            this.ClientSize = new System.Drawing.Size(554, 161);
             this.Controls.Add(this.check_offset);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
