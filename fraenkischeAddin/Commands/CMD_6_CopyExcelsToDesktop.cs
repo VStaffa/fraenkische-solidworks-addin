@@ -9,11 +9,6 @@ namespace Fraenkische.SWAddin.Commands
 {
     internal class CMD_6_CopyExcelsToDesktop : ICommand
     {
-        public CMD_6_CopyExcelsToDesktop()
-        {
-  
-        }
-
         public void Register(CommandManagerService cmdMgrService)
         {
             cmdMgrService.AddCommand("Kopíruj Excely", "Zkopíruje podklady z Robota a Toolshopu na plochu", 0, Execute);

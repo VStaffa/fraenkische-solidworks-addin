@@ -37,7 +37,6 @@ namespace Fraenkische.SWAddin
 
             featureManager.RegisterFeatures();
             commandManager.Finalize();
-
             myFrame = swApp.Frame();
 
             //CREATE TASKPANE

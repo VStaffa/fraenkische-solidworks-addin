@@ -32,7 +32,7 @@ namespace Fraenkische.SWAddin
             //Callback_0 ++ 
             new CMD_1_BatchBOMtoExcelExport(_swApp),
             new CMD_2_ExportBodiesToSTP(_swApp),
-            new CMD_3_LoadPriceFromRobot(_swApp),
+            new CMD_3_LoadPriceFromRobot(),
             new CMD_4_LoadTNumbersFromRobot(_swApp),
             new CMD_5_MergeExcelFilesInFolder(),
             new CMD_6_CopyExcelsToDesktop(),

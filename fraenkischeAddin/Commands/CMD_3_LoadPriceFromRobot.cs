@@ -12,8 +12,6 @@ namespace Fraenkische.SWAddin.Commands
 {
     internal class CMD_3_LoadPriceFromRobot : ICommand
     {
-        private readonly SldWorks _swApp;
-
         // Recommendation 1: Use constants for column indices and file filter
         private const int DEST_COL_A = 1;
         private const int DEST_COL_D = 5;
@@ -21,10 +19,6 @@ namespace Fraenkische.SWAddin.Commands
         private const int SRC_COL_E = 5;
         private const string EXCEL_FILE_FILTER = "Excel Files|*.xlsx;*.xlsm;*.xls";
 
-        public CMD_3_LoadPriceFromRobot(SldWorks swApp)
-        {
-            _swApp = swApp;
-        }
         public string Title => "Load PRICE from ROBOT";
 
         public void Register(CommandManagerService cmdMgr)
