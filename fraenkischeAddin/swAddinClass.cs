@@ -10,8 +10,6 @@ namespace Fraenkische.SWAddin
 {
 
     [ComVisible(true)]
-
-    //WORK GUID
     [Guid("E5F928C1-B502-41D2-BA19-D86E4AD34786")]
 
     public class SWAddinClass : SwAddin
@@ -97,10 +95,10 @@ namespace Fraenkische.SWAddin
             {
                 featureManager.Get<CMD_5_MergeExcelFilesInFolder>()?.Execute();
             };
-            //swTaskpaneHost.cmd_6_Clicked += () =>
-            //{
-            //    featureManager.Get<CMD_6_UpdateLocalExcels>()?.Execute();
-            //};
+            swTaskpaneHost.cmd_6_Clicked += () =>
+            {
+                featureManager.Get<CMD_6_CopyExcelsToDesktop>()?.Execute();
+            };
             swTaskpaneHost.cmd_7_Clicked += () =>
             {
                 featureManager.Get<CMD_7_UpdateTNumberInPart>()?.Execute();

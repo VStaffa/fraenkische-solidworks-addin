@@ -15,7 +15,6 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <LangVersion>8.0</LangVersion>
-
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -82,7 +81,7 @@
     <Compile Include="Commands\CMD_4_LoadTNumbersFromRobot.cs" />
     <Compile Include="Commands\CMD_7_UpdateTNumberInPart.cs" />
     <Compile Include="Commands\CMD_2_ExportBodiesToSTP.cs" />
-    <Compile Include="Commands\CMD_6_UpdateLocalExcels.cs" />
+    <Compile Include="Commands\CMD_6_CopyExcelsToDesktop.cs" />
     <Compile Include="Commands\CMD_9_GenerateInfill.cs" />
     <Compile Include="Core\ICommand.cs" />
     <Compile Include="Core\SetBarText.cs" />

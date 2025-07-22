@@ -35,7 +35,7 @@ namespace Fraenkische.SWAddin
             new CMD_3_LoadPriceFromRobot(_swApp),
             new CMD_4_LoadTNumbersFromRobot(_swApp),
             new CMD_5_MergeExcelFilesInFolder(),
-            new CMD_6_UpdateLocalExcels(),
+            new CMD_6_CopyExcelsToDesktop(),
             new CMD_7_UpdateTNumberInPart(_swApp),
             new CMD_8_CreateGaugeDrawing(_swApp),
             new CMD_9_GenerateInfill(_swApp),
