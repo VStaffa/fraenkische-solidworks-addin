@@ -18,7 +18,6 @@ namespace Fraenkische.SWAddin.Services
         {
             Excel.Application xlApp = new Excel.Application();
             Excel.Workbook workbook = null;
-
             int row;
 
             try
@@ -29,7 +28,6 @@ namespace Fraenkische.SWAddin.Services
 
                 bool found = false;
                 
-
                 Match match = Regex.Match(componentName, @"\d+$");
 
                 if (match.Success)
