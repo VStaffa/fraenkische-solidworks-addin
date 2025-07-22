@@ -104,11 +104,5 @@ namespace Fraenkische.SWAddin.Commands
                 return result == DialogResult.OK ? dlg.SelectedPath : string.Empty;
             }
         }
-
-        private void DebugPrint(string msg)
-        {
-            System.Diagnostics.Debug.Print(msg);
-            // Or log to file/messagebox if needed
-        }
     }
 }
