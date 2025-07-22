@@ -28,7 +28,7 @@ namespace Fraenkische.SWAddin.Commands
         }
         public void Execute()
         {
-            var activeDoc = _swApp.IActiveDoc2 as ModelDoc2;
+            ModelDoc2 activeDoc = _swApp.IActiveDoc2;
 
             if (activeDoc == null)
             {

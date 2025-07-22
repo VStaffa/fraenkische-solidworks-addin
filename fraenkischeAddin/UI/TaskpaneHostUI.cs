@@ -35,7 +35,6 @@ namespace Fraenkische.SWAddin.UI
         private Button btn_man_9;
         private Button btn_cmd_9;
         private Button btn_cmd_6;
-        private Label lblActiveDocName;
 
         public event Action cmd_1_Clicked;
         public event Action cmd_2_Clicked;
@@ -77,15 +76,14 @@ namespace Fraenkische.SWAddin.UI
             this.btn_cmd_8 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btn_cmd_6 = new System.Windows.Forms.Button();
             this.btn_man_1 = new System.Windows.Forms.Button();
             this.btn_man_4 = new System.Windows.Forms.Button();
             this.btn_cmd_1 = new System.Windows.Forms.Button();
             this.btn_cmd_3 = new System.Windows.Forms.Button();
             this.btn_cmd_4 = new System.Windows.Forms.Button();
             this.btn_cmd_5 = new System.Windows.Forms.Button();
-            this.lblActiveDocName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btn_cmd_6 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -255,6 +253,17 @@ namespace Fraenkische.SWAddin.UI
             this.tabPage5.Text = "OTHER";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // btn_cmd_6
+            // 
+            this.btn_cmd_6.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btn_cmd_6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_cmd_6.Location = new System.Drawing.Point(6, 62);
+            this.btn_cmd_6.Name = "btn_cmd_6";
+            this.btn_cmd_6.Size = new System.Drawing.Size(180, 50);
+            this.btn_cmd_6.TabIndex = 12;
+            this.btn_cmd_6.Text = "Copy Excels to Desktop";
+            this.btn_cmd_6.UseVisualStyleBackColor = false;
+            // 
             // btn_man_1
             // 
             this.btn_man_1.BackColor = System.Drawing.Color.Transparent;
@@ -320,15 +329,6 @@ namespace Fraenkische.SWAddin.UI
             this.btn_cmd_5.Text = "Merge Excel BOMs";
             this.btn_cmd_5.UseVisualStyleBackColor = true;
             // 
-            // lblActiveDocName
-            // 
-            this.lblActiveDocName.AutoSize = true;
-            this.lblActiveDocName.Location = new System.Drawing.Point(4, 95);
-            this.lblActiveDocName.Name = "lblActiveDocName";
-            this.lblActiveDocName.Size = new System.Drawing.Size(121, 13);
-            this.lblActiveDocName.TabIndex = 4;
-            this.lblActiveDocName.Text = "NO DOCUMENT OPEN";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -342,21 +342,9 @@ namespace Fraenkische.SWAddin.UI
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
-            // btn_cmd_6
-            // 
-            this.btn_cmd_6.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btn_cmd_6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_cmd_6.Location = new System.Drawing.Point(6, 62);
-            this.btn_cmd_6.Name = "btn_cmd_6";
-            this.btn_cmd_6.Size = new System.Drawing.Size(180, 50);
-            this.btn_cmd_6.TabIndex = 12;
-            this.btn_cmd_6.Text = "Copy Excels to Desktop";
-            this.btn_cmd_6.UseVisualStyleBackColor = false;
-            // 
             // TaskpaneHostUI
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.Controls.Add(this.lblActiveDocName);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tabControl1);
             this.Name = "TaskpaneHostUI";
@@ -367,13 +355,7 @@ namespace Fraenkische.SWAddin.UI
             this.tabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
-        }
-
-        public void UpdateDocumentName(string docName)
-        {
-            lblActiveDocName.Text = $"Active Document: {docName}";
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)

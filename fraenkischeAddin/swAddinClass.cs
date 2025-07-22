@@ -42,25 +42,8 @@ namespace Fraenkische.SWAddin
             //CREATE TASKPANE
             LoadUI();
 
-            swApp.ActiveDocChangeNotify += OnActiveDocChanged;
-            UpdateActiveDocumentName();
             return true;
         }
-
-        #region CURRENT OPEN DOCUMENT HANDLING
-        private int OnActiveDocChanged()
-        {
-            UpdateActiveDocumentName();
-            return 0;
-        }
-
-        private void UpdateActiveDocumentName()
-        {
-            var doc = swApp.IActiveDoc2;
-            string name = doc != null ? Path.GetFileName(doc.GetPathName()) : "(none)";
-            swTaskpaneHost?.UpdateDocumentName(name);
-        }
-        #endregion
 
         #region TASKPANE BUTTON CLICK HANDLER
 
