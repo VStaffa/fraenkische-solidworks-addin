@@ -22,7 +22,6 @@ namespace Fraenkische.SWAddin.Commands
             "jaroslav.hruska@fraenkische-cz.com;" +
             "jaromir.hroch@fraenkische-cz.com;" +
             "lubos.hromadko@fraenkische-cz.com;" +
-            "jiri.kalis@fraenkische-cz.com;" +
             "zdenek.sveda@fraenkische-cz.com";
 
         // Konstanty pro sloupce a filtr
@@ -63,6 +62,13 @@ namespace Fraenkische.SWAddin.Commands
 
             Excel.Application excelApp = new Excel.Application();
             Excel.Workbook destWB = null, srcWB = null;
+
+            // Show the message box with Yes and No buttons
+            DialogResult result = MessageBox.Show("Update CAD models?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            // Save the response in a bool
+            bool editCADModels = (result == DialogResult.Yes);
+
 
             try
             {
@@ -120,7 +126,7 @@ namespace Fraenkische.SWAddin.Commands
                             bool drawingFound = false;
                             bool drawingSaved = false;
 
-                            if (fileFound)
+                            if (fileFound && editCADModels)
                             {
                                 var model = _swApp.OpenDoc6(
                                     partPath,
@@ -197,20 +203,32 @@ namespace Fraenkische.SWAddin.Commands
                         mailItem.To = recAdresses;
                         var sb = new StringBuilder("Nově přidaná T-Čísla:\r\n\n");
 
+                        if (editCADModels) sb.AppendLine("POUZE INFORMATIVNÍ REŽIM - MODELY NEBYLY AKTUALIZOVÁNY");
+
                         var byAuthor = additions.GroupBy(x => x.Author);
                         foreach (var group in byAuthor)
                         {
                             sb.AppendLine($"Autor: {group.Key}");
                             foreach (var item in group)
                             {
-                                sb.AppendLine(
+                                if (editCADModels == false)
+                                {
+                                    sb.AppendLine(
                                     $"DÍL: {item.PartName}\t" +
                                     $"T-Číslo: {item.TNumber}\t\t" +
                                     $"Díl nalezen: {(item.FileFound ? "OK" : "Nenalezen")}\t\t" +
                                     $"Díl upraven: {(item.PropertyAdded ? "OK" : "Chyba")}\t\t" +
                                     $"Výkres nalezen: {(item.DrawingFound ? "OK" : "Nenalezen")}\t\t" +
                                     $"Výkres upraven: {(item.DrawingSaved ? "OK" : "Chyba")}"
-                                );
+                                    );
+                                }
+                                else
+                                {
+                                    sb.AppendLine(
+                                    $"DÍL: {item.PartName}\t" +
+                                    $"T-Číslo: {item.TNumber}\t\t");
+                                }
+
                             }
                             sb.AppendLine(new string('-', 80));
                         }

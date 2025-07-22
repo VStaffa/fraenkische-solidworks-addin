@@ -42,7 +42,7 @@ namespace Fraenkische.SWAddin.Commands
             foreach (string file in files)
             {
                 ModelDoc2 swModel = swApp.OpenDoc6(file, (int)swDocumentTypes_e.swDocDRAWING,
-                                                   (int)swOpenDocOptions_e.swOpenDocOptions_LoadLightweight,
+                                                   (int)swOpenDocOptions_e.swOpenDocOptions_OpenDetailingMode,
                                                    "", 0, 0);
 
                 if (swModel == null)
