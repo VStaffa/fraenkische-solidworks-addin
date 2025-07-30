@@ -31,6 +31,9 @@ namespace Fraenkische.SWAddin.Commands
         private const int SRC_COL_E = 5;
         private const string EXCEL_FILE_FILTER = "Excel Files|*.xlsx;*.xlsm;*.xls";
 
+        // Cesta k adresáři s díly
+        string partDir = @"M:\FIP_CZ_PRO\2900_Vyroba stroju a nastroju\2931_Vyroba stroju a zarizeni\Konstrukce\Nástrojárna\BFP-CZ-TS-(6000 - 6999)";
+
         public CMD_4_LoadTNumbersFromRobot(SldWorks swApp)
         {
             _swApp = swApp;
@@ -68,7 +71,6 @@ namespace Fraenkische.SWAddin.Commands
 
             // Save the response in a bool
             bool editCADModels = (result == DialogResult.Yes);
-
 
             try
             {
@@ -118,14 +120,16 @@ namespace Fraenkische.SWAddin.Commands
                             string author = Convert.ToString(destWS.Cells[i, 3].Value)?.Trim();
 
                             // Otevření a úprava part modelu
-                            string partDir = @"M:\FIP_CZ_PRO\2900_Vyroba stroju a nastroju\2931_Vyroba stroju a zarizeni\Konstrukce\Nástrojárna\BFP-CZ-TS-(6000 - 6999)";
+                            
                             string partPath = Path.Combine(partDir, partName, partName + ".sldprt");
-
-                            bool fileFound = File.Exists(partPath);
+                            string drwPath = Path.Combine(partDir, partName, partName + ".slddrw");
+                            
                             bool propertyAdded = false;
                             bool drawingFound = false;
                             bool drawingSaved = false;
 
+                            bool fileFound = File.Exists(partPath);
+                            drawingFound = File.Exists(drwPath);
                             if (fileFound && editCADModels)
                             {
                                 var model = _swApp.OpenDoc6(
@@ -145,8 +149,7 @@ namespace Fraenkische.SWAddin.Commands
                                     _swApp.CloseDoc(model.GetTitle());
 
                                     // Otevření a úprava výkresu
-                                    string drwPath = Path.Combine(partDir, partName, partName + ".slddrw");
-                                    drawingFound = File.Exists(drwPath);
+
                                     if (drawingFound)
                                     {
                                         var drw = _swApp.OpenDoc6(
@@ -203,15 +206,19 @@ namespace Fraenkische.SWAddin.Commands
                         mailItem.To = recAdresses;
                         var sb = new StringBuilder("Nově přidaná T-Čísla:\r\n\n");
 
-                        if (editCADModels) sb.AppendLine("POUZE INFORMATIVNÍ REŽIM - MODELY NEBYLY AKTUALIZOVÁNY");
-
+                        if (editCADModels == false)
+                        {
+                            sb.AppendLine("POUZE INFORMATIVNÍ REŽIM - MODELY NEBYLY AKTUALIZOVÁNY");
+                            sb.AppendLine();
+                        }
+                        
                         var byAuthor = additions.GroupBy(x => x.Author);
                         foreach (var group in byAuthor)
                         {
                             sb.AppendLine($"Autor: {group.Key}");
                             foreach (var item in group)
                             {
-                                if (editCADModels == false)
+                                if (editCADModels == true)
                                 {
                                     sb.AppendLine(
                                     $"DÍL: {item.PartName}\t" +
@@ -226,7 +233,9 @@ namespace Fraenkische.SWAddin.Commands
                                 {
                                     sb.AppendLine(
                                     $"DÍL: {item.PartName}\t" +
-                                    $"T-Číslo: {item.TNumber}\t\t");
+                                    $"T-Číslo: {item.TNumber}\t\t" +
+                                    $"Díl nalezen: {(item.FileFound ? "OK" : "Nenalezen")}\t\t"+
+                                    $"Výkres nalezen: {(item.DrawingFound ? "OK" : "Nenalezen")}\t\t");
                                 }
 
                             }
@@ -235,7 +244,7 @@ namespace Fraenkische.SWAddin.Commands
 
                         sb.AppendLine();
                         sb.AppendLine("S pozdravem,");
-                        sb.AppendLine("Váš AUTOKonstrukter");
+                        sb.AppendLine("Váš AUTOKonstruktér");
                         sb.AppendLine("Fraenkische s.r.o.");
 
                         mailItem.Body = sb.ToString();

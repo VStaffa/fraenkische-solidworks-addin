@@ -392,47 +392,39 @@ namespace Fraenkische.SWAddin.UI
                     SymmetricMateFeatureData symmetricMateFeatureData;
                     CoincidentMateFeatureData coincidentMateFeatureData;
 
-                    object faceVar;
-
-                    object plane = null;
-
                     //0 - Coicident, 8 - Symmetrical
                     coincidentMateFeatureData = (CoincidentMateFeatureData)asm.CreateMateData(0);
                     symmetricMateFeatureData = (SymmetricMateFeatureData)asm.CreateMateData(8);
-                    
+
                     symmetricMateFeatureData.SymmetryPlane = null;
                     symmetricMateFeatureData.EntitiesToMate = null;
                     symmetricMateFeatureData.MateAlignment = (int)swMateReferenceAlignment_e.swMateReferenceAlignment_Aligned;
-
-
 
                     // a) vymažeme výběr
                     activeDoc.ClearSelection2(true);
 
                     string compName = comp.Name2;
                     string assemblyName = Path.GetFileNameWithoutExtension(activeDoc.GetPathName());
+                    object[] EntitiesToMate = new object[2];
+                    object EntitiesToMateVar;
 
-                    MessageBox.Show($"{direction}@{compName}@{assemblyName}");
+                    //MessageBox.Show($"{direction}@{compName}@{assemblyName}");
 
-                    plane = swExt.SelectByID2(
+                    object plane = swExt.SelectByID2(
                         $"{direction}@{compName}@{assemblyName}",
                         "PLANE",
-                        0, 0, 0, false, 4, null, 0);
+                        0, 0, 0, true, 1, null, 0);
 
-                    faceVar = asmFaces;
 
-                    foreach (Face2 f in asmFaces) {
-                        ISurface surf = f.GetSurface();
-                    }
+                    EntitiesToMateVar = EntitiesToMate;
 
+                    symmetricMateFeatureData.EntitiesToMate = EntitiesToMateVar;
                     symmetricMateFeatureData.SymmetryPlane = plane;
-                    symmetricMateFeatureData.EntitiesToMate = faceVar;
 
                     asm.CreateMate(symmetricMateFeatureData);
                 }
                 
             }
-
 
             if (check_openFolder.Checked)
                 Process.Start("explorer.exe", outputDir);
