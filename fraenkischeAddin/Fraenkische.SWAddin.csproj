@@ -190,7 +190,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Resources\Icons\excelIcon.webp" />
     <None Include="Resources\Manuals\AUTOKoch - USER MANUAL.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
