@@ -389,6 +389,7 @@ namespace Fraenkische.SWAddin.UI
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GenerateInfillForm));
             this.btn_ref = new System.Windows.Forms.Button();
             this.btn_gen = new System.Windows.Forms.Button();
             this.txt_w = new System.Windows.Forms.TextBox();
@@ -441,6 +442,7 @@ namespace Fraenkische.SWAddin.UI
             // 
             // cbox_types
             // 
+            this.cbox_types.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbox_types.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbox_types.FormattingEnabled = true;
             this.cbox_types.Location = new System.Drawing.Point(12, 12);
@@ -552,6 +554,7 @@ namespace Fraenkische.SWAddin.UI
             this.Controls.Add(this.txt_w);
             this.Controls.Add(this.btn_gen);
             this.Controls.Add(this.btn_ref);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(630, 200);
             this.MinimizeBox = false;
