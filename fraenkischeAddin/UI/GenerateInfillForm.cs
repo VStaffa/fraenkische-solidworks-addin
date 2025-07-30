@@ -371,61 +371,6 @@ namespace Fraenkische.SWAddin.UI
                 activeDoc.EditRebuild3();
             }
 
-            // ZAVAZBIT NOVĚ VLOŽENÝ DÍL
-            if (_autoMode && comp != null)
-            {
-                var swExt = activeDoc.Extension;
-                SelectionMgr selMgr = activeDoc.SelectionManager;
-
-                MateFeatureData mateData;
-                SymmetricMateFeatureData symmetricMateFeatureData;
-
-                mateData = (MateFeatureData)asm.CreateMateData(8);
-                symmetricMateFeatureData = (SymmetricMateFeatureData)mateData;
-
-
-                AddSymetricalMate(_asmPair2, "Horizontal");
-
-                // Pomocná lokální funkce pro vložení jednoho Symetrical Mate
-                void AddSymetricalMate(Face2[] asmFaces, string direction)
-                {
-                    SymmetricMateFeatureData symmetricMateFeatureData;
-                    CoincidentMateFeatureData coincidentMateFeatureData;
-
-                    //0 - Coicident, 8 - Symmetrical
-                    coincidentMateFeatureData = (CoincidentMateFeatureData)asm.CreateMateData(0);
-                    symmetricMateFeatureData = (SymmetricMateFeatureData)asm.CreateMateData(8);
-
-                    symmetricMateFeatureData.SymmetryPlane = null;
-                    symmetricMateFeatureData.EntitiesToMate = null;
-                    symmetricMateFeatureData.MateAlignment = (int)swMateReferenceAlignment_e.swMateReferenceAlignment_Aligned;
-
-                    // a) vymažeme výběr
-                    activeDoc.ClearSelection2(true);
-
-                    string compName = comp.Name2;
-                    string assemblyName = Path.GetFileNameWithoutExtension(activeDoc.GetPathName());
-                    object[] EntitiesToMate = new object[2];
-                    object EntitiesToMateVar;
-
-                    //MessageBox.Show($"{direction}@{compName}@{assemblyName}");
-
-                    object plane = swExt.SelectByID2(
-                        $"{direction}@{compName}@{assemblyName}",
-                        "PLANE",
-                        0, 0, 0, true, 1, null, 0);
-
-
-                    EntitiesToMateVar = EntitiesToMate;
-
-                    symmetricMateFeatureData.EntitiesToMate = EntitiesToMateVar;
-                    symmetricMateFeatureData.SymmetryPlane = plane;
-
-                    asm.CreateMate(symmetricMateFeatureData);
-                }
-                
-            }
-
             if (check_openFolder.Checked)
                 Process.Start("explorer.exe", outputDir);
 
