@@ -155,7 +155,7 @@ namespace Fraenkische.SWAddin.Commands
                                         var drw = _swApp.OpenDoc6(
                                             drwPath,
                                             (int)swDocumentTypes_e.swDocDRAWING,
-                                            (int)swOpenDocOptions_e.swOpenDocOptions_Silent,
+                                            (int)swOpenDocOptions_e.swOpenDocOptions_OpenDetailingMode,
                                             "", 0, 0) as ModelDoc2;
                                         if (drw != null)
                                         {

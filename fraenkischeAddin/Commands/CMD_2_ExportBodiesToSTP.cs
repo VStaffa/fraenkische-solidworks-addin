@@ -3,6 +3,7 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 using System.IO;
 using System.Windows.Forms;
+using System.Windows.Shapes;
 
 namespace Fraenkische.SWAddin.Commands
 {
@@ -47,12 +48,42 @@ namespace Fraenkische.SWAddin.Commands
                 return;
             }
 
-            string targetFolder = ChooseFolder();
+            string targetFolder;
+
+            targetFolder = Microsoft.VisualBasic.Interaction.InputBox("Zadejte cestu ke složce:",
+            "Výběr složky");
+
             if (string.IsNullOrWhiteSpace(targetFolder))
             {
-                SetBarText.Write("Ready");
-                return;
+                MessageBox.Show("Zadání bylo zrušeno nebo je prázdné.");
+                targetFolder = ChooseFolder();
+
+                if (string.IsNullOrWhiteSpace(targetFolder))
+                {
+                    SetBarText.Write("Ready");
+                    return;
+                }
+            }else
+            {
+                if (Directory.Exists(targetFolder))
+                {
+                    MessageBox.Show("Složka existuje:\n" + targetFolder);
+                }
+                else
+                {
+                    MessageBox.Show("Zadaná složka neexistuje:\n" + targetFolder);
+                    targetFolder = ChooseFolder();
+
+
+                    if (string.IsNullOrWhiteSpace(targetFolder))
+                    {
+                        SetBarText.Write("Ready");
+                        return;
+                    }
+                }
             }
+
+
 
             int total = bodies.Length;
             int current = 0;
@@ -68,7 +99,7 @@ namespace Fraenkische.SWAddin.Commands
 
                 // Save as STEP
                 string bodyName = body.Name.Replace("/", "_");
-                string filePath = Path.Combine(targetFolder, bodyName + ".stp");
+                string filePath = System.IO.Path.Combine(targetFolder, bodyName + ".stp");
 
                 swModel.SaveAs3(filePath, 0, 0);
             }

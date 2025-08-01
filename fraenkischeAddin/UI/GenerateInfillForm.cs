@@ -5,7 +5,6 @@ using SolidWorks.Interop.swconst;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -40,10 +39,6 @@ namespace Fraenkische.SWAddin.UI
 
         private string assPath = string.Empty;
         private CheckBox check_offset;
-
-        private readonly bool _autoMode;
-        private readonly Face2[] _asmPair1;
-        private readonly Face2[] _asmPair2;
 
         public GenerateInfillForm(SldWorks swApp)
         {
@@ -85,7 +80,7 @@ namespace Fraenkische.SWAddin.UI
         /// <summary>
         /// Konstruktor pro automatický režim: pevné rozměry, uživatel jen vybere typ infillu a potvrdí.
         /// </summary>
-        public GenerateInfillForm(SldWorks swApp, int widthMm, int heightMm, Face2[] asmPair1, Face2[] asmPair2)
+        public GenerateInfillForm(SldWorks swApp, int widthMm, int heightMm)
             : this(swApp)   // zavolá původní ctor, který udělá InitializeComponent a eventy
         {
             // předvyplníme
@@ -102,15 +97,10 @@ namespace Fraenkische.SWAddin.UI
 
             check_offset.Checked = true; // přidáme offset, pokud je potřeba
             check_offset.Enabled = false; // vypneme možnost změny offsetu
-            
 
             // tlačítko REFRESH necháme aktivní, nechá uživatele přepočítat popisky při změně typu
             btn_ref.Enabled = true;
-
-            _autoMode = true;
-            _asmPair1 = asmPair1;
-            _asmPair2 = asmPair2;
-            check_insert.Checked = true; // automaticky přidáme do sestavy
+            check_insert.Checked = true;
             check_insert.Visible = false;
 
             this.Text = "GENERATE INFILL FORM - INSERT + MATE MODE";
@@ -429,15 +419,15 @@ namespace Fraenkische.SWAddin.UI
             this.txt_w.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_w.Location = new System.Drawing.Point(12, 74);
             this.txt_w.Name = "txt_w";
-            this.txt_w.Size = new System.Drawing.Size(100, 26);
+            this.txt_w.Size = new System.Drawing.Size(90, 26);
             this.txt_w.TabIndex = 2;
             // 
             // txt_h
             // 
             this.txt_h.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_h.Location = new System.Drawing.Point(118, 74);
+            this.txt_h.Location = new System.Drawing.Point(108, 75);
             this.txt_h.Name = "txt_h";
-            this.txt_h.Size = new System.Drawing.Size(89, 26);
+            this.txt_h.Size = new System.Drawing.Size(90, 26);
             this.txt_h.TabIndex = 3;
             // 
             // cbox_types
@@ -461,10 +451,9 @@ namespace Fraenkische.SWAddin.UI
             // 
             // lbl_length
             // 
-            this.lbl_length.AutoSize = true;
             this.lbl_length.Location = new System.Drawing.Point(329, 97);
             this.lbl_length.Name = "lbl_length";
-            this.lbl_length.Size = new System.Drawing.Size(22, 13);
+            this.lbl_length.Size = new System.Drawing.Size(213, 29);
             this.lbl_length.TabIndex = 6;
             this.lbl_length.Text = "- - -";
             // 
@@ -501,7 +490,7 @@ namespace Fraenkische.SWAddin.UI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(115, 52);
+            this.label2.Location = new System.Drawing.Point(105, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 13);
             this.label2.TabIndex = 10;
@@ -530,7 +519,7 @@ namespace Fraenkische.SWAddin.UI
             // check_offset
             // 
             this.check_offset.AutoSize = true;
-            this.check_offset.Location = new System.Drawing.Point(195, 52);
+            this.check_offset.Location = new System.Drawing.Point(195, 49);
             this.check_offset.Name = "check_offset";
             this.check_offset.Size = new System.Drawing.Size(93, 17);
             this.check_offset.TabIndex = 13;
@@ -582,12 +571,12 @@ namespace Fraenkische.SWAddin.UI
         public InfillType(string title, string templatePath, string configName,
                           string descPrefix, string lenPrefix, int offset)
         {
-            Title = title;
-            TemplatePath = templatePath;
-            ConfigName = configName;
-            DescPrefix = descPrefix;
-            LenPrefix = lenPrefix;
-            Offset = offset;
+            Title = title; // NÁZEV V DROPDOWN MENU 
+            TemplatePath = templatePath; // CESTA KA ŠABLONĚ
+            ConfigName = configName; // NÁZEV KONFIGURACE V ŠABLONĚ
+            DescPrefix = descPrefix; // TEXT DO BOMu sloupec:"Description"
+            LenPrefix = lenPrefix; // TEXT DO BOMu sloupec:"Length" (informace o použitém těsnění + obvod)
+            Offset = offset; // Hodnota odsazení při vkládání do ITEM rámu
         }
     }
 }

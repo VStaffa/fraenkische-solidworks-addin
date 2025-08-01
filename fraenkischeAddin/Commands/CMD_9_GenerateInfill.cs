@@ -38,10 +38,10 @@ namespace Fraenkische.SWAddin.Commands
             }
 
             // 1) If it’s an assembly and 4 valid faces are selected, go auto…
-            if (activeDoc is AssemblyDoc && TryGetSelectedHoleSize(out int w, out int h, out Face2[] asmPair1, out Face2[] asmPair2))
+            if (activeDoc is AssemblyDoc && TryGetSelectedHoleSize(out int w, out int h))
             {
                 // 1) vytvoříme formulář s předvyplněnými rozměry
-                using (var form = new GenerateInfillForm(_swApp, w, h, asmPair1, asmPair2))
+                using (var form = new GenerateInfillForm(_swApp, w, h))
                 {
                     form.ShowDialog();
                     if (!form.DialogResult.Equals(DialogResult.OK))
@@ -57,12 +57,9 @@ namespace Fraenkische.SWAddin.Commands
         }
         public bool TryGetSelectedHoleSize(
             out int widthMm,
-            out int heightMm,
-            out Face2[] asmPair1,
-            out Face2[] asmPair2)
+            out int heightMm)
         {
             widthMm = heightMm = 0;
-            asmPair1 = asmPair2 = null;
 
             var swModel = (ModelDoc2)_swApp.ActiveDoc;
             var selMgr = swModel.SelectionManager;
@@ -113,12 +110,10 @@ namespace Fraenkische.SWAddin.Commands
             widthMm = dims[0];
             heightMm = dims[1];
 
-            asmPair1 = new[] { faces[i1], faces[j1] };
-            asmPair2 = new[] { faces[i2], faces[j2] };
             return true;
         }
         /// <summary>
-        /// Ov ěří, že dvě planární plochy mají rovnoběžné normály.
+        /// Ověří, že dvě planární plochy mají rovnoběžné normály.
         /// </summary>
         private bool AreParallel(Face2 f1, Face2 f2)
         {
